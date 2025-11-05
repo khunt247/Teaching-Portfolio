@@ -855,68 +855,6 @@ nav a:hover::after {
 }
 
 /* ================================
-   TESTIMONIALS
-   ================================ */
-.testimonials-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 2rem;
-}
-
-.testimonial-card {
-    position: relative;
-    padding: var(--space-xl);
-    /* Ensure testimonial cards are visible by default */
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.quote-icon {
-    font-size: 3rem;
-    color: var(--primary);
-    opacity: 0.3;
-    margin-bottom: var(--space-md);
-}
-
-.testimonial-text {
-    font-size: var(--text-base);
-    line-height: 1.8;
-    color: var(--text-muted);
-    margin-bottom: var(--space-lg);
-    font-style: italic;
-}
-
-.testimonial-author {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-}
-
-.author-avatar {
-    width: 56px;
-    height: 56px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, var(--primary), var(--secondary));
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 800;
-    font-size: var(--text-lg);
-    color: white;
-}
-
-.author-info h4 {
-    font-weight: 700;
-    font-size: var(--text-base);
-    margin-bottom: 0.25rem;
-}
-
-.author-info p {
-    font-size: var(--text-sm);
-    color: var(--text-dim);
-}
-
-/* ================================
    CONTACT SECTION
    ================================ */
 .contact-section {
@@ -1188,8 +1126,7 @@ footer {
     
     .projects-grid,
     .ai-tools-grid,
-    .skills-grid,
-    .testimonials-grid {
+    .skills-grid {
         grid-template-columns: 1fr;
     }
     

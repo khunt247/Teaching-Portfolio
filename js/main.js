@@ -110,18 +110,6 @@ function initAnimations() {
 }
 
 // ================================
-// FORM SUBMISSION
-// ================================
-function handleFormSubmit(event) {
-    event.preventDefault();
-    const formData = new FormData(event.target);
-    const data = Object.fromEntries(formData);
-    
-    alert(`Thank you for reaching out!\n\nYour message has been received. I'll get back to you within 24 hours.\n\nMessage details:\nName: ${data.name}\nEmail: ${data.email}\nSubject: ${data.subject}`);
-    event.target.reset();
-}
-
-// ================================
 // REFRESH ANIMATIONS ON NAVIGATION
 // ================================
 function refreshSectionAnimations(targetSection) {
