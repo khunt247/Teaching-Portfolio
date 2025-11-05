@@ -455,7 +455,6 @@ nav a:hover::after {
    ================================ */
 .hero-section {
     padding-top: 8rem;
-    padding-bottom: var(--space-lg);
     min-height: 100vh;
 }
 
@@ -602,107 +601,17 @@ nav a:hover::after {
     transform: translateY(-3px);
 }
 
-.hero-quote {
-    margin-top: var(--space-2xl);
-    text-align: center;
-    padding: var(--space-lg) var(--space-lg);
-    position: relative;
-    max-width: 700px;
-    margin-left: auto;
-    margin-right: auto;
-    background: var(--surface);
-    backdrop-filter: blur(20px) saturate(180%);
-    border: 1px solid var(--glass-border);
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-lg);
-    transition: all 0.3s ease;
-    overflow: hidden;
-    /* Ensure quote remains visible */
-    visibility: visible !important;
-    display: block !important;
-    opacity: 1;
-}
-
-.hero-quote::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 4px;
-    height: 100%;
-    background: linear-gradient(180deg, var(--primary), var(--secondary), var(--accent));
-    border-radius: var(--radius-md) 0 0 var(--radius-md);
-}
-
-.hero-quote::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(
-        circle at 50% 50%,
-        rgba(139, 92, 246, 0.08),
-        transparent 70%
-    );
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    pointer-events: none;
-}
-
-.hero-quote:hover {
-    transform: translateY(-5px);
-    border-color: rgba(139, 92, 246, 0.4);
-    box-shadow: var(--shadow-xl), var(--shadow-glow);
-}
-
-.hero-quote:hover::after {
-    opacity: 1;
-}
-
-.quote-icon {
-    font-family: var(--font-display);
-    font-size: 3rem;
-    font-weight: 800;
-    line-height: 1;
-    background: linear-gradient(135deg, var(--primary), var(--secondary));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    opacity: 0.3;
-    margin-bottom: var(--space-xs);
-    position: relative;
-    z-index: 1;
-}
-
-.quote-text {
-    font-size: var(--text-lg);
-    font-style: italic;
-    color: var(--text);
-    line-height: 1.6;
-    margin-bottom: var(--space-sm);
-    position: relative;
-    z-index: 1;
-    font-weight: 400;
-    letter-spacing: -0.01em;
-}
-
-.quote-author {
-    font-size: var(--text-base);
-    color: var(--primary);
-    font-style: normal;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    position: relative;
-    z-index: 1;
-    display: inline-block;
-    padding: var(--space-xs) var(--space-md);
-    background: rgba(139, 92, 246, 0.1);
-    border-radius: var(--radius-sm);
-    border: 1px solid rgba(139, 92, 246, 0.2);
-}
-
 .hero-visual {
     position: relative;
+}
+
+.hero-image {
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius-lg);
+    object-fit: contain;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    filter: drop-shadow(0 0 20px rgba(139, 92, 246, 0.2));
 }
 
 /* Tech Stack Grid */
@@ -1246,12 +1155,6 @@ nav a:hover::after {
     padding-top: var(--space-xl);
     padding-bottom: var(--space-lg);
     min-height: auto;
-}
-
-/* About section spacing adjustment */
-#about.section {
-    padding-top: var(--space-lg);
-    padding-bottom: var(--space-3xl);
 }
 
 .contact-grid {

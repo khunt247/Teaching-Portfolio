@@ -55,26 +55,13 @@ function initAnimations() {
     
     gsap.registerPlugin(ScrollTrigger);
     
-    // Hero animation - exclude quote to keep it visible
-    gsap.from('.hero-text > *:not(.hero-quote)', {
+    // Hero animation
+    gsap.from('.hero-text > *', {
         opacity: 0,
         y: 30,
         duration: 0.8,
         stagger: 0.15,
         ease: 'power2.out'
-    });
-    
-    // Animate quote separately with a delay, ensuring it stays visible
-    gsap.from('.hero-quote', {
-        opacity: 0,
-        y: 20,
-        duration: 1,
-        delay: 1.2,
-        ease: 'power2.out',
-        onComplete: function() {
-            // Ensure quote remains visible after animation
-            gsap.set('.hero-quote', { opacity: 1, visibility: 'visible' });
-        }
     });
     
     gsap.from('.tech-card', {
