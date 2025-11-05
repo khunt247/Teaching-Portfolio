@@ -81,7 +81,7 @@
     <!-- Header -->
     <header id="header" role="banner">
         <div class="header-container">
-            <a href="#home" class="logo">KATIE HUNT</a>
+            <a href="#" class="logo">KATIE HUNT</a>
             
             <nav role="navigation" aria-label="Main navigation" id="mainNav">
                 <ul>
@@ -93,7 +93,7 @@
             </nav>
             
             <div style="display: flex; align-items: center; gap: 1rem;">
-                <a href="mailto:katiehunt95@gmail.com" class="cta-header">Let's Connect</a>
+                <a href="#" class="cta-header email-modal-trigger" data-email="katiehunt95@gmail.com">Let's Connect</a>
                 <button class="mobile-menu-toggle" onclick="toggleMobileMenu()" aria-label="Toggle menu">☰</button>
             </div>
         </div>
@@ -120,9 +120,8 @@
                         </div>
                         
                         <p class="hero-description">
-                            Master's-level educator with 7+ years of experience bridging pedagogy and technology. 
-                            I design AI-powered learning experiences, build production-grade web applications, 
-                            and transform complex concepts into accessible, measurable outcomes.
+                            Master's-level educator with experience bridging pedagogy and technology. 
+                            I design AI-powered learning experiences that transform complex educational concepts into scalable, measurable outcomes.
                         </p>
                         
                         <div class="hero-stats">
@@ -142,7 +141,7 @@
                         
                         <div class="hero-cta">
                             <a href="#projects" class="btn btn-primary">View My Work</a>
-                            <a href="#contact" class="btn btn-secondary">Get in Touch</a>
+                            <a href="#contact" id="get-in-touch-btn" class="btn btn-secondary">Get in Touch</a>
                         </div>
                     </div>
                     
@@ -153,67 +152,18 @@
             </div>
         </section>
         
-        <!-- AI Tools Section -->
-        <section id="about" class="section ai-tools-section">
+        <!-- About Section -->
+        <section id="about" class="section">
             <div class="container">
                 <div class="section-header">
-                    <div class="section-label">AI INTEGRATION</div>
-                    <h2 class="section-title">AI-Powered Workflows</h2>
+                    <div class="section-label">ABOUT</div>
+                    <h2 class="section-title">My Story</h2>
                     <p class="section-subtitle">
-                        Expert-level proficiency in leveraging generative AI tools for instructional design, 
-                        software development, and content creation—bringing enterprise-ready AI adoption skills.
+                        <!-- Add your story here -->
                     </p>
                 </div>
                 
-                <div class="ai-tools-grid">
-                    <div class="glass-card ai-tool-card">
-                        <div class="tool-icon">💬</div>
-                        <div class="tool-name">ChatGPT & Claude</div>
-                        <div class="tool-description">
-                            Daily use for curriculum development, assessment creation, and complex problem-solving. 
-                            Advanced prompt engineering for optimal results.
-                        </div>
-                        <div class="proficiency-bar">
-                            <div class="proficiency-fill" style="width: 95%"></div>
-                        </div>
-                    </div>
-                    
-                    <div class="glass-card ai-tool-card">
-                        <div class="tool-icon">⚡</div>
-                        <div class="tool-name">Cursor & Copilot</div>
-                        <div class="tool-description">
-                            AI-assisted coding workflows for building 14+ production web applications. 
-                            Accelerated development with intelligent code completion.
-                        </div>
-                        <div class="proficiency-bar">
-                            <div class="proficiency-fill" style="width: 90%"></div>
-                        </div>
-                    </div>
-                    
-                    <div class="glass-card ai-tool-card">
-                        <div class="tool-icon">🎬</div>
-                        <div class="tool-name">Video AI Tools</div>
-                        <div class="tool-description">
-                            Integrated Sora 2, Nano Banana, and Veo 3 for creating educational multimedia content 
-                            and visual storytelling.
-                        </div>
-                        <div class="proficiency-bar">
-                            <div class="proficiency-fill" style="width: 85%"></div>
-                        </div>
-                    </div>
-                    
-                    <div class="glass-card ai-tool-card">
-                        <div class="tool-icon">🧠</div>
-                        <div class="tool-name">AI Agent Development</div>
-                        <div class="tool-description">
-                            Building custom AI agents and automated workflows to solve complex educational 
-                            and technical challenges efficiently.
-                        </div>
-                        <div class="proficiency-bar">
-                            <div class="proficiency-fill" style="width: 88%"></div>
-                        </div>
-                    </div>
-                </div>
+                <!-- Add your personal narrative, background, mission, etc. here -->
             </div>
         </section>
         
@@ -414,8 +364,46 @@
                     <div class="section-label">EXPERTISE</div>
                     <h2 class="section-title">Technical Skills & Competencies</h2>
                     <p class="section-subtitle">
-                        Comprehensive skill set spanning education, engineering, and AI integration
+                        Proficient in leveraging generative AI tools for instructional design, software development, and content creation—bringing enterprise-ready AI adoption skills.
                     </p>
+                </div>
+                
+                <div class="ai-tools-grid" style="margin-bottom: 4rem;">
+                    <div class="glass-card ai-tool-card">
+                        <div class="tool-icon">💬</div>
+                        <div class="tool-name">ChatGPT & Claude</div>
+                        <div class="tool-description">
+                            Daily use for curriculum development, assessment creation, and complex problem-solving. 
+                            Advanced prompt engineering for optimal results.
+                        </div>
+                        <div class="proficiency-bar">
+                            <div class="proficiency-fill" style="width: 95%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="glass-card ai-tool-card">
+                        <div class="tool-icon">⚡</div>
+                        <div class="tool-name">Cursor & Copilot</div>
+                        <div class="tool-description">
+                            AI-assisted coding workflows for building 14+ production web applications. 
+                            Accelerated development with intelligent code completion.
+                        </div>
+                        <div class="proficiency-bar">
+                            <div class="proficiency-fill" style="width: 90%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="glass-card ai-tool-card">
+                        <div class="tool-icon">🎬</div>
+                        <div class="tool-name">Video AI Tools</div>
+                        <div class="tool-description">
+                            Integrated Sora 2, Nano Banana, and Veo 3 for creating educational multimedia content 
+                            and visual storytelling.
+                        </div>
+                        <div class="proficiency-bar">
+                            <div class="proficiency-fill" style="width: 85%"></div>
+                        </div>
+                    </div>
                 </div>
                 
                 <div class="skills-grid">
@@ -585,7 +573,7 @@
                     <div class="section-label">GET IN TOUCH</div>
                     <h2 class="section-title">Let's Build Something Together</h2>
                     <div class="social-links" style="justify-content: center; margin-top: var(--space-xl); gap: 1.5rem;">
-                        <a href="mailto:katiehunt95@gmail.com" class="social-link" aria-label="Email" data-tooltip="Email" style="width: 80px; height: 80px; font-size: 2rem; position: relative;">✉️</a>
+                        <a href="#" class="social-link email-modal-trigger" aria-label="Email" data-tooltip="Email" data-email="katiehunt95@gmail.com" style="width: 80px; height: 80px; font-size: 2rem; position: relative;">✉️</a>
                         <a href="https://www.linkedin.com/in/katie-hunt-/" class="social-link" aria-label="LinkedIn" data-tooltip="LinkedIn" style="width: 80px; height: 80px; font-size: 2rem; position: relative;" target="_blank" rel="noopener noreferrer">💼</a>
                         <a href="https://github.com/khunt247" class="social-link" aria-label="GitHub" data-tooltip="GitHub" style="width: 80px; height: 80px; font-size: 2rem; position: relative;" target="_blank" rel="noopener noreferrer">💻</a>
                         <a href="https://khunt247.github.io/FrontEnd-Engineer-Portfolio/" class="social-link" aria-label="Frontend Portfolio" data-tooltip="Frontend Portfolio" style="width: 80px; height: 80px; font-size: 2rem; position: relative;" target="_blank" rel="noopener noreferrer">🌐</a>
@@ -593,6 +581,29 @@
                 </div>
             </div>
         </section>
+        
+        <!-- Email Modal -->
+        <div id="emailModal" class="modal-overlay" role="dialog" aria-labelledby="modalTitle" aria-modal="true">
+            <div class="modal-container glass-card">
+                <button class="modal-close" aria-label="Close modal">&times;</button>
+                <div class="modal-content">
+                    <div class="modal-icon">✉️</div>
+                    <h2 id="modalTitle" class="modal-title">Get in Touch</h2>
+                    <p class="modal-description">Click the button below to copy my email address to your clipboard.</p>
+                    <div class="email-display-container">
+                        <div class="email-display" id="emailDisplay">katiehunt95@gmail.com</div>
+                        <button class="btn-copy" id="copyBtn" aria-label="Copy email address">
+                            <span class="copy-icon">📋</span>
+                            <span class="copy-text">Copy Email</span>
+                        </button>
+                    </div>
+                    <div class="copy-feedback" id="copyFeedback" aria-live="polite">
+                        <span class="feedback-icon">✓</span>
+                        <span class="feedback-text">Email copied to clipboard!</span>
+                    </div>
+                </div>
+            </div>
+        </div>
         
     </main>
     

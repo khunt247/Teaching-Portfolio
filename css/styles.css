@@ -716,6 +716,219 @@ nav a:hover::after {
 }
 
 /* ================================
+   EMAIL MODAL
+   ================================ */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(5, 5, 16, 0.85);
+    backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    padding: var(--space-md);
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-container {
+    position: relative;
+    max-width: 500px;
+    width: 100%;
+    padding: var(--space-2xl);
+    text-align: center;
+    transform: scale(0.9) translateY(20px);
+    transition: transform 0.3s ease;
+    background: var(--surface);
+    backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--shadow-xl), var(--shadow-glow);
+}
+
+.modal-overlay.active .modal-container {
+    transform: scale(1) translateY(0);
+}
+
+.modal-close {
+    position: absolute;
+    top: var(--space-md);
+    right: var(--space-md);
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    font-size: 2rem;
+    line-height: 1;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-full);
+    transition: all 0.3s ease;
+    z-index: 1;
+}
+
+.modal-close:hover {
+    background: var(--surface-light);
+    color: var(--text);
+    transform: rotate(90deg);
+}
+
+.modal-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-lg);
+}
+
+.modal-icon {
+    font-size: 4rem;
+    margin-bottom: var(--space-sm);
+    filter: drop-shadow(0 4px 20px rgba(139, 92, 246, 0.4));
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+}
+
+.modal-title {
+    font-family: var(--font-display);
+    font-size: var(--text-3xl);
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin: 0;
+}
+
+.modal-description {
+    color: var(--text-muted);
+    font-size: var(--text-base);
+    line-height: 1.6;
+    margin: 0;
+}
+
+.email-display-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    margin: var(--space-md) 0;
+}
+
+.email-display {
+    background: var(--bg-darker);
+    border: 2px solid var(--glass-border);
+    border-radius: var(--radius-md);
+    padding: var(--space-lg);
+    font-family: 'Courier New', monospace;
+    font-size: var(--text-lg);
+    color: var(--text);
+    letter-spacing: 0.05em;
+    word-break: break-all;
+    transition: all 0.3s ease;
+}
+
+.email-display:hover {
+    border-color: var(--primary);
+    box-shadow: 0 0 20px rgba(139, 92, 246, 0.2);
+}
+
+.btn-copy {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-sm);
+    padding: var(--space-md) var(--space-xl);
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    color: white;
+    border: none;
+    border-radius: var(--radius-md);
+    font-size: var(--text-base);
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 20px rgba(139, 92, 246, 0.4);
+    width: 100%;
+}
+
+.btn-copy:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 30px rgba(139, 92, 246, 0.6);
+    background: linear-gradient(135deg, var(--primary-light), var(--primary));
+}
+
+.btn-copy:active {
+    transform: translateY(-1px);
+}
+
+.btn-copy.copied {
+    background: linear-gradient(135deg, var(--success), #059669);
+    box-shadow: 0 4px 20px rgba(16, 185, 129, 0.4);
+}
+
+.copy-icon {
+    font-size: var(--text-xl);
+}
+
+.copy-feedback {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-sm);
+    padding: var(--space-md);
+    background: rgba(16, 185, 129, 0.1);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+    border-radius: var(--radius-md);
+    color: var(--success);
+    font-weight: 600;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+.copy-feedback.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.feedback-icon {
+    font-size: var(--text-xl);
+    font-weight: bold;
+}
+
+/* Responsive Modal */
+@media (max-width: 768px) {
+    .modal-container {
+        padding: var(--space-xl);
+        max-width: 100%;
+    }
+    
+    .modal-title {
+        font-size: var(--text-2xl);
+    }
+    
+    .modal-icon {
+        font-size: 3rem;
+    }
+}
+
+/* ================================
    AI TOOLS SHOWCASE
    ================================ */
 .ai-tools-section {
@@ -930,6 +1143,9 @@ nav a:hover::after {
    ================================ */
 .contact-section {
     background: rgba(5, 5, 16, 0.8);
+    padding-top: var(--space-xl);
+    padding-bottom: var(--space-lg);
+    min-height: auto;
 }
 
 .contact-grid {
@@ -1031,7 +1247,7 @@ nav a:hover::after {
 footer {
     background: rgba(5, 5, 16, 0.95);
     border-top: 1px solid var(--glass-border);
-    padding: var(--space-lg) 0;
+    padding: 1.25rem 0;
     position: relative;
     z-index: 1;
 }
@@ -1040,7 +1256,7 @@ footer {
     display: flex;
     justify-content: center;
     gap: var(--space-2xl);
-    margin-bottom: var(--space-md);
+    margin-bottom: 0.75rem;
 }
 
 .footer-brand h3 {
@@ -1051,13 +1267,13 @@ footer {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    margin-bottom: var(--space-md);
+    margin-bottom: 1rem;
 }
 
 .footer-brand p {
     color: var(--text-muted);
     line-height: 1.7;
-    margin-bottom: var(--space-md);
+    margin-bottom: 0.75rem;
 }
 
 .social-links {
@@ -1168,7 +1384,7 @@ footer {
 }
 
 .footer-bottom {
-    padding-top: 1rem;
+    padding-top: 0.5rem;
     border-top: 1px solid var(--glass-border);
     text-align: center;
     color: var(--text-dim);

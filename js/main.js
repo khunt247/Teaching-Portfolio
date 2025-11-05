@@ -147,24 +147,74 @@ function refreshSectionAnimations(targetSection) {
 // ================================
 // SMOOTH SCROLL WITH ANIMATION REFRESH
 // ================================
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+function initSmoothScroll() {
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const href = this.getAttribute('href');
             
-            // Close mobile menu
-            const nav = document.getElementById('mainNav');
-            if (nav) {
-                nav.classList.remove('mobile-active');
+            // Handle scrolling to top
+            if (href === '#' || href === '#top') {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+                
+                // Close mobile menu
+                const nav = document.getElementById('mainNav');
+                if (nav) {
+                    nav.classList.remove('mobile-active');
+                }
+                return;
             }
             
-            // Refresh animations for the target section
-            refreshSectionAnimations(target);
-        }
+            const target = document.querySelector(href);
+            
+            if (target) {
+                // Get header height to account for fixed header
+                const header = document.getElementById('header');
+                const headerHeight = header ? header.offsetHeight : 80;
+                
+                // Special handling for "Get in Touch" button to show Skills + Contact together
+                const isGetInTouchButton = this.id === 'get-in-touch-btn' || href === '#contact';
+                let scrollOffset;
+                
+                if (isGetInTouchButton) {
+                    // Position Contact section lower in viewport to show Skills section above
+                    // Calculate offset to show Contact section at ~40% down the viewport
+                    const viewportHeight = window.innerHeight;
+                    scrollOffset = headerHeight - (viewportHeight * 0.35);
+                } else {
+                    // Standard offset for other links
+                    scrollOffset = headerHeight + 20;
+                }
+                
+                // Calculate target position with offset
+                const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - scrollOffset;
+                
+                // Ensure position is not negative
+                const finalPosition = Math.max(0, targetPosition);
+                
+                // Smooth scroll to position
+                window.scrollTo({
+                    top: finalPosition,
+                    behavior: 'smooth'
+                });
+                
+                // Close mobile menu
+                const nav = document.getElementById('mainNav');
+                if (nav) {
+                    nav.classList.remove('mobile-active');
+                }
+                
+                // Refresh animations for the target section after scroll
+                setTimeout(() => {
+                    refreshSectionAnimations(target);
+                }, 300);
+            }
+        });
     });
-});
+}
 
 // ================================
 // EVENT LISTENERS
@@ -182,10 +232,105 @@ window.addEventListener('resize', () => {
 });
 
 // ================================
+// EMAIL MODAL FUNCTIONALITY
+// ================================
+function initEmailModal() {
+    const modal = document.getElementById('emailModal');
+    const emailTriggers = document.querySelectorAll('.email-modal-trigger');
+    const closeBtn = document.querySelector('.modal-close');
+    const copyBtn = document.getElementById('copyBtn');
+    const emailDisplay = document.getElementById('emailDisplay');
+    const copyFeedback = document.getElementById('copyFeedback');
+    const defaultEmail = 'katiehunt95@gmail.com';
+    
+    if (!modal || emailTriggers.length === 0) return;
+    
+    // Open modal - handle multiple triggers
+    emailTriggers.forEach(trigger => {
+        trigger.addEventListener('click', function(e) {
+            e.preventDefault();
+            const emailAddress = trigger.getAttribute('data-email') || defaultEmail;
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            emailDisplay.textContent = emailAddress;
+        });
+    });
+    
+    // Close modal
+    function closeModal() {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+        copyFeedback.classList.remove('show');
+        copyBtn.classList.remove('copied');
+        copyBtn.querySelector('.copy-text').textContent = 'Copy Email';
+    }
+    
+    closeBtn?.addEventListener('click', closeModal);
+    
+    // Close on overlay click
+    modal.addEventListener('click', function(e) {
+        if (e.target === modal) {
+            closeModal();
+        }
+    });
+    
+    // Close on ESC key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && modal.classList.contains('active')) {
+            closeModal();
+        }
+    });
+    
+    // Copy email to clipboard
+    copyBtn?.addEventListener('click', async function() {
+        const emailToCopy = emailDisplay.textContent || defaultEmail;
+        try {
+            await navigator.clipboard.writeText(emailToCopy);
+            
+            // Show success feedback
+            copyFeedback.classList.add('show');
+            copyBtn.classList.add('copied');
+            copyBtn.querySelector('.copy-text').textContent = 'Copied!';
+            
+            // Reset after 3 seconds
+            setTimeout(() => {
+                copyFeedback.classList.remove('show');
+                copyBtn.classList.remove('copied');
+                copyBtn.querySelector('.copy-text').textContent = 'Copy Email';
+            }, 3000);
+        } catch (err) {
+            // Fallback for older browsers
+            const textArea = document.createElement('textarea');
+            textArea.value = emailToCopy;
+            textArea.style.position = 'fixed';
+            textArea.style.opacity = '0';
+            document.body.appendChild(textArea);
+            textArea.select();
+            try {
+                document.execCommand('copy');
+                copyFeedback.classList.add('show');
+                copyBtn.classList.add('copied');
+                copyBtn.querySelector('.copy-text').textContent = 'Copied!';
+                setTimeout(() => {
+                    copyFeedback.classList.remove('show');
+                    copyBtn.classList.remove('copied');
+                    copyBtn.querySelector('.copy-text').textContent = 'Copy Email';
+                }, 3000);
+            } catch (fallbackErr) {
+                alert('Failed to copy email. Please copy manually: ' + emailToCopy);
+            }
+            document.body.removeChild(textArea);
+        }
+    });
+}
+
+// ================================
 // INITIALIZATION
 // ================================
 function init() {
+    initSmoothScroll();
     initAnimations();
+    initEmailModal();
     console.log('Portfolio loaded successfully');
 }
 
