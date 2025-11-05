@@ -98,6 +98,77 @@ body {
 }
 
 /* ================================
+   SCROLLBAR - STATE OF THE ART DESIGN
+   ================================ */
+/* WebKit Browsers (Chrome, Safari, Edge, Opera) */
+::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-darker);
+    border-left: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(
+        180deg,
+        var(--primary) 0%,
+        var(--secondary) 50%,
+        var(--accent) 100%
+    );
+    border-radius: var(--radius-full);
+    border: 2px solid var(--bg-darker);
+    box-shadow: 
+        0 0 10px rgba(139, 92, 246, 0.5),
+        inset 0 0 10px rgba(255, 255, 255, 0.1);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(
+        180deg,
+        var(--primary-light) 0%,
+        var(--secondary-light) 50%,
+        var(--accent-light) 100%
+    );
+    box-shadow: 
+        0 0 20px rgba(139, 92, 246, 0.8),
+        inset 0 0 15px rgba(255, 255, 255, 0.2);
+    border-color: rgba(139, 92, 246, 0.3);
+    transform: scaleY(1.05);
+}
+
+::-webkit-scrollbar-thumb:active {
+    background: linear-gradient(
+        180deg,
+        var(--primary-dark) 0%,
+        var(--secondary-dark) 50%,
+        var(--accent) 100%
+    );
+    box-shadow: 
+        0 0 15px rgba(139, 92, 246, 0.6),
+        inset 0 0 20px rgba(0, 0, 0, 0.3);
+}
+
+::-webkit-scrollbar-corner {
+    background: var(--bg-darker);
+}
+
+/* Firefox */
+html {
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary) var(--bg-darker);
+}
+
+/* Firefox Scrollbar Enhancement on Hover */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary) var(--bg-darker);
+}
+
+/* ================================
    ANIMATED BACKGROUND - NEURAL NETWORK
    ================================ */
 .animated-background {
@@ -812,7 +883,7 @@ nav a:hover::after {
 
 .skills-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
 }
 
@@ -960,16 +1031,16 @@ nav a:hover::after {
 footer {
     background: rgba(5, 5, 16, 0.95);
     border-top: 1px solid var(--glass-border);
-    padding: var(--space-2xl) 0;
+    padding: var(--space-lg) 0;
     position: relative;
     z-index: 1;
 }
 
 .footer-content {
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr;
+    display: flex;
+    justify-content: center;
     gap: var(--space-2xl);
-    margin-bottom: var(--space-xl);
+    margin-bottom: var(--space-md);
 }
 
 .footer-brand h3 {
@@ -1016,6 +1087,61 @@ footer {
     transform: translateY(-3px);
 }
 
+/* Premium Tooltip Styles for Social Links */
+.social-link[data-tooltip] {
+    position: relative;
+}
+
+.social-link[data-tooltip]::before {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: calc(100% + 12px);
+    left: 50%;
+    transform: translateX(-50%) translateY(-8px) scale(0.8);
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius-md);
+    font-size: var(--text-sm);
+    font-weight: 600;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 1000;
+    box-shadow: 
+        0 4px 20px rgba(139, 92, 246, 0.4),
+        0 0 0 1px rgba(255, 255, 255, 0.1);
+    letter-spacing: 0.02em;
+}
+
+.social-link[data-tooltip]::after {
+    content: '';
+    position: absolute;
+    bottom: calc(100% + 4px);
+    left: 50%;
+    transform: translateX(-50%) translateY(-8px) scale(0.8);
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 6px solid var(--primary-dark);
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 1000;
+}
+
+.social-link[data-tooltip]:hover::before,
+.social-link[data-tooltip]:hover::after {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0) scale(1);
+}
+
+.social-link[data-tooltip]:hover::before {
+    transform: translateX(-50%) translateY(0) scale(1);
+}
+
 .footer-links h4 {
     font-size: var(--text-base);
     font-weight: 700;
@@ -1042,7 +1168,7 @@ footer {
 }
 
 .footer-bottom {
-    padding-top: var(--space-lg);
+    padding-top: 1rem;
     border-top: 1px solid var(--glass-border);
     text-align: center;
     color: var(--text-dim);
@@ -1059,6 +1185,10 @@ footer {
     }
     
     .tech-stack-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .skills-grid {
         grid-template-columns: repeat(2, 1fr);
     }
     
