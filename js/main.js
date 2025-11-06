@@ -325,12 +325,729 @@ function initEmailModal() {
 }
 
 // ================================
+// ORBITAL MOTION SYSTEM
+// ================================
+function initOrbitalMotion() {
+    const orbitalElements = document.querySelectorAll('.orbital-element');
+    const container = document.querySelector('.hero-animation-container');
+    
+    if (!container || orbitalElements.length === 0) return;
+    
+    let animationFrameId;
+    let startTime = Date.now();
+    
+    // Get container dimensions
+    function getContainerCenter() {
+        const rect = container.getBoundingClientRect();
+        return {
+            centerX: rect.width / 2,
+            centerY: rect.height / 2
+        };
+    }
+    
+    // Calculate orbital position
+    function calculateOrbit(element, time, initialOffset = 0) {
+        const radius = parseFloat(element.dataset.radius) || 120;
+        const speed = parseFloat(element.dataset.speed) || 1.0;
+        const rotationSpeed = parseFloat(element.dataset.rotationSpeed) || 1.0;
+        
+        // Convert radius from px to percentage (approximate)
+        const center = getContainerCenter();
+        const scaleFactor = Math.min(center.centerX, center.centerY) / 500; // Scale based on container
+        const scaledRadius = radius * scaleFactor;
+        
+        // Calculate angle based on time and speed with initial offset
+        const angle = ((time * speed * 0.001) + initialOffset) % (Math.PI * 2);
+        
+        // Calculate position with slight elliptical variation for more natural motion
+        const ellipseX = scaledRadius * 1.0;
+        const ellipseY = scaledRadius * 0.95;
+        const x = Math.cos(angle) * ellipseX;
+        const y = Math.sin(angle) * ellipseY;
+        
+        // Add slight vertical oscillation for depth
+        const zOffset = Math.sin(angle * 2) * 5;
+        
+        // Calculate rotation for element's own axis (clockwise)
+        const rotation = (time * rotationSpeed * 0.1) % 360;
+        
+        return { x, y, rotation, angle, zOffset };
+    }
+    
+    // Update orbital positions
+    function updateOrbits() {
+        const time = Date.now() - startTime;
+        const center = getContainerCenter();
+        
+        orbitalElements.forEach((element, index) => {
+            // Add initial angle offset based on index for staggered starting positions
+            const initialOffset = (index * Math.PI * 2) / orbitalElements.length;
+            const orbit = calculateOrbit(element, time, initialOffset);
+            
+            // Apply transforms with 3D perspective
+            element.style.transform = `
+                translate(-50%, -50%) 
+                translate(${orbit.x}px, ${orbit.y}px) 
+                rotate(${orbit.rotation}deg)
+                translateZ(${orbit.zOffset + Math.sin(orbit.angle) * 10}px)
+            `;
+            
+            // Add 3D perspective effect
+            element.style.transformStyle = 'preserve-3d';
+            
+            // Update glow and halo positions to match element
+            const glow = element.querySelector('.element-glow');
+            const halo = element.querySelector('.element-halo');
+            if (glow) {
+                glow.style.transform = `translate(-50%, -50%) translateZ(-5px)`;
+            }
+            if (halo) {
+                halo.style.transform = `translate(-50%, -50%) rotate(${-orbit.rotation * 0.5}deg)`;
+            }
+        });
+        
+        animationFrameId = requestAnimationFrame(updateOrbits);
+    }
+    
+    // Start animation
+    updateOrbits();
+    
+    // Handle resize
+    let resizeTimeout;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(() => {
+            // Animation will recalculate on next frame
+        }, 100);
+    });
+    
+    // Cleanup on page unload
+    window.addEventListener('beforeunload', () => {
+        if (animationFrameId) {
+            cancelAnimationFrame(animationFrameId);
+        }
+    });
+}
+
+// ================================
+// PARTICLE SYSTEM
+// ================================
+function initParticleSystem() {
+    const canvas = document.getElementById('particlesCanvas');
+    if (!canvas) return;
+    
+    const container = canvas.parentElement;
+    if (!container) return;
+    
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+    let animationFrameId;
+    
+    // Set canvas size
+    function resizeCanvas() {
+        const rect = container.getBoundingClientRect();
+        canvas.width = rect.width;
+        canvas.height = rect.height;
+    }
+    
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+    
+    // Particle class
+    class Particle {
+        constructor() {
+            const centerX = canvas.width / 2;
+            const centerY = canvas.height / 2;
+            const angle = Math.random() * Math.PI * 2;
+            const radius = 50 + Math.random() * 200;
+            
+            this.x = centerX + Math.cos(angle) * radius;
+            this.y = centerY + Math.sin(angle) * radius;
+            this.vx = (Math.random() - 0.5) * 0.5;
+            this.vy = (Math.random() - 0.5) * 0.5;
+            this.size = Math.random() * 2 + 1;
+            this.opacity = 1;
+            this.color = this.getRandomColor();
+            this.orbitRadius = radius;
+            this.orbitAngle = angle;
+            this.orbitSpeed = (Math.random() - 0.5) * 0.02;
+        }
+        
+        getRandomColor() {
+            const colors = [
+                'rgba(139, 92, 246, 1)',   // Purple
+                'rgba(20, 184, 166, 1)',  // Teal
+                'rgba(245, 158, 11, 1)'   // Amber
+            ];
+            return colors[Math.floor(Math.random() * colors.length)];
+        }
+        
+        update() {
+            const centerX = canvas.width / 2;
+            const centerY = canvas.height / 2;
+            
+            // Orbital motion
+            this.orbitAngle += this.orbitSpeed;
+            const targetX = centerX + Math.cos(this.orbitAngle) * this.orbitRadius;
+            const targetY = centerY + Math.sin(this.orbitAngle) * this.orbitRadius;
+            
+            // Smooth movement towards orbital position
+            this.x += (targetX - this.x) * 0.05;
+            this.y += (targetY - this.y) * 0.05;
+            
+            // Add drift
+            this.x += this.vx;
+            this.y += this.vy;
+            
+            // Boundary wrapping
+            if (this.x < 0) this.x = canvas.width;
+            if (this.x > canvas.width) this.x = 0;
+            if (this.y < 0) this.y = canvas.height;
+            if (this.y > canvas.height) this.y = 0;
+            
+            // Keep opacity at 1 always - fully visible
+            this.opacity = 1;
+        }
+        
+        draw() {
+            ctx.save();
+            ctx.globalAlpha = this.opacity;
+            ctx.fillStyle = this.color;
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+            ctx.fill();
+            
+            // Add glow effect
+            ctx.shadowBlur = 10;
+            ctx.shadowColor = this.color;
+            ctx.fill();
+            ctx.restore();
+        }
+    }
+    
+    // Create particles
+    function createParticles() {
+        const particleCount = Math.floor((canvas.width * canvas.height) / 15000);
+        particles = [];
+        for (let i = 0; i < particleCount; i++) {
+            particles.push(new Particle());
+        }
+    }
+    
+    // Draw connections between nearby particles
+    function drawConnections() {
+        for (let i = 0; i < particles.length; i++) {
+            for (let j = i + 1; j < particles.length; j++) {
+                const dx = particles[i].x - particles[j].x;
+                const dy = particles[i].y - particles[j].y;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+                
+                if (distance < 100) {
+                    const opacity = (1 - distance / 100) * 0.5;
+                    ctx.strokeStyle = `rgba(139, 92, 246, ${opacity})`;
+                    ctx.lineWidth = 1.5;
+                    ctx.beginPath();
+                    ctx.moveTo(particles[i].x, particles[i].y);
+                    ctx.lineTo(particles[j].x, particles[j].y);
+                    ctx.stroke();
+                }
+            }
+        }
+    }
+    
+    // Animation loop
+    function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        
+        particles.forEach(particle => {
+            particle.update();
+            particle.draw();
+        });
+        
+        drawConnections();
+        
+        animationFrameId = requestAnimationFrame(animate);
+    }
+    
+    // Initialize
+    createParticles();
+    animate();
+    
+    // Recreate particles on resize
+    window.addEventListener('resize', () => {
+        resizeCanvas();
+        createParticles();
+    });
+    
+    // Cleanup
+    window.addEventListener('beforeunload', () => {
+        if (animationFrameId) {
+            cancelAnimationFrame(animationFrameId);
+        }
+    });
+}
+
+// ================================
+// BRAIN ROTATION
+// ================================
+function initBrainRotation() {
+    const brainCore = document.querySelector('.brain-core');
+    if (!brainCore) return;
+    
+    let rotation = 0;
+    const rotationSpeed = 0.02;
+    
+    function rotateBrain() {
+        rotation += rotationSpeed;
+        brainCore.style.transform = `translate(-50%, -50%) rotate(${rotation}deg)`;
+        requestAnimationFrame(rotateBrain);
+    }
+    
+    rotateBrain();
+}
+
+// ================================
+// PROJECT FILTERING
+// ================================
+function initProjectFilters() {
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const projectCards = document.querySelectorAll('.project-card');
+    
+    filterButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const filter = this.getAttribute('data-filter');
+            
+            // Update active button
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            this.classList.add('active');
+            
+            // Filter projects
+            projectCards.forEach(card => {
+                const category = card.getAttribute('data-category');
+                
+                if (filter === 'all' || category === filter) {
+                    card.classList.remove('hidden');
+                    // Trigger animation
+                    card.style.opacity = '0';
+                    card.style.transform = 'translateY(20px)';
+                    setTimeout(() => {
+                        card.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+                        card.style.opacity = '1';
+                        card.style.transform = 'translateY(0)';
+                    }, 10);
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+        });
+    });
+}
+
+// ================================
+// PROJECT MODAL
+// ================================
+function openProjectModal(projectType) {
+    const modal = document.getElementById('projectModal');
+    const modalContent = document.getElementById('projectModalContent');
+    
+    if (!modal || !modalContent) return;
+    
+    let content = '';
+    
+    switch(projectType) {
+        case 'pe-units':
+            content = `
+                <h2 style="margin-bottom: 1.5rem; color: var(--text);">Physical Education Unit Presentations</h2>
+                <p style="color: var(--text-muted); margin-bottom: 2rem;">
+                    Complete collection of 13 unit presentations covering fitness, flexibility, strength, agility, and team sports.
+                </p>
+                <div class="project-collection-list">
+                    <div class="collection-item">
+                        <h4>Agility Training</h4>
+                        <p>Agility training fundamentals and drills</p>
+                        <button class="btn-view" onclick='viewArtifact("Projects/physical-education-curriculum/presentations/units/AGILITY.pptx", "Agility Training", "presentation")'>👁️ View</button>
+                    </div>
+                    <div class="collection-item">
+                        <h4>Basketball 101</h4>
+                        <p>Introduction to basketball fundamentals</p>
+                        <button class="btn-view" onclick='viewArtifact("Projects/physical-education-curriculum/presentations/units/BASKETBALL 101.pptx", "Basketball 101", "presentation")'>👁️ View</button>
+                    </div>
+                    <div class="collection-item">
+                        <h4>Circuit Training</h4>
+                        <p>Comprehensive circuit training program</p>
+                        <button class="btn-view" onclick='viewArtifact("Projects/physical-education-curriculum/presentations/units/Circuit Training Education Presentation.pptx", "Circuit Training Education", "presentation")'>👁️ View</button>
+                    </div>
+                    <div class="collection-item">
+                        <h4>Core Strength</h4>
+                        <p>Core strengthening exercises and progression</p>
+                        <button class="btn-view" onclick='viewArtifact("Projects/physical-education-curriculum/presentations/units/CORE STRENGTH.pptx", "Core Strength Training", "presentation")'>👁️ View</button>
+                    </div>
+                    <div class="collection-item">
+                        <h4>Dynamic Stretching</h4>
+                        <p>Dynamic warm-up stretches and mobility</p>
+                        <button class="btn-view" onclick='viewArtifact("Projects/physical-education-curriculum/presentations/units/DYNAMIC STRETCHING.pptx", "Dynamic Stretching", "presentation")'>👁️ View</button>
+                    </div>
+                    <div class="collection-item">
+                        <h4>Fitness Unit</h4>
+                        <p>Comprehensive fitness unit covering all components</p>
+                        <button class="btn-view" onclick='viewArtifact("Projects/physical-education-curriculum/presentations/units/FITNESS UNIT.pptx", "Fitness Unit", "presentation")'>👁️ View</button>
+                    </div>
+                    <div class="collection-item">
+                        <h4>Flexibility Unit</h4>
+                        <p>Flexibility training principles and techniques</p>
+                        <button class="btn-view" onclick='viewArtifact("Projects/physical-education-curriculum/presentations/units/FLEXIBILITY UNIT.pptx", "Flexibility Unit", "presentation")'>👁️ View</button>
+                    </div>
+                    <div class="collection-item">
+                        <h4>Jump Rope</h4>
+                        <p>Jump rope techniques and progressions</p>
+                        <button class="btn-view" onclick='viewArtifact("Projects/physical-education-curriculum/presentations/units/JUMP ROPE.pptx", "Jump Rope", "presentation")'>👁️ View</button>
+                    </div>
+                    <div class="collection-item">
+                        <h4>Static Stretching</h4>
+                        <p>Static stretching techniques for cool-down</p>
+                        <button class="btn-view" onclick='viewArtifact("Projects/physical-education-curriculum/presentations/units/STATIC STRETCHING.pptx", "Static Stretching", "presentation")'>👁️ View</button>
+                    </div>
+                    <div class="collection-item">
+                        <h4>Volleyball 101</h4>
+                        <p>Volleyball fundamentals and gameplay</p>
+                        <button class="btn-view" onclick='viewArtifact("Projects/physical-education-curriculum/presentations/units/Volleyball 101.pptx", "Volleyball 101", "presentation")'>👁️ View</button>
+                    </div>
+                    <div class="collection-item">
+                        <h4>Team Sports Intro</h4>
+                        <p>Introduction to team sports concepts</p>
+                        <button class="btn-view" onclick='viewArtifact("Projects/physical-education-curriculum/presentations/units/TEAM SPORTS INTRO.pptx", "Team Sports Introduction", "presentation")'>👁️ View</button>
+                    </div>
+                    <div class="collection-item">
+                        <h4>Circuit Stations</h4>
+                        <p>Visual guide for circuit training stations</p>
+                        <button class="btn-view" onclick='viewArtifact("Projects/physical-education-curriculum/presentations/units/Circuit Training Station Names.pptx", "Circuit Training Station Names", "presentation")'>👁️ View</button>
+                    </div>
+                    <div class="collection-item">
+                        <h4>Introductory Vocabulary</h4>
+                        <p>Essential PE terminology and concepts</p>
+                        <button class="btn-view" onclick='viewArtifact("Projects/physical-education-curriculum/presentations/units/Introductory Vocab.pptx", "Introductory Vocabulary", "presentation")'>👁️ View</button>
+                    </div>
+                </div>
+            `;
+            break;
+            
+        case 'pe-classroom':
+            content = `
+                <h2 style="margin-bottom: 1.5rem; color: var(--text);">Classroom Management & Community Building</h2>
+                <p style="color: var(--text-muted); margin-bottom: 2rem;">
+                    Presentations focused on establishing expectations, building community, and maintaining positive learning environments.
+                </p>
+                <div class="project-collection-list">
+                    <div class="collection-item">
+                        <h4>Classroom Expectation Quiz</h4>
+                        <p>Interactive quiz for reviewing expectations</p>
+                        <button class="btn-view" onclick='viewArtifact("Projects/physical-education-curriculum/presentations/classroom-management/Classroom Expectation Quiz.pptx", "Classroom Expectation Quiz", "presentation")'>👁️ View</button>
+                    </div>
+                    <div class="collection-item">
+                        <h4>Gym Housekeeping</h4>
+                        <p>Guidelines for maintaining gym equipment</p>
+                        <button class="btn-view" onclick='viewArtifact("Projects/physical-education-curriculum/presentations/classroom-management/GYM HOUSEKEEPING.pptx", "Gym Housekeeping", "presentation")'>👁️ View</button>
+                    </div>
+                    <div class="collection-item">
+                        <h4>Respect</h4>
+                        <p>Sportsmanship and positive behavior</p>
+                        <button class="btn-view" onclick='viewArtifact("Projects/physical-education-curriculum/presentations/classroom-management/RESPECT.pptx", "Respect", "presentation")'>👁️ View</button>
+                    </div>
+                    <div class="collection-item">
+                        <h4>Getting to Know Each Other</h4>
+                        <p>Icebreaker activities for building community</p>
+                        <button class="btn-view" onclick='viewArtifact("Projects/physical-education-curriculum/presentations/classroom-management/GETTING TO KNOW.pptx", "Getting to Know Each Other", "presentation")'>👁️ View</button>
+                    </div>
+                    <div class="collection-item">
+                        <h4>Getting to Know Each Other II</h4>
+                        <p>Continued community-building activities</p>
+                        <button class="btn-view" onclick='viewArtifact("Projects/physical-education-curriculum/presentations/classroom-management/GETTING TO KNOW EACH OTHER II.pptx", "Getting to Know Each Other II", "presentation")'>👁️ View</button>
+                    </div>
+                    <div class="collection-item">
+                        <h4>Getting to Know Each Other III</h4>
+                        <p>Advanced team-building exercises</p>
+                        <button class="btn-view" onclick='viewArtifact("Projects/physical-education-curriculum/presentations/classroom-management/GETTING TO KNOW EACH OTHER III.pptx", "Getting to Know Each Other III", "presentation")'>👁️ View</button>
+                    </div>
+                </div>
+            `;
+            break;
+            
+        case 'prezi':
+            content = `
+                <h2 style="margin-bottom: 1.5rem; color: var(--text);">Prezi Presentations</h2>
+                <p style="color: var(--text-muted); margin-bottom: 2rem;">
+                    Interactive Prezi presentations for engaging, non-linear learning experiences. Add your Prezi URLs to view these presentations.
+                </p>
+                <div class="project-collection-list">
+                    <div class="collection-item">
+                        <h4>Example Presentation 1</h4>
+                        <p>Placeholder for Prezi presentation. Add your Prezi URL and metadata when ready.</p>
+                        <a href="#" onclick="alert('Please add your Prezi URL to Projects/learning-methodology/prezi/example-presentation-1/prezi-url.txt'); return false;">📝 Add Prezi URL</a>
+                    </div>
+                    <div class="collection-item">
+                        <h4>Example Presentation 2</h4>
+                        <p>Placeholder for Prezi presentation. Add your Prezi URL and metadata when ready.</p>
+                        <a href="#" onclick="alert('Please add your Prezi URL to Projects/learning-methodology/prezi/example-presentation-2/prezi-url.txt'); return false;">📝 Add Prezi URL</a>
+                    </div>
+                </div>
+            `;
+            break;
+    }
+    
+    modalContent.innerHTML = content;
+    modal.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+    
+    // Close modal handlers
+    const closeBtn = modal.querySelector('.modal-close');
+    closeBtn?.addEventListener('click', closeProjectModal);
+    
+    modal.addEventListener('click', function(e) {
+        if (e.target === modal) {
+            closeProjectModal();
+        }
+    });
+    
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && modal.style.display === 'flex') {
+            closeProjectModal();
+        }
+    });
+}
+
+function closeProjectModal() {
+    const modal = document.getElementById('projectModal');
+    if (modal) {
+        modal.style.display = 'none';
+        document.body.style.overflow = '';
+    }
+}
+
+// ================================
+// ARTIFACT PREVIEW FUNCTIONALITY
+// ================================
+function viewArtifact(filePath, title, fileType) {
+    const modal = document.getElementById('artifactModal');
+    const modalTitle = document.getElementById('artifactModalTitle');
+    const modalContent = document.getElementById('artifactModalContent');
+    
+    if (!modal || !modalContent) return;
+    
+    modalTitle.textContent = title || 'Artifact Preview';
+    modalContent.innerHTML = '<div style="text-align: center; padding: 2rem;"><div class="loading-spinner"></div><p style="color: var(--text-muted); margin-top: 1rem;">Loading artifact...</p></div>';
+    modal.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+    
+    // Get file extension
+    const fileExtension = filePath.split('.').pop().toLowerCase();
+    let previewContent = '';
+    
+    // Handle different file types
+    if (fileExtension === 'pdf') {
+        // PDF preview using iframe
+        previewContent = `
+            <div style="width: 100%; height: 80vh;">
+                <iframe 
+                    src="${filePath}" 
+                    style="width: 100%; height: 100%; border: none; border-radius: var(--radius-md);"
+                    title="${title}"
+                ></iframe>
+            </div>
+        `;
+    } else if (['jpg', 'jpeg', 'png', 'gif', 'webp', 'svg'].includes(fileExtension)) {
+        // Image preview
+        previewContent = `
+            <div style="text-align: center;">
+                <img 
+                    src="${filePath}" 
+                    alt="${title}"
+                    style="max-width: 100%; max-height: 80vh; border-radius: var(--radius-md); box-shadow: var(--shadow-lg);"
+                />
+            </div>
+        `;
+    } else if (fileExtension === 'pptx' || fileType === 'presentation') {
+        // PowerPoint - Use Microsoft Office Online Viewer
+        const encodedUrl = encodeURIComponent(window.location.origin + '/' + filePath);
+        previewContent = `
+            <div style="width: 100%; height: 80vh;">
+                <iframe 
+                    src="https://view.officeapps.live.com/op/embed.aspx?src=${encodedUrl}" 
+                    style="width: 100%; height: 100%; border: none; border-radius: var(--radius-md);"
+                    frameborder="0"
+                    title="${title}"
+                ></iframe>
+                <p style="color: var(--text-muted); margin-top: 1rem; text-align: center; font-size: var(--text-sm);">
+                    If the preview doesn't load, the file may need to be uploaded to a web-accessible location.
+                </p>
+            </div>
+        `;
+    } else if (fileExtension === 'docx' || fileType === 'document') {
+        // Word document - Use Microsoft Office Online Viewer
+        const encodedUrl = encodeURIComponent(window.location.origin + '/' + filePath);
+        previewContent = `
+            <div style="width: 100%; height: 80vh;">
+                <iframe 
+                    src="https://view.officeapps.live.com/op/embed.aspx?src=${encodedUrl}" 
+                    style="width: 100%; height: 100%; border: none; border-radius: var(--radius-md);"
+                    frameborder="0"
+                    title="${title}"
+                ></iframe>
+                <p style="color: var(--text-muted); margin-top: 1rem; text-align: center; font-size: var(--text-sm);">
+                    If the preview doesn't load, the file may need to be uploaded to a web-accessible location.
+                </p>
+            </div>
+        `;
+    } else if (fileExtension === 'ipynb' || fileType === 'jupyter-notebook') {
+        // Jupyter Notebook - Try to load and render
+        fetch(filePath)
+            .then(response => response.json())
+            .then(data => {
+                // Render notebook cells
+                let notebookHTML = '<div style="max-height: 80vh; overflow-y: auto; padding: 1rem;">';
+                data.cells.forEach((cell, index) => {
+                    if (cell.cell_type === 'markdown') {
+                        notebookHTML += `<div style="margin-bottom: 1.5rem; padding: 1rem; background: var(--glass); border-radius: var(--radius-md);">`;
+                        notebookHTML += `<pre style="white-space: pre-wrap; color: var(--text); font-family: var(--font-sans); margin: 0;">${cell.source.join('')}</pre>`;
+                        notebookHTML += `</div>`;
+                    } else if (cell.cell_type === 'code') {
+                        notebookHTML += `<div style="margin-bottom: 1.5rem; padding: 1rem; background: rgba(139, 92, 246, 0.1); border-left: 3px solid var(--primary); border-radius: var(--radius-md);">`;
+                        notebookHTML += `<pre style="white-space: pre-wrap; color: var(--text); font-family: 'Courier New', monospace; margin: 0; overflow-x: auto;">${cell.source.join('')}</pre>`;
+                        if (cell.outputs && cell.outputs.length > 0) {
+                            notebookHTML += `<div style="margin-top: 0.5rem; padding-top: 0.5rem; border-top: 1px solid var(--glass-border);">`;
+                            cell.outputs.forEach(output => {
+                                if (output.output_type === 'stream') {
+                                    notebookHTML += `<pre style="color: var(--text-muted); font-family: 'Courier New', monospace; margin: 0;">${output.text.join('')}</pre>`;
+                                } else if (output.output_type === 'execute_result' || output.output_type === 'display_data') {
+                                    if (output.data && output.data['text/plain']) {
+                                        notebookHTML += `<pre style="color: var(--success); font-family: 'Courier New', monospace; margin: 0;">${output.data['text/plain'].join('')}</pre>`;
+                                    }
+                                }
+                            });
+                            notebookHTML += `</div>`;
+                        }
+                        notebookHTML += `</div>`;
+                    }
+                });
+                notebookHTML += '</div>';
+                modalContent.innerHTML = notebookHTML;
+            })
+            .catch(error => {
+                modalContent.innerHTML = `
+                    <div style="text-align: center; padding: 2rem;">
+                        <p style="color: var(--text-muted); margin-bottom: 1rem;">Unable to load Jupyter notebook. The file may need to be converted to HTML format for web viewing.</p>
+                        <p style="color: var(--text-dim); font-size: var(--text-sm);">Error: ${error.message}</p>
+                    </div>
+                `;
+            });
+        return; // Early return since we're handling async
+    } else {
+        // Unknown file type
+        previewContent = `
+            <div style="text-align: center; padding: 2rem;">
+                <p style="color: var(--text-muted); margin-bottom: 1rem;">Preview not available for this file type (${fileExtension}).</p>
+                <p style="color: var(--text-dim); font-size: var(--text-sm);">File: ${filePath}</p>
+            </div>
+        `;
+    }
+    
+    modalContent.innerHTML = previewContent;
+    
+    // Close modal handlers
+    const closeBtn = modal.querySelector('.modal-close');
+    closeBtn?.addEventListener('click', closeArtifactModal);
+    
+    modal.addEventListener('click', function(e) {
+        if (e.target === modal) {
+            closeArtifactModal();
+        }
+    });
+    
+    document.addEventListener('keydown', function escapeHandler(e) {
+        if (e.key === 'Escape' && modal.style.display === 'flex') {
+            closeArtifactModal();
+            document.removeEventListener('keydown', escapeHandler);
+        }
+    });
+}
+
+function closeArtifactModal() {
+    const modal = document.getElementById('artifactModal');
+    if (modal) {
+        modal.style.display = 'none';
+        document.body.style.overflow = '';
+    }
+}
+
+// ================================
+// PREZI PRESENTATION VIEWER
+// ================================
+function viewPrezi(embedUrl, title) {
+    const modal = document.getElementById('artifactModal');
+    const modalTitle = document.getElementById('artifactModalTitle');
+    const modalContent = document.getElementById('artifactModalContent');
+    
+    if (!modal || !modalContent) return;
+    
+    modalTitle.textContent = title || 'Prezi Presentation';
+    modalContent.innerHTML = `
+        <div style="width: 100%; padding: 1rem;">
+            <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: var(--radius-md); background: var(--bg-dark);">
+                <iframe 
+                    src="${embedUrl}" 
+                    id="iframe_container" 
+                    frameborder="0" 
+                    webkitallowfullscreen="" 
+                    mozallowfullscreen="" 
+                    allowfullscreen="" 
+                    allow="autoplay; fullscreen"
+                    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;"
+                    title="${title}"
+                ></iframe>
+            </div>
+            <p style="color: var(--text-muted); margin-top: 1rem; text-align: center; font-size: var(--text-sm);">
+                Use the controls within the presentation to navigate. Click and drag to explore different sections.
+            </p>
+        </div>
+    `;
+    modal.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+    
+    // Close modal handlers
+    const closeBtn = modal.querySelector('.modal-close');
+    closeBtn?.addEventListener('click', closeArtifactModal);
+    
+    modal.addEventListener('click', function(e) {
+        if (e.target === modal) {
+            closeArtifactModal();
+        }
+    });
+    
+    document.addEventListener('keydown', function escapeHandler(e) {
+        if (e.key === 'Escape' && modal.style.display === 'flex') {
+            closeArtifactModal();
+            document.removeEventListener('keydown', escapeHandler);
+        }
+    });
+}
+
+// Make functions globally available
+window.openProjectModal = openProjectModal;
+window.closeProjectModal = closeProjectModal;
+window.viewArtifact = viewArtifact;
+window.closeArtifactModal = closeArtifactModal;
+window.viewPrezi = viewPrezi;
+
+// ================================
 // INITIALIZATION
 // ================================
 function init() {
     initSmoothScroll();
     initAnimations();
     initEmailModal();
+    initOrbitalMotion();
+    initParticleSystem();
+    initBrainRotation();
+    initProjectFilters();
     console.log('Portfolio loaded successfully');
 }
 

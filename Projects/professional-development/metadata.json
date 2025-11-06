@@ -1,0 +1,72 @@
+{
+  "category": "professional-development",
+  "title": "Professional Development & Leadership",
+  "description": "Professional development materials, leadership resources, and coaching documents. These artifacts demonstrate commitment to professional growth, mentorship, and educational leadership.",
+  "categoryIcon": "💼",
+  "projects": [
+    {
+      "id": "coach-hunt-messages",
+      "title": "Coach Hunt's Lasting Messages",
+      "type": "document",
+      "file": "COACH HUNT'S LASTING MESSAGES.docx",
+      "preview": "preview-coach-messages.png",
+      "description": "Collection of motivational and instructional messages from Coach Hunt. These messages likely serve as a guide for students, emphasizing values, principles, and life lessons that extend beyond the classroom or gym. Demonstrates commitment to student character development and mentorship.",
+      "tags": [
+        "Leadership",
+        "Mentorship",
+        "Character Development",
+        "Student Support",
+        "Coaching"
+      ],
+      "learningObjectives": [
+        "Understand core values and principles",
+        "Develop character and leadership qualities",
+        "Apply life lessons in academic and personal contexts"
+      ],
+      "targetAudience": "Students and educational community",
+      "metrics": {
+        "format": "Word Document",
+        "size": "37KB",
+        "pages": "Estimated 3-5 pages"
+      },
+      "files": [
+        {
+          "name": "COACH HUNT'S LASTING MESSAGES.docx",
+          "type": "document",
+          "size": "37KB"
+        }
+      ]
+    },
+    {
+      "id": "final-project",
+      "title": "Final Project",
+      "type": "presentation",
+      "file": "Final Project.pptx",
+      "preview": "preview-final-project.png",
+      "description": "Comprehensive final project presentation. This may represent a capstone project, comprehensive curriculum design, or major professional development initiative. The presentation demonstrates advanced instructional design skills and professional competence.",
+      "tags": [
+        "Capstone Project",
+        "Curriculum Design",
+        "Instructional Design",
+        "Professional Portfolio",
+        "Comprehensive Project"
+      ],
+      "learningObjectives": [],
+      "targetAudience": "Academic or professional reviewers",
+      "metrics": {
+        "format": "PowerPoint Presentation",
+        "size": "17MB",
+        "slides": "Large presentation (estimated 50+ slides)"
+      },
+      "files": [
+        {
+          "name": "Final Project.pptx",
+          "type": "presentation",
+          "size": "17MB"
+        }
+      ],
+      "note": "This is a large presentation file. Consider creating a compressed version or PDF for web display while keeping the original for download."
+    }
+  ]
+}
+

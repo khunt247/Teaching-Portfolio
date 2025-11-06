@@ -1,0 +1,135 @@
+{
+  "category": "python-programming",
+  "title": "Python Programming & Quantitative Trading Education",
+  "description": "Interactive Jupyter notebooks teaching Python fundamentals and quantitative trading strategies. Designed for self-paced learning with embedded assessments and real-world applications.",
+  "categoryIcon": "python",
+  "projects": [
+    {
+      "id": "python-beginners-week1",
+      "title": "Python for Beginners - Week 1",
+      "type": "jupyter-notebook",
+      "file": "notebooks/Python 4 Beginners Week_1.ipynb",
+      "preview": "assets/preview-python-beginners.png",
+      "description": "Introduction to Python programming covering basic syntax, print() function, and comments. Designed for self-paced learning with embedded practice exercises and clear explanations for learners with no prior programming experience.",
+      "tags": [
+        "Python",
+        "Jupyter",
+        "Self-Paced Learning",
+        "Beginner-Friendly",
+        "Programming Fundamentals"
+      ],
+      "learningObjectives": [
+        "Understand what Python is and its applications",
+        "Use the print() function to display output",
+        "Write comments in code for documentation",
+        "Execute Python code in Jupyter notebooks"
+      ],
+      "targetAudience": "Beginners with no prior programming experience",
+      "metrics": {
+        "duration": "Week 1 of series",
+        "format": "Interactive Notebook",
+        "assessments": "Embedded practice exercises",
+        "difficulty": "Beginner"
+      },
+      "files": [
+        {
+          "name": "Python 4 Beginners Week_1.ipynb",
+          "type": "notebook",
+          "size": "15KB"
+        }
+      ]
+    },
+    {
+      "id": "backtest-tutorial",
+      "title": "Trading Strategy Backtesting Tutorial",
+      "type": "jupyter-notebook",
+      "file": "notebooks/backtest_tutorial.ipynb",
+      "preview": "assets/preview-backtest.png",
+      "description": "Comprehensive tutorial on backtesting trading strategies using Python. Covers data collection, strategy implementation, performance visualization, and basic metrics calculation. Includes practical examples with moving average crossover strategies.",
+      "tags": [
+        "Python",
+        "Trading",
+        "Quantitative Analysis",
+        "Data Science",
+        "Financial Modeling"
+      ],
+      "learningObjectives": [
+        "Download financial data using Python libraries",
+        "Build and test trading strategies programmatically",
+        "Visualize performance with charts and candlesticks",
+        "Calculate performance metrics (Sharpe Ratio, returns)"
+      ],
+      "targetAudience": "Intermediate Python users interested in quantitative trading",
+      "metrics": {
+        "duration": "Self-paced",
+        "format": "Interactive Tutorial",
+        "difficulty": "Intermediate",
+        "linesOfCode": "328 lines"
+      },
+      "files": [
+        {
+          "name": "backtest_tutorial.ipynb",
+          "type": "notebook",
+          "size": "15KB"
+        }
+      ]
+    },
+    {
+      "id": "backtest-tutorial-explained",
+      "title": "Trading Strategy Backtesting - Detailed Explanation",
+      "type": "jupyter-notebook",
+      "file": "notebooks/backtest_tutorial_explained.ipynb",
+      "preview": "assets/preview-backtest-explained.png",
+      "description": "Expanded version of the backtesting tutorial with detailed explanations, step-by-step walkthroughs, and comprehensive project organization guidance. Includes suggested folder structures and best practices for quantitative trading projects.",
+      "tags": [
+        "Python",
+        "Trading",
+        "Quantitative Analysis",
+        "Data Science",
+        "Project Organization",
+        "Best Practices"
+      ],
+      "learningObjectives": [
+        "Organize backtesting projects effectively",
+        "Understand project structure for quantitative trading",
+        "Implement advanced visualization techniques",
+        "Apply best practices for code organization"
+      ],
+      "targetAudience": "Intermediate to advanced Python users building quantitative trading systems",
+      "metrics": {
+        "duration": "Self-paced",
+        "format": "Comprehensive Tutorial",
+        "difficulty": "Intermediate-Advanced",
+        "linesOfCode": "648 lines"
+      },
+      "files": [
+        {
+          "name": "backtest_tutorial_explained.ipynb",
+          "type": "notebook",
+          "size": "172KB"
+        }
+      ]
+    },
+    {
+      "id": "investment-ebook-cover",
+      "title": "Investment Ebook Cover Art",
+      "type": "image",
+      "file": "assets/Investment Ebook Cover (JPEG).jpg",
+      "preview": "assets/Investment Ebook Cover (JPEG).jpg",
+      "description": "Cover artwork for the 'Trading & Investing for Beginners' educational book. Demonstrates visual design skills in creating professional educational materials.",
+      "tags": [
+        "Graphic Design",
+        "Publishing",
+        "Book Design",
+        "Visual Communication"
+      ],
+      "learningObjectives": [],
+      "targetAudience": "General - Educational book cover",
+      "metrics": {
+        "format": "JPEG Image",
+        "size": "165KB"
+      }
+    }
+  ]
+}
+

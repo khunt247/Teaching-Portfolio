@@ -1,0 +1,5 @@
+Title: Example Presentation 2
+Description: [Brief description of the presentation]
+Created: [Date]
+Topics: [Topic 1, Topic 2, Topic 3]
+Target Audience: [Audience]

@@ -1,0 +1,114 @@
+{
+  "category": "learning-methodology",
+  "title": "Learning Methodology & Study Skills",
+  "description": "Educational presentations and Prezi projects focused on teaching effective study skills, learning strategies, and academic discipline. Designed to help students develop metacognitive awareness and independent learning capabilities.",
+  "categoryIcon": "📚",
+  "projects": [
+    {
+      "id": "study-discipline",
+      "title": "How to Study & Learn a Discipline",
+      "type": "presentation",
+      "file": "presentations/HOW TO STUDY & LEARN A DISCIPLINE.pptx",
+      "preview": "presentations/preview-study-discipline.png",
+      "description": "Comprehensive presentation on effective study strategies and learning methodologies. Covers techniques for mastering academic disciplines, developing study habits, and becoming an independent learner. Emphasizes metacognitive strategies and evidence-based learning approaches.",
+      "tags": [
+        "Study Skills",
+        "Learning Strategies",
+        "Metacognition",
+        "Academic Success",
+        "Self-Directed Learning"
+      ],
+      "learningObjectives": [
+        "Understand effective study techniques and strategies",
+        "Develop metacognitive awareness of learning processes",
+        "Apply discipline-specific learning approaches",
+        "Create personalized study plans and routines"
+      ],
+      "targetAudience": "High school and college students seeking to improve academic performance",
+      "metrics": {
+        "duration": "Full lesson presentation",
+        "format": "PowerPoint Presentation",
+        "size": "126KB",
+        "slides": "Estimated 20-30 slides"
+      },
+      "files": [
+        {
+          "name": "HOW TO STUDY & LEARN A DISCIPLINE.pptx",
+          "type": "presentation",
+          "size": "126KB"
+        }
+      ]
+    },
+    {
+      "id": "limit-presentation",
+      "title": "Limit Concepts",
+      "type": "presentation",
+      "file": "presentations/limit.pptx",
+      "preview": "presentations/preview-limit.png",
+      "description": "Educational presentation covering limit concepts, likely in mathematics or academic context. Designed to teach complex conceptual material through clear explanations and visual aids.",
+      "tags": [
+        "Mathematics",
+        "Conceptual Learning",
+        "Visual Instruction",
+        "Academic Content"
+      ],
+      "learningObjectives": [
+        "Understand limit concepts and applications",
+        "Apply limit principles to problem-solving",
+        "Visualize mathematical concepts effectively"
+      ],
+      "targetAudience": "High school or college students studying mathematics",
+      "metrics": {
+        "duration": "Full lesson presentation",
+        "format": "PowerPoint Presentation",
+        "size": "173KB"
+      },
+      "files": [
+        {
+          "name": "limit.pptx",
+          "type": "presentation",
+          "size": "173KB"
+        }
+      ]
+    },
+    {
+      "id": "prezi-collection",
+      "title": "Prezi Presentations",
+      "type": "prezi-collection",
+      "description": "Interactive Prezi presentations for engaging, non-linear learning experiences. These presentations use Prezi's zooming interface to create dynamic, visually compelling educational content.",
+      "tags": [
+        "Prezi",
+        "Interactive Presentations",
+        "Visual Learning",
+        "Multimedia Education"
+      ],
+      "learningObjectives": [],
+      "targetAudience": "Varies by presentation topic",
+      "metrics": {
+        "totalPresentations": 2,
+        "format": "Prezi",
+        "platform": "Prezi.com"
+      },
+      "presentations": [
+        {
+          "id": "prezi-example-1",
+          "title": "Example Presentation 1",
+          "folder": "prezi/example-presentation-1",
+          "description": "Placeholder for Prezi presentation. Add your Prezi URL and metadata when ready.",
+          "urlFile": "prezi/example-presentation-1/prezi-url.txt",
+          "metadataFile": "prezi/example-presentation-1/metadata.txt"
+        },
+        {
+          "id": "prezi-example-2",
+          "title": "Example Presentation 2",
+          "folder": "prezi/example-presentation-2",
+          "description": "Placeholder for Prezi presentation. Add your Prezi URL and metadata when ready.",
+          "urlFile": "prezi/example-presentation-2/prezi-url.txt",
+          "metadataFile": "prezi/example-presentation-2/metadata.txt"
+        }
+      ],
+      "instructions": "To add a Prezi presentation:\n1. Create a new folder in prezi/ with a descriptive name\n2. Add prezi-url.txt with the Prezi share URL\n3. Add metadata.txt with presentation details\n4. Optionally add preview.jpg (1200x675px recommended)\n5. Update this metadata.json file with the new presentation"
+    }
+  ]
+}
+

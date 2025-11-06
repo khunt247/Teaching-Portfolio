@@ -1,0 +1,261 @@
+{
+  "category": "physical-education-curriculum",
+  "title": "Physical Education Curriculum & Instruction",
+  "description": "Comprehensive physical education curriculum materials including unit presentations, classroom management resources, assessments, and planning documents. Designed for high school physical education programs with emphasis on fitness, team sports, and student engagement.",
+  "categoryIcon": "physical-education",
+  "projects": [
+    {
+      "id": "pe-units-overview",
+      "title": "Physical Education Unit Presentations",
+      "type": "presentation-collection",
+      "description": "Complete set of unit presentations covering fitness, flexibility, strength, agility, and team sports. Each presentation includes learning objectives, instructional content, and activity guidelines.",
+      "tags": [
+        "Physical Education",
+        "Curriculum",
+        "Unit Planning",
+        "Fitness Instruction",
+        "Team Sports"
+      ],
+      "learningObjectives": [
+        "Develop fundamental movement skills",
+        "Understand fitness principles and components",
+        "Learn team sport fundamentals",
+        "Apply safety practices in physical activity"
+      ],
+      "targetAudience": "High school physical education students (grades 9-12)",
+      "metrics": {
+        "totalUnits": 13,
+        "format": "PowerPoint Presentations",
+        "curriculumAlignment": "State PE Standards"
+      },
+      "presentations": [
+        {
+          "id": "agility-unit",
+          "title": "Agility Training",
+          "file": "presentations/units/AGILITY.pptx",
+          "description": "Agility training fundamentals and drills for developing quick movement and coordination."
+        },
+        {
+          "id": "basketball-101",
+          "title": "Basketball 101",
+          "file": "presentations/units/BASKETBALL 101.pptx",
+          "description": "Introduction to basketball fundamentals including rules, skills, and gameplay."
+        },
+        {
+          "id": "circuit-training",
+          "title": "Circuit Training Education",
+          "file": "presentations/units/Circuit Training Education Presentation.pptx",
+          "description": "Comprehensive circuit training program with station-based exercises and progression guidelines."
+        },
+        {
+          "id": "circuit-stations",
+          "title": "Circuit Training Station Names",
+          "file": "presentations/units/Circuit Training Station Names.pptx",
+          "description": "Visual guide for circuit training station organization and naming conventions."
+        },
+        {
+          "id": "core-strength",
+          "title": "Core Strength Training",
+          "file": "presentations/units/CORE STRENGTH.pptx",
+          "description": "Core strengthening exercises and progression for developing abdominal and back muscles."
+        },
+        {
+          "id": "dynamic-stretching",
+          "title": "Dynamic Stretching",
+          "file": "presentations/units/DYNAMIC STRETCHING.pptx",
+          "description": "Dynamic warm-up stretches and mobility exercises for pre-activity preparation."
+        },
+        {
+          "id": "fitness-unit",
+          "title": "Fitness Unit",
+          "file": "presentations/units/FITNESS UNIT.pptx",
+          "description": "Comprehensive fitness unit covering cardiovascular, muscular, and flexibility components."
+        },
+        {
+          "id": "flexibility-unit",
+          "title": "Flexibility Unit",
+          "file": "presentations/units/FLEXIBILITY UNIT.pptx",
+          "description": "Flexibility training principles, static and dynamic stretching techniques."
+        },
+        {
+          "id": "introductory-vocab",
+          "title": "Introductory Vocabulary",
+          "file": "presentations/units/Introductory Vocab.pptx",
+          "description": "Essential physical education terminology and concepts for new students."
+        },
+        {
+          "id": "jump-rope",
+          "title": "Jump Rope Skills",
+          "file": "presentations/units/JUMP ROPE.pptx",
+          "description": "Jump rope techniques, progressions, and cardiovascular fitness applications."
+        },
+        {
+          "id": "static-stretching",
+          "title": "Static Stretching",
+          "file": "presentations/units/STATIC STRETCHING.pptx",
+          "description": "Static stretching techniques for post-activity cool-down and flexibility maintenance."
+        },
+        {
+          "id": "team-sports-intro",
+          "title": "Team Sports Introduction",
+          "file": "presentations/units/TEAM SPORTS INTRO.pptx",
+          "description": "Introduction to team sports concepts, rules, and cooperative play."
+        },
+        {
+          "id": "volleyball-101",
+          "title": "Volleyball 101",
+          "file": "presentations/units/Volleyball 101.pptx",
+          "description": "Volleyball fundamentals including serving, passing, setting, and basic gameplay."
+        }
+      ]
+    },
+    {
+      "id": "pe-classroom-management",
+      "title": "Classroom Management & Community Building",
+      "type": "presentation-collection",
+      "description": "Presentations focused on establishing classroom expectations, building community, and maintaining a positive learning environment in physical education settings.",
+      "tags": [
+        "Classroom Management",
+        "Community Building",
+        "Student Engagement",
+        "Expectations",
+        "Respect"
+      ],
+      "learningObjectives": [
+        "Understand classroom expectations and procedures",
+        "Build positive relationships with peers and teacher",
+        "Practice respectful behavior in PE settings",
+        "Participate in community-building activities"
+      ],
+      "targetAudience": "High school physical education students",
+      "metrics": {
+        "totalPresentations": 6,
+        "format": "PowerPoint Presentations"
+      },
+      "presentations": [
+        {
+          "id": "classroom-expectations",
+          "title": "Classroom Expectation Quiz",
+          "file": "presentations/classroom-management/Classroom Expectation Quiz.pptx",
+          "description": "Interactive quiz format for reviewing classroom expectations and procedures."
+        },
+        {
+          "id": "gym-housekeeping",
+          "title": "Gym Housekeeping",
+          "file": "presentations/classroom-management/GYM HOUSEKEEPING.pptx",
+          "description": "Guidelines for maintaining gym equipment and facilities."
+        },
+        {
+          "id": "respect",
+          "title": "Respect",
+          "file": "presentations/classroom-management/RESPECT.pptx",
+          "description": "Presentation on respect, sportsmanship, and positive behavior in PE."
+        },
+        {
+          "id": "getting-to-know",
+          "title": "Getting to Know Each Other",
+          "file": "presentations/classroom-management/GETTING TO KNOW.pptx",
+          "description": "Icebreaker activities for building classroom community."
+        },
+        {
+          "id": "getting-to-know-ii",
+          "title": "Getting to Know Each Other II",
+          "file": "presentations/classroom-management/GETTING TO KNOW EACH OTHER II.pptx",
+          "description": "Continued community-building activities and relationship development."
+        },
+        {
+          "id": "getting-to-know-iii",
+          "title": "Getting to Know Each Other III",
+          "file": "presentations/classroom-management/GETTING TO KNOW EACH OTHER III.pptx",
+          "description": "Advanced community-building and team-building exercises."
+        }
+      ]
+    },
+    {
+      "id": "pe-assessments",
+      "title": "Physical Education Assessments",
+      "type": "assessment-collection",
+      "description": "Assessment materials including review presentations and evaluation tools for tracking student progress and understanding.",
+      "tags": [
+        "Assessment",
+        "Evaluation",
+        "Review",
+        "Student Progress"
+      ],
+      "learningObjectives": [
+        "Assess student understanding of PE concepts",
+        "Review unit material comprehensively",
+        "Track student progress and growth"
+      ],
+      "targetAudience": "High school physical education students",
+      "metrics": {
+        "totalAssessments": 2,
+        "format": "PowerPoint and PDF"
+      },
+      "presentations": [
+        {
+          "id": "week-9-review",
+          "title": "Week 9 Review",
+          "file": "presentations/assessments/WEEK 9 REVIEW.pptx",
+          "description": "Comprehensive review presentation for Week 9 material. Also available in PDF format for easy distribution.",
+          "alternativeFormat": "presentations/assessments/WEEK 9 REVIEW.pdf"
+        }
+      ]
+    },
+    {
+      "id": "pe-planning",
+      "title": "Curriculum Planning Documents",
+      "type": "document-collection",
+      "description": "Semester planning and weekly lesson plan templates for organizing and structuring physical education curriculum.",
+      "tags": [
+        "Curriculum Planning",
+        "Lesson Planning",
+        "Semester Organization",
+        "Instructional Design"
+      ],
+      "learningObjectives": [],
+      "targetAudience": "Physical education teachers and curriculum coordinators",
+      "metrics": {
+        "totalDocuments": 2,
+        "format": "Word Documents"
+      },
+      "files": [
+        {
+          "id": "semester-agenda",
+          "title": "Semester Agenda - Physical Education",
+          "file": "planning/SEMESTER AGENDA PHYSICAL EDUCATION.docx",
+          "description": "Complete semester agenda outlining units, topics, and pacing for physical education curriculum.",
+          "size": "5.5MB"
+        },
+        {
+          "id": "weekly-lesson-plan",
+          "title": "Weekly Lesson Plan Template",
+          "file": "planning/WEEKLY LESSON PLAN.docx",
+          "description": "Template for weekly lesson planning in physical education, including objectives, activities, and assessments.",
+          "size": "35KB"
+        }
+      ]
+    },
+    {
+      "id": "obstacle-course-layout",
+      "title": "Obstacle Course Layout",
+      "type": "image",
+      "file": "visuals/Obstacle Course Layout.PNG",
+      "preview": "visuals/Obstacle Course Layout.PNG",
+      "description": "Visual layout diagram for obstacle course setup in physical education. Demonstrates spatial organization and equipment placement for effective instruction.",
+      "tags": [
+        "Visual Design",
+        "Equipment Organization",
+        "Activity Planning",
+        "Instructional Aids"
+      ],
+      "learningObjectives": [],
+      "targetAudience": "Physical education teachers and students",
+      "metrics": {
+        "format": "PNG Image",
+        "size": "4.6MB"
+      }
+    }
+  ]
+}
+

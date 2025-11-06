@@ -81,7 +81,10 @@
     <!-- Header -->
     <header id="header" role="banner">
         <div class="header-container">
-            <a href="#" class="logo">KATIE HUNT</a>
+            <a href="#" class="logo">
+                <img src="images/HPE pyramid.png" alt="HPE Logo" class="logo-img">
+                <span>KATIE HUNT</span>
+            </a>
             
             <nav role="navigation" aria-label="Main navigation" id="mainNav">
                 <ul>
@@ -146,7 +149,49 @@
                     </div>
                     
                     <div class="hero-visual">
-                        <img src="images/Hero Section Picture 1.png" alt="Education and technology illustration" class="hero-image">
+                        <div class="hero-animation-container">
+                            <!-- Base Image -->
+                            <img src="images/Hero Section Picture 1.png" alt="Education and technology illustration" class="hero-image hero-base">
+                            
+                            <!-- Central Brain with Pulsing Effects -->
+                            <div class="brain-core">
+                                <div class="brain-pulse-ring"></div>
+                                <div class="brain-pulse-ring"></div>
+                                <div class="brain-pulse-ring"></div>
+                                <div class="brain-glow"></div>
+                            </div>
+                            
+                            <!-- Orbital Elements -->
+                            <div class="orbital-system">
+                                <!-- Globe Orbital Element -->
+                                <div class="orbital-element globe-element" data-radius="120" data-speed="0.8" data-rotation-speed="1.2">
+                                    <div class="element-glow"></div>
+                                    <div class="element-halo"></div>
+                                </div>
+                                
+                                <!-- Laptop Orbital Element -->
+                                <div class="orbital-element laptop-element" data-radius="140" data-speed="1.0" data-rotation-speed="0.9">
+                                    <div class="element-glow"></div>
+                                    <div class="element-halo"></div>
+                                </div>
+                                
+                                <!-- Books Orbital Element -->
+                                <div class="orbital-element books-element" data-radius="110" data-speed="0.7" data-rotation-speed="1.1">
+                                    <div class="element-glow"></div>
+                                    <div class="element-halo"></div>
+                                </div>
+                            </div>
+                            
+                            <!-- Energy Particles -->
+                            <canvas class="particles-canvas" id="particlesCanvas"></canvas>
+                            
+                            <!-- Orbital Path Indicators -->
+                            <svg class="orbital-paths" viewBox="0 0 1000 1000" preserveAspectRatio="xMidYMid meet">
+                                <circle class="orbit-path" cx="500" cy="500" r="120" />
+                                <circle class="orbit-path" cx="500" cy="500" r="140" />
+                                <circle class="orbit-path" cx="500" cy="500" r="110" />
+                            </svg>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -217,190 +262,493 @@
             <div class="container">
                 <div class="section-header">
                     <div class="section-label">PORTFOLIO</div>
-                    <h2 class="section-title">Featured Projects</h2>
+                    <h2 class="section-title">Teaching Artifacts & Projects</h2>
                     <p class="section-subtitle">
-                        A selection of educational initiatives, web applications, and AI-integrated solutions 
-                        demonstrating technical expertise and measurable impact.
+                        A comprehensive collection of educational materials, curriculum designs, and instructional resources 
+                        demonstrating expertise in instructional design, technology integration, and student-centered learning.
                     </p>
                 </div>
                 
-                <div class="projects-grid">
-                    <!-- Project 1 -->
-                    <div class="glass-card project-card">
-                        <div class="project-image">📚</div>
-                        <div class="project-content">
-                            <h3>Trading & Investing for Beginners</h3>
-                            <p class="project-description">
-                                Authored comprehensive book teaching financial literacy through clear explanations, 
-                                visual aids, and real-world applications. Currently developing interactive workbook 
-                                with assessments and reflection tools.
-                            </p>
-                            <div class="project-tags">
-                                <span class="tag">Instructional Design</span>
-                                <span class="tag">Financial Literacy</span>
-                                <span class="tag">Adult Learning</span>
-                                <span class="tag">Publishing</span>
-                            </div>
-                            <div class="project-metrics">
-                                <div class="metric">
-                                    <div class="metric-value">200+</div>
-                                    <div class="metric-label">Assessments</div>
-                                </div>
-                                <div class="metric">
-                                    <div class="metric-value">2</div>
-                                    <div class="metric-label">Books</div>
-                                </div>
-                            </div>
+                <!-- Category Filters -->
+                <div class="project-filters">
+                    <button class="filter-btn active" data-filter="all">All Projects</button>
+                    <button class="filter-btn" data-filter="python-programming">Python Programming</button>
+                    <button class="filter-btn" data-filter="physical-education">Physical Education</button>
+                    <button class="filter-btn" data-filter="learning-methodology">Learning Methodology</button>
+                    <button class="filter-btn" data-filter="professional-development">Professional Development</button>
+                </div>
+                
+                <div class="projects-grid" id="projectsGrid">
+                    <!-- Python Programming Projects -->
+                    <div class="glass-card project-card" data-category="python-programming">
+                        <div class="project-image-container">
+                            <div class="project-image">🐍</div>
+                            <div class="media-type-badge">Jupyter Notebook</div>
                         </div>
-                    </div>
-                    
-                    <!-- Project 2 -->
-                    <div class="glass-card project-card">
-                        <div class="project-image">💻</div>
                         <div class="project-content">
-                            <h3>The Respect Brand Platform</h3>
+                            <h3>Python for Beginners - Week 1</h3>
                             <p class="project-description">
-                                Founded and lead as Frontend Engineer & Creative Director. Developed complete product 
-                                ecosystem including e-commerce platform, educational content, and brand identity using 
-                                modern web technologies.
-                            </p>
-                            <div class="project-tags">
-                                <span class="tag">React</span>
-                                <span class="tag">TypeScript</span>
-                                <span class="tag">UI/UX Design</span>
-                                <span class="tag">Full-Stack</span>
-                            </div>
-                            <div class="project-metrics">
-                                <div class="metric">
-                                    <div class="metric-value">14+</div>
-                                    <div class="metric-label">Web Apps</div>
-                                </div>
-                                <div class="metric">
-                                    <div class="metric-value">100%</div>
-                                    <div class="metric-label">AI-Assisted</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Project 3 -->
-                    <div class="glass-card project-card">
-                        <div class="project-image">🎓</div>
-                        <div class="project-content">
-                            <h3>Blended Learning Implementation</h3>
-                            <p class="project-description">
-                                Designed and executed blended learning programs at Druid Hills High School using LMS 
-                                platforms (Canvas, Google Classroom, Microsoft Teams) serving 200+ students annually 
-                                with data-driven instruction.
-                            </p>
-                            <div class="project-tags">
-                                <span class="tag">LMS Administration</span>
-                                <span class="tag">Canvas</span>
-                                <span class="tag">Blended Learning</span>
-                                <span class="tag">Assessment</span>
-                            </div>
-                            <div class="project-metrics">
-                                <div class="metric">
-                                    <div class="metric-value">+15%</div>
-                                    <div class="metric-label">Performance Gain</div>
-                                </div>
-                                <div class="metric">
-                                    <div class="metric-value">200+</div>
-                                    <div class="metric-label">Students/Year</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Project 4 -->
-                    <div class="glass-card project-card">
-                        <div class="project-image">🐍</div>
-                        <div class="project-content">
-                            <h3>Python Learning Notebooks</h3>
-                            <p class="project-description">
-                                Created beginner-focused Jupyter notebooks for self-directed Python learning with 
-                                interactive assessments, trading logic examples, and practical applications. 
-                                Emphasis on accessible instruction for diverse learners.
+                                Introduction to Python programming covering basic syntax, print() function, and comments. 
+                                Designed for self-paced learning with embedded practice exercises and clear explanations 
+                                for learners with no prior programming experience.
                             </p>
                             <div class="project-tags">
                                 <span class="tag">Python</span>
                                 <span class="tag">Jupyter</span>
                                 <span class="tag">Self-Paced Learning</span>
-                                <span class="tag">Quantitative Analysis</span>
+                                <span class="tag">Beginner-Friendly</span>
                             </div>
                             <div class="project-metrics">
                                 <div class="metric">
-                                    <div class="metric-value">Multiple</div>
-                                    <div class="metric-label">Notebooks</div>
+                                    <div class="metric-value">Week 1</div>
+                                    <div class="metric-label">Series Module</div>
+                                </div>
+                                <div class="metric">
+                                    <div class="metric-value">Beginner</div>
+                                    <div class="metric-label">Difficulty</div>
+                                </div>
+                            </div>
+                            <div class="project-actions">
+                                <button class="btn-view" onclick='viewArtifact("Projects/python-programming/notebooks/Python 4 Beginners Week_1.ipynb", "Python for Beginners - Week 1", "jupyter-notebook")'>👁️ View Artifact</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="glass-card project-card" data-category="python-programming">
+                        <div class="project-image-container">
+                            <div class="project-image">📈</div>
+                            <div class="media-type-badge">Jupyter Notebook</div>
+                        </div>
+                        <div class="project-content">
+                            <h3>Trading Strategy Backtesting Tutorial</h3>
+                            <p class="project-description">
+                                Comprehensive tutorial on backtesting trading strategies using Python. Covers data collection, 
+                                strategy implementation, performance visualization, and basic metrics calculation. Includes 
+                                practical examples with moving average crossover strategies.
+                            </p>
+                            <div class="project-tags">
+                                <span class="tag">Python</span>
+                                <span class="tag">Trading</span>
+                                <span class="tag">Quantitative Analysis</span>
+                                <span class="tag">Data Science</span>
+                            </div>
+                            <div class="project-metrics">
+                                <div class="metric">
+                                    <div class="metric-value">328</div>
+                                    <div class="metric-label">Lines of Code</div>
+                                </div>
+                                <div class="metric">
+                                    <div class="metric-value">Intermediate</div>
+                                    <div class="metric-label">Difficulty</div>
+                                </div>
+                            </div>
+                            <div class="project-actions">
+                                <button class="btn-view" onclick='viewArtifact("Projects/python-programming/notebooks/backtest_tutorial.ipynb", "Trading Strategy Backtesting Tutorial", "jupyter-notebook")'>👁️ View Artifact</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="glass-card project-card" data-category="python-programming">
+                        <div class="project-image-container">
+                            <div class="project-image">📊</div>
+                            <div class="media-type-badge">Jupyter Notebook</div>
+                        </div>
+                        <div class="project-content">
+                            <h3>Backtesting Tutorial - Detailed Explanation</h3>
+                            <p class="project-description">
+                                Expanded version with detailed explanations, step-by-step walkthroughs, and comprehensive 
+                                project organization guidance. Includes suggested folder structures and best practices for 
+                                quantitative trading projects.
+                            </p>
+                            <div class="project-tags">
+                                <span class="tag">Python</span>
+                                <span class="tag">Trading</span>
+                                <span class="tag">Project Organization</span>
+                                <span class="tag">Best Practices</span>
+                            </div>
+                            <div class="project-metrics">
+                                <div class="metric">
+                                    <div class="metric-value">648</div>
+                                    <div class="metric-label">Lines of Code</div>
+                                </div>
+                                <div class="metric">
+                                    <div class="metric-value">Advanced</div>
+                                    <div class="metric-label">Difficulty</div>
+                                </div>
+                            </div>
+                            <div class="project-actions">
+                                <button class="btn-view" onclick='viewArtifact("Projects/python-programming/notebooks/backtest_tutorial_explained.ipynb", "Backtesting Tutorial - Detailed Explanation", "jupyter-notebook")'>👁️ View Artifact</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Physical Education Projects -->
+                    <div class="glass-card project-card" data-category="physical-education">
+                        <div class="project-image-container">
+                            <div class="project-image">🏃</div>
+                            <div class="media-type-badge">Presentation Collection</div>
+                        </div>
+                        <div class="project-content">
+                            <h3>Physical Education Unit Presentations</h3>
+                            <p class="project-description">
+                                Complete set of 13 unit presentations covering fitness, flexibility, strength, agility, and 
+                                team sports. Each presentation includes learning objectives, instructional content, and 
+                                activity guidelines aligned with state PE standards.
+                            </p>
+                            <div class="project-tags">
+                                <span class="tag">Physical Education</span>
+                                <span class="tag">Curriculum</span>
+                                <span class="tag">Unit Planning</span>
+                                <span class="tag">Fitness Instruction</span>
+                            </div>
+                            <div class="project-metrics">
+                                <div class="metric">
+                                    <div class="metric-value">13</div>
+                                    <div class="metric-label">Unit Presentations</div>
+                                </div>
+                                <div class="metric">
+                                    <div class="metric-value">High School</div>
+                                    <div class="metric-label">Target Audience</div>
+                                </div>
+                            </div>
+                            <div class="project-actions">
+                                <button class="btn-view" onclick="openProjectModal('pe-units')">👁️ View Collection</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="glass-card project-card" data-category="physical-education">
+                        <div class="project-image-container">
+                            <div class="project-image">👥</div>
+                            <div class="media-type-badge">Presentation Collection</div>
+                        </div>
+                        <div class="project-content">
+                            <h3>Classroom Management & Community Building</h3>
+                            <p class="project-description">
+                                Presentations focused on establishing classroom expectations, building community, and 
+                                maintaining a positive learning environment in physical education settings. Includes 
+                                interactive quizzes and team-building activities.
+                            </p>
+                            <div class="project-tags">
+                                <span class="tag">Classroom Management</span>
+                                <span class="tag">Community Building</span>
+                                <span class="tag">Student Engagement</span>
+                                <span class="tag">Respect</span>
+                            </div>
+                            <div class="project-metrics">
+                                <div class="metric">
+                                    <div class="metric-value">6</div>
+                                    <div class="metric-label">Presentations</div>
                                 </div>
                                 <div class="metric">
                                     <div class="metric-value">Interactive</div>
-                                    <div class="metric-label">Assessments</div>
+                                    <div class="metric-label">Quizzes & Activities</div>
                                 </div>
+                            </div>
+                            <div class="project-actions">
+                                <button class="btn-view" onclick="openProjectModal('pe-classroom')">👁️ View Collection</button>
                             </div>
                         </div>
                     </div>
                     
-                    <!-- Project 5 -->
-                    <div class="glass-card project-card">
-                        <div class="project-image">📊</div>
+                    <div class="glass-card project-card" data-category="physical-education">
+                        <div class="project-image-container">
+                            <div class="project-image">📋</div>
+                            <div class="media-type-badge">Planning Documents</div>
+                        </div>
                         <div class="project-content">
-                            <h3>Data-Driven Assessment Framework</h3>
+                            <h3>Curriculum Planning Documents</h3>
                             <p class="project-description">
-                                Developed comprehensive assessment frameworks and evaluation tools to measure learning 
-                                outcomes. Implemented data-driven interventions resulting in 15% year-over-year 
-                                performance improvement.
+                                Semester planning and weekly lesson plan templates for organizing and structuring physical 
+                                education curriculum. Includes semester agenda and weekly lesson plan templates.
                             </p>
                             <div class="project-tags">
-                                <span class="tag">Assessment Design</span>
-                                <span class="tag">Data Analysis</span>
-                                <span class="tag">Program Evaluation</span>
-                                <span class="tag">Continuous Improvement</span>
+                                <span class="tag">Curriculum Planning</span>
+                                <span class="tag">Lesson Planning</span>
+                                <span class="tag">Semester Organization</span>
+                                <span class="tag">Instructional Design</span>
                             </div>
                             <div class="project-metrics">
                                 <div class="metric">
-                                    <div class="metric-value">+15%</div>
-                                    <div class="metric-label">YoY Improvement</div>
+                                    <div class="metric-value">2</div>
+                                    <div class="metric-label">Planning Documents</div>
                                 </div>
                                 <div class="metric">
-                                    <div class="metric-value">Multiple</div>
-                                    <div class="metric-label">Formats</div>
+                                    <div class="metric-value">Complete</div>
+                                    <div class="metric-label">Semester Coverage</div>
                                 </div>
+                            </div>
+                            <div class="project-actions">
+                                <button class="btn-view" onclick='viewArtifact("Projects/physical-education-curriculum/planning/SEMESTER AGENDA PHYSICAL EDUCATION.docx", "Semester Agenda - Physical Education", "document")'>👁️ View Semester Agenda</button>
+                                <button class="btn-view" onclick='viewArtifact("Projects/physical-education-curriculum/planning/WEEKLY LESSON PLAN.docx", "Weekly Lesson Plan", "document")'>👁️ View Lesson Plan</button>
                             </div>
                         </div>
                     </div>
                     
-                    <!-- Project 6 -->
-                    <div class="glass-card project-card">
-                        <div class="project-image">🎨</div>
+                    <!-- Learning Methodology Projects -->
+                    <div class="glass-card project-card" data-category="learning-methodology">
+                        <div class="project-image-container">
+                            <div class="project-image">📚</div>
+                            <div class="media-type-badge">PowerPoint</div>
+                        </div>
                         <div class="project-content">
-                            <h3>Multimedia Learning Experiences</h3>
+                            <h3>How to Study & Learn a Discipline</h3>
                             <p class="project-description">
-                                Created engaging multimedia educational content using Canva, PowerPoint, Prezi, 
-                                DaVinci Resolve, and AI video tools. Enhanced knowledge retention through 
-                                visual storytelling and interactive design.
+                                Comprehensive presentation on effective study strategies and learning methodologies. Covers 
+                                techniques for mastering academic disciplines, developing study habits, and becoming an 
+                                independent learner. Emphasizes metacognitive strategies and evidence-based learning approaches.
                             </p>
                             <div class="project-tags">
-                                <span class="tag">Multimedia Design</span>
-                                <span class="tag">Video Editing</span>
-                                <span class="tag">Visual Communication</span>
-                                <span class="tag">AI-Enhanced</span>
+                                <span class="tag">Study Skills</span>
+                                <span class="tag">Learning Strategies</span>
+                                <span class="tag">Metacognition</span>
+                                <span class="tag">Academic Success</span>
                             </div>
                             <div class="project-metrics">
                                 <div class="metric">
-                                    <div class="metric-value">Multiple</div>
-                                    <div class="metric-label">Tools Mastered</div>
+                                    <div class="metric-value">20-30</div>
+                                    <div class="metric-label">Slides</div>
                                 </div>
                                 <div class="metric">
-                                    <div class="metric-value">High</div>
-                                    <div class="metric-label">Engagement</div>
+                                    <div class="metric-value">126KB</div>
+                                    <div class="metric-label">File Size</div>
                                 </div>
+                            </div>
+                            <div class="project-actions">
+                                <button class="btn-view" onclick='viewArtifact("Projects/learning-methodology/presentations/HOW TO STUDY & LEARN A DISCIPLINE.pptx", "How to Study & Learn a Discipline", "presentation")'>👁️ View Artifact</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="glass-card project-card" data-category="learning-methodology">
+                        <div class="project-image-container">
+                            <div class="project-image">📐</div>
+                            <div class="media-type-badge">PowerPoint</div>
+                        </div>
+                        <div class="project-content">
+                            <h3>Limit Concepts</h3>
+                            <p class="project-description">
+                                Educational presentation covering limit concepts in mathematics. Designed to teach complex 
+                                conceptual material through clear explanations and visual aids for effective learning.
+                            </p>
+                            <div class="project-tags">
+                                <span class="tag">Mathematics</span>
+                                <span class="tag">Conceptual Learning</span>
+                                <span class="tag">Visual Instruction</span>
+                                <span class="tag">Academic Content</span>
+                            </div>
+                            <div class="project-metrics">
+                                <div class="metric">
+                                    <div class="metric-value">Full</div>
+                                    <div class="metric-label">Lesson Presentation</div>
+                                </div>
+                                <div class="metric">
+                                    <div class="metric-value">173KB</div>
+                                    <div class="metric-label">File Size</div>
+                                </div>
+                            </div>
+                            <div class="project-actions">
+                                <button class="btn-view" onclick='viewArtifact("Projects/learning-methodology/presentations/limit.pptx", "Limit Concepts", "presentation")'>👁️ View Artifact</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="glass-card project-card" data-category="learning-methodology">
+                        <div class="project-image-container">
+                            <div class="project-image">📊</div>
+                            <div class="media-type-badge">Prezi</div>
+                        </div>
+                        <div class="project-content">
+                            <h3>Research Proposal</h3>
+                            <p class="project-description">
+                                Interactive Prezi presentation on research proposal methodology. This presentation uses 
+                                Prezi's zooming interface to create a dynamic, visually compelling exploration of research 
+                                design and proposal development.
+                            </p>
+                            <div class="project-tags">
+                                <span class="tag">Prezi</span>
+                                <span class="tag">Research Methods</span>
+                                <span class="tag">Interactive Presentations</span>
+                                <span class="tag">Academic Content</span>
+                            </div>
+                            <div class="project-metrics">
+                                <div class="metric">
+                                    <div class="metric-value">Interactive</div>
+                                    <div class="metric-label">Format</div>
+                                </div>
+                                <div class="metric">
+                                    <div class="metric-value">Research</div>
+                                    <div class="metric-label">Topic</div>
+                                </div>
+                            </div>
+                            <div class="project-actions">
+                                <button class="btn-view" onclick='viewPrezi("https://prezi.com/p/embed/LTSzu4WiyBL0P4Bhl5N2/", "Research Proposal")'>👁️ View Presentation</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="glass-card project-card" data-category="learning-methodology">
+                        <div class="project-image-container">
+                            <div class="project-image">🏃</div>
+                            <div class="media-type-badge">Prezi</div>
+                        </div>
+                        <div class="project-content">
+                            <h3>How does injury affect the motivation of athletes?</h3>
+                            <p class="project-description">
+                                Interactive Prezi presentation exploring the psychological impact of injuries on athlete 
+                                motivation. Uses Prezi's dynamic interface to examine the relationship between injury, 
+                                recovery, and athletic motivation.
+                            </p>
+                            <div class="project-tags">
+                                <span class="tag">Prezi</span>
+                                <span class="tag">Sports Psychology</span>
+                                <span class="tag">Athlete Motivation</span>
+                                <span class="tag">Interactive Learning</span>
+                            </div>
+                            <div class="project-metrics">
+                                <div class="metric">
+                                    <div class="metric-value">Interactive</div>
+                                    <div class="metric-label">Format</div>
+                                </div>
+                                <div class="metric">
+                                    <div class="metric-value">Sports Science</div>
+                                    <div class="metric-label">Topic</div>
+                                </div>
+                            </div>
+                            <div class="project-actions">
+                                <button class="btn-view" onclick='viewPrezi("https://prezi.com/p/embed/MNTI7RDzEtb51rtRLp7T/", "How does injury affect the motivation of athletes?")'>👁️ View Presentation</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="glass-card project-card" data-category="learning-methodology">
+                        <div class="project-image-container">
+                            <div class="project-image">🚶</div>
+                            <div class="media-type-badge">Prezi</div>
+                        </div>
+                        <div class="project-content">
+                            <h3>Physical Inactivity</h3>
+                            <p class="project-description">
+                                Interactive Prezi presentation addressing the topic of physical inactivity. This dynamic 
+                                presentation uses Prezi's zooming interface to explore the causes, effects, and solutions 
+                                related to sedentary lifestyles.
+                            </p>
+                            <div class="project-tags">
+                                <span class="tag">Prezi</span>
+                                <span class="tag">Health Education</span>
+                                <span class="tag">Physical Activity</span>
+                                <span class="tag">Public Health</span>
+                            </div>
+                            <div class="project-metrics">
+                                <div class="metric">
+                                    <div class="metric-value">Interactive</div>
+                                    <div class="metric-label">Format</div>
+                                </div>
+                                <div class="metric">
+                                    <div class="metric-value">Health</div>
+                                    <div class="metric-label">Topic</div>
+                                </div>
+                            </div>
+                            <div class="project-actions">
+                                <button class="btn-view" onclick='viewPrezi("https://prezi.com/p/embed/n6RgPuelj1GrHAgl0kZj/", "Physical Inactivity")'>👁️ View Presentation</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Professional Development Projects -->
+                    <div class="glass-card project-card" data-category="professional-development">
+                        <div class="project-image-container">
+                            <div class="project-image">💼</div>
+                            <div class="media-type-badge">Document</div>
+                        </div>
+                        <div class="project-content">
+                            <h3>Coach Hunt's Lasting Messages</h3>
+                            <p class="project-description">
+                                Collection of motivational and instructional messages emphasizing values, principles, and 
+                                life lessons that extend beyond the classroom. Demonstrates commitment to student character 
+                                development and mentorship.
+                            </p>
+                            <div class="project-tags">
+                                <span class="tag">Leadership</span>
+                                <span class="tag">Mentorship</span>
+                                <span class="tag">Character Development</span>
+                                <span class="tag">Student Support</span>
+                            </div>
+                            <div class="project-metrics">
+                                <div class="metric">
+                                    <div class="metric-value">37KB</div>
+                                    <div class="metric-label">File Size</div>
+                                </div>
+                                <div class="metric">
+                                    <div class="metric-value">3-5</div>
+                                    <div class="metric-label">Pages</div>
+                                </div>
+                            </div>
+                            <div class="project-actions">
+                                <button class="btn-view" data-file="Projects/professional-development/COACH HUNT'S LASTING MESSAGES.docx" data-title="Coach Hunt's Lasting Messages" data-type="document" onclick="viewArtifact(this.dataset.file, this.dataset.title, this.dataset.type)">👁️ View Artifact</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="glass-card project-card" data-category="professional-development">
+                        <div class="project-image-container">
+                            <div class="project-image">🎓</div>
+                            <div class="media-type-badge">Presentation</div>
+                        </div>
+                        <div class="project-content">
+                            <h3>Final Project</h3>
+                            <p class="project-description">
+                                Comprehensive final project presentation demonstrating advanced instructional design skills 
+                                and professional competence. May represent a capstone project, comprehensive curriculum design, 
+                                or major professional development initiative.
+                            </p>
+                            <div class="project-tags">
+                                <span class="tag">Capstone Project</span>
+                                <span class="tag">Curriculum Design</span>
+                                <span class="tag">Instructional Design</span>
+                                <span class="tag">Professional Portfolio</span>
+                            </div>
+                            <div class="project-metrics">
+                                <div class="metric">
+                                    <div class="metric-value">50+</div>
+                                    <div class="metric-label">Slides</div>
+                                </div>
+                                <div class="metric">
+                                    <div class="metric-value">17MB</div>
+                                    <div class="metric-label">File Size</div>
+                                </div>
+                            </div>
+                            <div class="project-actions">
+                                <button class="btn-view" onclick='viewArtifact("Projects/professional-development/Final Project.pptx", "Final Project", "presentation")'>👁️ View Artifact</button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
+        
+        <!-- Project Modal (for viewing collections) -->
+        <div id="projectModal" class="modal-overlay project-modal" role="dialog" aria-labelledby="modalTitle" aria-modal="true">
+            <div class="modal-container glass-card modal-large">
+                <button class="modal-close" aria-label="Close modal">&times;</button>
+                <div class="modal-content" id="projectModalContent">
+                    <!-- Content will be dynamically loaded -->
+                </div>
+            </div>
+        </div>
+        
+        <!-- Artifact Preview Modal -->
+        <div id="artifactModal" class="modal-overlay artifact-modal" role="dialog" aria-labelledby="artifactModalTitle" aria-modal="true">
+            <div class="modal-container glass-card modal-large">
+                <button class="modal-close" aria-label="Close modal">&times;</button>
+                <div class="modal-header">
+                    <h2 id="artifactModalTitle" style="color: var(--text); margin-bottom: 1rem;">Artifact Preview</h2>
+                </div>
+                <div class="modal-content" id="artifactModalContent">
+                    <!-- Artifact preview will be loaded here -->
+                </div>
+            </div>
+        </div>
         
         <!-- Skills Section -->
         <section id="skills" class="section skills-section">
@@ -524,8 +872,8 @@
                                 <span class="skill-level">Advanced</span>
                             </div>
                             <div class="skill-item">
-                                <span class="skill-name">Program Evaluation</span>
-                                <span class="skill-level">Advanced</span>
+                                <span class="skill-name">Applied Reseach</span>
+                                <span class="skill-level">Expert</span>
                             </div>
                         </div>
                     </div>

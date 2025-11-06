@@ -318,6 +318,22 @@ header.scrolled {
     background-clip: text;
     text-decoration: none;
     letter-spacing: -0.02em;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.logo-img {
+    height: 2rem;
+    width: auto;
+    display: block;
+}
+
+.logo span {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
 nav ul {
@@ -603,15 +619,359 @@ nav a:hover::after {
 
 .hero-visual {
     position: relative;
+    perspective: 2000px;
+    transform-style: preserve-3d;
 }
 
-.hero-image {
+.hero-animation-container {
+    position: relative;
+    width: 100%;
+    height: auto;
+    min-height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform-style: preserve-3d;
+}
+
+.hero-image.hero-base {
     width: 100%;
     height: auto;
     border-radius: var(--radius-lg);
     object-fit: contain;
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
     filter: drop-shadow(0 0 20px rgba(139, 92, 246, 0.2));
+    position: relative;
+    z-index: 1;
+    animation: float-gentle 6s ease-in-out infinite;
+    transform-style: preserve-3d;
+}
+
+@keyframes float-gentle {
+    0%, 100% { 
+        transform: translateY(0) translateZ(0); 
+    }
+    50% { 
+        transform: translateY(-10px) translateZ(5px); 
+    }
+}
+
+/* ================================
+   BRAIN CORE ANIMATION
+   ================================ */
+.brain-core {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 200px;
+    height: 200px;
+    z-index: 10;
+    pointer-events: none;
+    transform-style: preserve-3d;
+}
+
+.brain-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(139, 92, 246, 0.9) 0%, rgba(139, 92, 246, 0.6) 40%, transparent 70%);
+    animation: brain-pulse 3s ease-in-out infinite;
+    filter: blur(20px);
+    opacity: 1 !important;
+}
+
+.brain-pulse-ring {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 200px;
+    height: 200px;
+    border: 3px solid rgba(139, 92, 246, 0.8);
+    border-radius: 50%;
+    animation: pulse-ring 1s ease-out infinite;
+    opacity: 1 !important;
+}
+
+.brain-pulse-ring:nth-child(2) {
+    animation-delay: 0.5s;
+    border-color: rgba(20, 184, 166, 0.8);
+}
+
+.brain-pulse-ring:nth-child(3) {
+    animation-delay: 1s;
+    border-color: rgba(245, 158, 11, 0.8);
+}
+
+@keyframes brain-pulse {
+    0%, 100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: translate(-50%, -50%) scale(1.4);
+        opacity: 1;
+    }
+}
+
+@keyframes pulse-ring {
+    0% {
+        transform: translate(-50%, -50%) scale(0.8);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(2.5);
+        opacity: 1;
+    }
+}
+
+/* ================================
+   ORBITAL SYSTEM
+   ================================ */
+.orbital-system {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    z-index: 5;
+    pointer-events: none;
+}
+
+.orbital-element {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    top: 50%;
+    left: 50%;
+    transform-origin: center;
+    pointer-events: none;
+    z-index: 6;
+}
+
+.orbital-element::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(139, 92, 246, 0.7) 0%, rgba(139, 92, 246, 0.4) 50%, transparent 70%);
+    animation: element-float 4s ease-in-out infinite;
+    opacity: 1 !important;
+}
+
+.globe-element::before {
+    background: radial-gradient(circle, rgba(20, 184, 166, 0.7) 0%, rgba(20, 184, 166, 0.4) 50%, transparent 70%);
+    animation-delay: 0s;
+}
+
+.laptop-element::before {
+    background: radial-gradient(circle, rgba(245, 158, 11, 0.7) 0%, rgba(245, 158, 11, 0.4) 50%, transparent 70%);
+    animation-delay: 1.3s;
+}
+
+.books-element::before {
+    background: radial-gradient(circle, rgba(139, 92, 246, 0.7) 0%, rgba(139, 92, 246, 0.4) 50%, transparent 70%);
+    animation-delay: 2.6s;
+}
+
+.element-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(139, 92, 246, 0.7) 0%, rgba(139, 92, 246, 0.5) 50%, transparent 70%);
+    filter: blur(15px);
+    animation: glow-pulse 2.5s ease-in-out infinite;
+    z-index: -1;
+    opacity: 1 !important;
+}
+
+.globe-element .element-glow {
+    background: radial-gradient(circle, rgba(20, 184, 166, 0.7) 0%, rgba(20, 184, 166, 0.5) 50%, transparent 70%);
+    animation-delay: 0s;
+}
+
+.laptop-element .element-glow {
+    background: radial-gradient(circle, rgba(245, 158, 11, 0.7) 0%, rgba(245, 158, 11, 0.5) 50%, transparent 70%);
+    animation-delay: 1.3s;
+}
+
+.books-element .element-glow {
+    background: radial-gradient(circle, rgba(139, 92, 246, 0.7) 0%, rgba(139, 92, 246, 0.5) 50%, transparent 70%);
+    animation-delay: 2.6s;
+}
+
+.element-halo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 120px;
+    height: 120px;
+    border: 2px solid rgba(139, 92, 246, 0.6);
+    border-radius: 50%;
+    animation: halo-rotate 8s linear infinite;
+    z-index: -2;
+    opacity: 1 !important;
+}
+
+.globe-element .element-halo {
+    border-color: rgba(20, 184, 166, 0.6);
+    animation-duration: 10s;
+}
+
+.laptop-element .element-halo {
+    border-color: rgba(245, 158, 11, 0.6);
+    animation-duration: 12s;
+}
+
+.books-element .element-halo {
+    border-color: rgba(139, 92, 246, 0.6);
+    animation-duration: 9s;
+}
+
+@keyframes element-float {
+    0%, 100% {
+        transform: translate(-50%, -50%) translateZ(0) scale(1);
+    }
+    50% {
+        transform: translate(-50%, -50%) translateZ(20px) scale(1.1);
+    }
+}
+
+@keyframes glow-pulse {
+    0%, 100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: translate(-50%, -50%) scale(1.3);
+        opacity: 1;
+    }
+}
+
+@keyframes halo-rotate {
+    0% {
+        transform: translate(-50%, -50%) rotate(0deg);
+        opacity: 1;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        transform: translate(-50%, -50%) rotate(360deg);
+        opacity: 1;
+    }
+}
+
+/* ================================
+   PARTICLE SYSTEM
+   ================================ */
+.particles-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 3;
+    pointer-events: none;
+    border-radius: var(--radius-lg);
+}
+
+/* ================================
+   ORBITAL PATHS
+   ================================ */
+.orbital-paths {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+.orbit-path {
+    fill: none;
+    stroke: rgba(139, 92, 246, 0.6);
+    stroke-width: 2;
+    stroke-dasharray: 5, 5;
+    animation: path-rotate 20s linear infinite;
+}
+
+.orbit-path:nth-child(2) {
+    stroke: rgba(20, 184, 166, 0.6);
+    animation-duration: 25s;
+    animation-direction: reverse;
+}
+
+.orbit-path:nth-child(3) {
+    stroke: rgba(245, 158, 11, 0.6);
+    animation-duration: 18s;
+}
+
+@keyframes path-rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* ================================
+   RESPONSIVE DESIGN
+   ================================ */
+@media (max-width: 768px) {
+    .hero-animation-container {
+        min-height: 400px;
+    }
+    
+    .brain-core {
+        width: 150px;
+        height: 150px;
+    }
+    
+    .brain-glow,
+    .brain-pulse-ring {
+        width: 150px;
+        height: 150px;
+    }
+    
+    .orbital-element {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .orbital-element::before {
+        width: 45px;
+        height: 45px;
+    }
+    
+    .element-glow {
+        width: 80px;
+        height: 80px;
+    }
+    
+    .element-halo {
+        width: 90px;
+        height: 90px;
+    }
 }
 
 /* Tech Stack Grid */
@@ -1094,6 +1454,274 @@ nav a:hover::after {
 .metric-label {
     font-size: var(--text-xs);
     color: var(--text-dim);
+}
+
+/* ================================
+   PROJECT FILTERS & ENHANCED FEATURES
+   ================================ */
+.project-filters {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.filter-btn {
+    padding: 0.75rem 1.5rem;
+    background: var(--glass);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-md);
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: var(--text-sm);
+    font-weight: 600;
+    font-family: var(--font-sans);
+}
+
+.filter-btn:hover {
+    background: rgba(139, 92, 246, 0.2);
+    border-color: var(--primary);
+    color: var(--text);
+    transform: translateY(-2px);
+}
+
+.filter-btn.active {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+    box-shadow: 0 4px 12px rgba(139, 92, 246, 0.4);
+}
+
+.project-image-container {
+    position: relative;
+    width: 100%;
+    height: 240px;
+    border-radius: var(--radius-lg);
+    margin-bottom: var(--space-md);
+    overflow: hidden;
+}
+
+.media-type-badge {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    padding: 0.5rem 1rem;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(10px);
+    border-radius: var(--radius-sm);
+    font-size: var(--text-xs);
+    font-weight: 600;
+    color: var(--text);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    z-index: 2;
+}
+
+.project-actions {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: var(--space-md);
+    padding-top: var(--space-md);
+    border-top: 1px solid var(--glass-border);
+    flex-wrap: wrap;
+}
+
+.btn-download,
+.btn-view {
+    padding: 0.625rem 1.25rem;
+    background: var(--primary);
+    border: none;
+    border-radius: var(--radius-sm);
+    color: white;
+    font-weight: 600;
+    font-size: var(--text-sm);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-sans);
+}
+
+.btn-download:hover,
+.btn-view:hover {
+    background: var(--primary-light);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(139, 92, 246, 0.4);
+}
+
+.btn-view {
+    background: var(--secondary);
+}
+
+.btn-view:hover {
+    background: var(--secondary-light);
+    box-shadow: 0 4px 12px rgba(20, 184, 166, 0.4);
+}
+
+/* Project Card Filtering */
+.project-card {
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.project-card.hidden {
+    opacity: 0;
+    transform: scale(0.95);
+    pointer-events: none;
+    height: 0;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+/* Project Modal */
+.project-modal {
+    display: none; /* Will be set to flex by JavaScript */
+}
+
+.project-modal .modal-container {
+    max-width: 900px;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.modal-large {
+    max-width: 1000px;
+}
+
+/* Artifact Preview Modal */
+.artifact-modal {
+    display: none; /* Will be set to flex by JavaScript */
+}
+
+.artifact-modal .modal-container {
+    max-width: 1200px;
+    max-height: 95vh;
+    overflow-y: auto;
+    padding: var(--space-xl);
+}
+
+.artifact-modal .modal-header {
+    margin-bottom: var(--space-lg);
+    padding-bottom: var(--space-md);
+    border-bottom: 1px solid var(--glass-border);
+}
+
+.artifact-modal .modal-content {
+    width: 100%;
+}
+
+/* Loading Spinner */
+.loading-spinner {
+    width: 50px;
+    height: 50px;
+    border: 4px solid var(--glass-border);
+    border-top-color: var(--primary);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.project-modal .modal-content {
+    padding: 2rem;
+}
+
+.project-collection-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.collection-item {
+    padding: 1.5rem;
+    background: var(--glass);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-md);
+    transition: all 0.3s ease;
+}
+
+.collection-item:hover {
+    border-color: var(--primary);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(139, 92, 246, 0.2);
+}
+
+.collection-item h4 {
+    font-size: var(--text-lg);
+    margin-bottom: 0.5rem;
+    color: var(--text);
+}
+
+.collection-item p {
+    font-size: var(--text-sm);
+    color: var(--text-muted);
+    margin-bottom: 1rem;
+}
+
+.collection-item a,
+.collection-item button {
+    color: var(--primary-light);
+    text-decoration: none;
+    font-size: var(--text-sm);
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    font-family: var(--font-sans);
+}
+
+.collection-item a:hover,
+.collection-item button:hover {
+    color: var(--primary);
+}
+
+.collection-item button.btn-view {
+    padding: 0.5rem 1rem;
+    background: var(--secondary);
+    color: white;
+    border-radius: var(--radius-sm);
+    transition: all 0.3s ease;
+}
+
+.collection-item button.btn-view:hover {
+    background: var(--secondary-light);
+    color: white;
+    transform: translateY(-2px);
+}
+
+/* Responsive adjustments for filters */
+@media (max-width: 768px) {
+    .project-filters {
+        gap: 0.5rem;
+    }
+    
+    .filter-btn {
+        padding: 0.5rem 1rem;
+        font-size: var(--text-xs);
+    }
+    
+    .project-actions {
+        flex-direction: column;
+    }
+    
+    .btn-download,
+    .btn-view {
+        width: 100%;
+        justify-content: center;
+    }
 }
 
 /* ================================
