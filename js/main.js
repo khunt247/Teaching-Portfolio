@@ -168,6 +168,22 @@ function initSmoothScroll() {
                 return;
             }
             
+            // Handle contact button - scroll to bottom of page
+            if (href === '#contact') {
+                // Close mobile menu if open
+                const nav = document.getElementById('mainNav');
+                if (nav) {
+                    nav.classList.remove('mobile-active');
+                }
+                
+                // Smooth scroll to very bottom of page
+                window.scrollTo({
+                    top: document.documentElement.scrollHeight,
+                    behavior: 'smooth'
+                });
+                return;
+            }
+            
             const target = document.querySelector(href);
             
             if (target) {
@@ -175,19 +191,8 @@ function initSmoothScroll() {
                 const header = document.getElementById('header');
                 const headerHeight = header ? header.offsetHeight : 80;
                 
-                // Special handling for "Get in Touch" button to show Skills + Contact together
-                const isGetInTouchButton = this.id === 'get-in-touch-btn' || href === '#contact';
-                let scrollOffset;
-                
-                if (isGetInTouchButton) {
-                    // Position Contact section lower in viewport to show Skills section above
-                    // Calculate offset to show Contact section at ~40% down the viewport
-                    const viewportHeight = window.innerHeight;
-                    scrollOffset = headerHeight - (viewportHeight * 0.35);
-                } else {
-                    // Standard offset for other links
-                    scrollOffset = headerHeight + 20;
-                }
+                // Standard offset for all links (contact is handled above)
+                const scrollOffset = headerHeight + 20;
                 
                 // Calculate target position with offset
                 const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - scrollOffset;
