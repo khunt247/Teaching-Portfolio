@@ -287,7 +287,7 @@ header {
     top: 0;
     left: 0;
     right: 0;
-    z-index: 1000;
+    z-index: 1002;
     background: rgba(15, 15, 35, 0.95);
     backdrop-filter: blur(20px) saturate(180%);
     border-bottom: 1px solid var(--glass-border);
@@ -2251,15 +2251,17 @@ footer {
 }
 
 /* ================================
-   CUSTOM CIRCLE CURSOR
+   CUSTOM CURSOR
    ================================ */
-/* Hide default cursor completely */
+/* Hide default cursor completely - DISABLED TO FIX NAVIGATION CLICKS */
+/*
 *,
 *::before,
 *::after {
     cursor: none !important;
 }
-
+*/
+/*
 body,
 html,
 a,
@@ -2276,6 +2278,7 @@ canvas,
 svg {
     cursor: none !important;
 }
+*/
 
 /* Custom cursor container */
 .custom-cursor {

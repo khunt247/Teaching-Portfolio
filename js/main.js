@@ -1269,7 +1269,7 @@ function init() {
     initBrainRotation();
     initProjectFilters();
     initCounterAnimation();
-    initCustomCursor();
+    // initCustomCursor(); // DISABLED - was preventing navigation clicks
     console.log('Portfolio loaded successfully');
 }
 
