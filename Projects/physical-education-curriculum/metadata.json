@@ -1,9 +1,50 @@
 {
   "category": "physical-education-curriculum",
   "title": "Physical Education Curriculum & Instruction",
-  "description": "Comprehensive physical education curriculum materials including unit presentations, classroom management resources, assessments, and planning documents. Designed for high school physical education programs with emphasis on fitness, team sports, and student engagement.",
+  "description": "Comprehensive physical education curriculum materials including unit presentations, classroom management resources, assessments, and planning documents. Designed for middle and high school physical education programs with emphasis on fitness, team sports, and student engagement.",
   "categoryIcon": "physical-education",
   "projects": [
+    {
+      "id": "middle-school-pe-curriculum",
+      "title": "Middle School Physical Education Curriculum Development",
+      "type": "document",
+      "file": "planning/Curriculum Project.pdf",
+      "preview": "planning/curriculum-project-preview.png",
+      "description": "Comprehensive curriculum design project for middle school physical education programs. This document demonstrates the complete process of curriculum creation and development, including curriculum mapping, scope and sequence development, learning objective alignment, assessment strategies, and instructional design for grades 6-8. Showcases expertise in systematic curriculum planning, standards alignment, and age-appropriate program design for adolescent learners.",
+      "tags": [
+        "Curriculum Design",
+        "Curriculum Development",
+        "Middle School",
+        "Curriculum Planning",
+        "Scope and Sequence",
+        "Standards Alignment",
+        "Instructional Design",
+        "Program Development"
+      ],
+      "learningObjectives": [
+        "Design comprehensive middle school PE curriculum frameworks",
+        "Develop age-appropriate scope and sequence for grades 6-8",
+        "Align curriculum with state and national PE standards",
+        "Create assessment strategies aligned with learning objectives",
+        "Apply backward design principles to curriculum development",
+        "Design differentiated instruction for diverse middle school learners"
+      ],
+      "targetAudience": "Middle school physical education students (grades 6-8), PE teachers, curriculum coordinators, and educational administrators",
+      "metrics": {
+        "format": "PDF Document",
+        "gradeLevel": "Middle School (Grades 6-8)",
+        "focus": "Curriculum Creation & Development",
+        "curriculumAlignment": "PE Standards"
+      },
+      "files": [
+        {
+          "id": "curriculum-project",
+          "name": "Curriculum Project.pdf",
+          "type": "document",
+          "file": "planning/Curriculum Project.pdf"
+        }
+      ]
+    },
     {
       "id": "pe-units-overview",
       "title": "Physical Education Unit Presentations",

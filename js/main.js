@@ -772,6 +772,22 @@ function openProjectModal(projectType) {
             `;
             break;
             
+        case 'middle-school-pe-curriculum':
+            content = `
+                <h2 style="margin-bottom: 1.5rem; color: var(--text);">Middle School Physical Education Curriculum Development</h2>
+                <p style="color: var(--text-muted); margin-bottom: 2rem;">
+                    Comprehensive curriculum design project demonstrating the complete process of curriculum creation and development for middle school physical education programs (grades 6-8). Includes curriculum mapping, scope and sequence, learning objectives, assessment strategies, and instructional alignment.
+                </p>
+                <div class="project-collection-list">
+                    <div class="collection-item">
+                        <h4>Curriculum Project - Full Document</h4>
+                        <p>Complete middle school PE curriculum development project</p>
+                        <button class="btn-view" onclick='viewArtifact("Projects/physical-education-curriculum/planning/Curriculum Project.pdf", "Middle School PE Curriculum Development", "document")'>📄 View PDF</button>
+                    </div>
+                </div>
+            `;
+            break;
+            
         case 'prezi':
             content = `
                 <h2 style="margin-bottom: 1.5rem; color: var(--text);">Prezi Presentations</h2>
@@ -1038,6 +1054,82 @@ window.closeArtifactModal = closeArtifactModal;
 window.viewPrezi = viewPrezi;
 
 // ================================
+// COUNTER ANIMATION FOR STATS
+// ================================
+function initCounterAnimation() {
+    const statValues = document.querySelectorAll('.stat-value[data-count]');
+    
+    if (statValues.length === 0) return;
+    
+    // Function to animate a single counter
+    function animateCounter(element, targetValue, suffix = '') {
+        const duration = 2; // Animation duration in seconds
+        const startTime = performance.now();
+        const startValue = 0;
+        
+        // Extract numeric value from target (handle cases like "100+" or just "100")
+        const numericTarget = parseInt(targetValue) || 0;
+        
+        function updateCounter(currentTime) {
+            const elapsed = (currentTime - startTime) / 1000; // Convert to seconds
+            const progress = Math.min(elapsed / duration, 1);
+            
+            // Use easing function for smooth animation (easeOutCubic)
+            const easedProgress = 1 - Math.pow(1 - progress, 3);
+            const currentValue = Math.floor(startValue + (numericTarget - startValue) * easedProgress);
+            
+            // Update the element text
+            element.textContent = currentValue + suffix;
+            
+            if (progress < 1) {
+                requestAnimationFrame(updateCounter);
+            } else {
+                // Ensure final value is set correctly
+                element.textContent = numericTarget + suffix;
+            }
+        }
+        
+        requestAnimationFrame(updateCounter);
+    }
+    
+    // Use Intersection Observer to trigger animation when stats come into view
+    const observerOptions = {
+        threshold: 0.5, // Trigger when 50% of the element is visible
+        rootMargin: '0px'
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting && !entry.target.classList.contains('counted')) {
+                entry.target.classList.add('counted');
+                
+                const targetValue = entry.target.getAttribute('data-count');
+                const currentText = entry.target.textContent;
+                
+                // Extract suffix (like "+") from current text
+                const suffix = currentText.replace(/[\d,]/g, '').trim();
+                
+                // Start animation
+                animateCounter(entry.target, targetValue, suffix);
+                
+                // Unobserve after animation starts
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+    
+    // Observe all stat values
+    statValues.forEach(stat => {
+        // Set initial value to 0
+        const currentText = stat.textContent;
+        const suffix = currentText.replace(/[\d,]/g, '').trim();
+        stat.textContent = '0' + suffix;
+        
+        observer.observe(stat);
+    });
+}
+
+// ================================
 // INITIALIZATION
 // ================================
 function init() {
@@ -1048,6 +1140,7 @@ function init() {
     initParticleSystem();
     initBrainRotation();
     initProjectFilters();
+    initCounterAnimation();
     console.log('Portfolio loaded successfully');
 }
 
