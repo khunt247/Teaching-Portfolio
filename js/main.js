@@ -184,6 +184,39 @@ function initSmoothScroll() {
                 return;
             }
             
+            // Handle Skills button - scroll to Skills section with proper offset
+            if (href === '#skills') {
+                // Close mobile menu if open
+                const nav = document.getElementById('mainNav');
+                if (nav) {
+                    nav.classList.remove('mobile-active');
+                }
+                
+                const target = document.querySelector(href);
+                if (target) {
+                    // Get header height to account for fixed header
+                    const header = document.getElementById('header');
+                    const headerHeight = header ? header.offsetHeight : 80;
+                    
+                    // Use minimal offset to position Skills section at the very top
+                    // This ensures no Projects section is visible
+                    const scrollOffset = headerHeight;
+                    
+                    // Calculate target position with offset
+                    const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - scrollOffset;
+                    
+                    // Ensure position is not negative
+                    const finalPosition = Math.max(0, targetPosition);
+                    
+                    // Smooth scroll to position
+                    window.scrollTo({
+                        top: finalPosition,
+                        behavior: 'smooth'
+                    });
+                }
+                return;
+            }
+            
             const target = document.querySelector(href);
             
             if (target) {
@@ -816,7 +849,14 @@ function openProjectModal(projectType) {
     }
     
     modalContent.innerHTML = content;
+    
+    // Show modal (project-modal has display:none in CSS)
     modal.style.display = 'flex';
+    
+    // Force reflow to ensure transition works
+    modal.offsetHeight;
+    
+    modal.classList.add('active');
     document.body.style.overflow = 'hidden';
     
     // Close modal handlers
@@ -830,7 +870,7 @@ function openProjectModal(projectType) {
     });
     
     document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && modal.style.display === 'flex') {
+        if (e.key === 'Escape' && modal.classList.contains('active')) {
             closeProjectModal();
         }
     });
@@ -839,8 +879,12 @@ function openProjectModal(projectType) {
 function closeProjectModal() {
     const modal = document.getElementById('projectModal');
     if (modal) {
-        modal.style.display = 'none';
+        modal.classList.remove('active');
         document.body.style.overflow = '';
+        // Hide modal after transition
+        setTimeout(() => {
+            modal.style.display = 'none';
+        }, 300);
     }
 }
 
@@ -856,7 +900,14 @@ function viewArtifact(filePath, title, fileType) {
     
     modalTitle.textContent = title || 'Artifact Preview';
     modalContent.innerHTML = '<div style="text-align: center; padding: 2rem;"><div class="loading-spinner"></div><p style="color: var(--text-muted); margin-top: 1rem;">Loading artifact...</p></div>';
+    
+    // Show modal (artifact-modal has display:none in CSS)
     modal.style.display = 'flex';
+    
+    // Force reflow to ensure transition works
+    modal.offsetHeight;
+    
+    modal.classList.add('active');
     document.body.style.overflow = 'hidden';
     
     // Get file extension
@@ -984,7 +1035,7 @@ function viewArtifact(filePath, title, fileType) {
     });
     
     document.addEventListener('keydown', function escapeHandler(e) {
-        if (e.key === 'Escape' && modal.style.display === 'flex') {
+        if (e.key === 'Escape' && modal.classList.contains('active')) {
             closeArtifactModal();
             document.removeEventListener('keydown', escapeHandler);
         }
@@ -994,8 +1045,12 @@ function viewArtifact(filePath, title, fileType) {
 function closeArtifactModal() {
     const modal = document.getElementById('artifactModal');
     if (modal) {
-        modal.style.display = 'none';
+        modal.classList.remove('active');
         document.body.style.overflow = '';
+        // Hide modal after transition
+        setTimeout(() => {
+            modal.style.display = 'none';
+        }, 300);
     }
 }
 
@@ -1030,7 +1085,13 @@ function viewPrezi(embedUrl, title) {
             </p>
         </div>
     `;
+    // Show modal (artifact-modal has display:none in CSS)
     modal.style.display = 'flex';
+    
+    // Force reflow to ensure transition works
+    modal.offsetHeight;
+    
+    modal.classList.add('active');
     document.body.style.overflow = 'hidden';
     
     // Close modal handlers
@@ -1044,7 +1105,7 @@ function viewPrezi(embedUrl, title) {
     });
     
     document.addEventListener('keydown', function escapeHandler(e) {
-        if (e.key === 'Escape' && modal.style.display === 'flex') {
+        if (e.key === 'Escape' && modal.classList.contains('active')) {
             closeArtifactModal();
             document.removeEventListener('keydown', escapeHandler);
         }
@@ -1135,6 +1196,68 @@ function initCounterAnimation() {
 }
 
 // ================================
+// CUSTOM CIRCLE CURSOR
+// ================================
+function initCustomCursor() {
+    // Check if device supports hover (not a touch device)
+    if (window.matchMedia('(hover: none)').matches) {
+        return; // Skip cursor initialization on touch devices
+    }
+    
+    // Create cursor elements
+    const cursor = document.createElement('div');
+    cursor.className = 'custom-cursor';
+    
+    const cursorOuter = document.createElement('div');
+    cursorOuter.className = 'cursor-outer';
+    
+    const cursorInner = document.createElement('div');
+    cursorInner.className = 'cursor-inner';
+    
+    cursor.appendChild(cursorOuter);
+    cursor.appendChild(cursorInner);
+    document.body.appendChild(cursor);
+    
+    // Update cursor position instantly on mouse move
+    document.addEventListener('mousemove', (e) => {
+        cursor.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
+    });
+    
+    // Add hover effect for interactive elements
+    const interactiveElements = 'a, button, input, textarea, .glass-card, .project-card, .tech-card, .filter-btn, .btn';
+    
+    document.addEventListener('mouseover', (e) => {
+        if (e.target.closest(interactiveElements)) {
+            cursor.classList.add('hover');
+        }
+    });
+    
+    document.addEventListener('mouseout', (e) => {
+        if (e.target.closest(interactiveElements)) {
+            cursor.classList.remove('hover');
+        }
+    });
+    
+    // Add click effect
+    document.addEventListener('mousedown', () => {
+        cursor.classList.add('click');
+    });
+    
+    document.addEventListener('mouseup', () => {
+        cursor.classList.remove('click');
+    });
+    
+    // Hide cursor when leaving window
+    document.addEventListener('mouseleave', () => {
+        cursor.classList.add('hidden');
+    });
+    
+    document.addEventListener('mouseenter', () => {
+        cursor.classList.remove('hidden');
+    });
+}
+
+// ================================
 // INITIALIZATION
 // ================================
 function init() {
@@ -1146,6 +1269,7 @@ function init() {
     initBrainRotation();
     initProjectFilters();
     initCounterAnimation();
+    initCustomCursor();
     console.log('Portfolio loaded successfully');
 }
 
