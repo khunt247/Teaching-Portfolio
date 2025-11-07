@@ -275,7 +275,7 @@ window.addEventListener('resize', () => {
 function initEmailModal() {
     const modal = document.getElementById('emailModal');
     const emailTriggers = document.querySelectorAll('.email-modal-trigger');
-    const closeBtn = document.querySelector('.modal-close');
+    const closeBtn = modal?.querySelector('.modal-close'); // Scoped to this modal
     const copyBtn = document.getElementById('copyBtn');
     const emailDisplay = document.getElementById('emailDisplay');
     const copyFeedback = document.getElementById('copyFeedback');
@@ -295,7 +295,11 @@ function initEmailModal() {
     });
     
     // Close modal
-    function closeModal() {
+    function closeModal(e) {
+        if (e) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
         modal.classList.remove('active');
         document.body.style.overflow = '';
         copyFeedback.classList.remove('show');
@@ -303,12 +307,16 @@ function initEmailModal() {
         copyBtn.querySelector('.copy-text').textContent = 'Copy Email';
     }
     
-    closeBtn?.addEventListener('click', closeModal);
+    // Close button click handler
+    if (closeBtn) {
+        closeBtn.addEventListener('click', closeModal);
+    }
     
-    // Close on overlay click
+    // Close on overlay click (clicking outside the modal container)
     modal.addEventListener('click', function(e) {
+        // Only close if clicking directly on the overlay, not on the modal container or its children
         if (e.target === modal) {
-            closeModal();
+            closeModal(e);
         }
     });
     
