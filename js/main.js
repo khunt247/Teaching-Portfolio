@@ -916,6 +916,39 @@ function closeProjectModal() {
 }
 
 // ================================
+// JUPYTER NOTEBOOK SCREENSHOT MAPPING
+// ================================
+/**
+ * Maps Jupyter notebook file paths to their screenshot image paths
+ * @param {string} notebookPath - Path to the .ipynb file
+ * @returns {string[]} Array of screenshot image paths, or empty array if not found
+ */
+function getNotebookScreenshots(notebookPath) {
+    // Mapping of notebook file paths to screenshot paths
+    const screenshotMap = {
+        'Projects/python-programming/notebooks/Python 4 Beginners Week_1.ipynb': [
+            'Projects/python-programming/screenshots/Python 4 Beginners Week_1.png'
+        ],
+        'Projects/python-programming/notebooks/backtest_tutorial.ipynb': [
+            'Projects/python-programming/screenshots/backtest_tutorial.png'
+        ],
+        'Projects/python-programming/notebooks/backtest_tutorial_explained.ipynb': [
+            'Projects/python-programming/screenshots/backtest_tutorial_explained.png'
+        ]
+    };
+    
+    // For notebooks with multiple screenshots, you can add multiple paths:
+    // Example:
+    // 'Projects/python-programming/notebooks/example.ipynb': [
+    //     'Projects/python-programming/screenshots/example_1.png',
+    //     'Projects/python-programming/screenshots/example_2.png',
+    //     'Projects/python-programming/screenshots/example_3.png'
+    // ]
+    
+    return screenshotMap[notebookPath] || [];
+}
+
+// ================================
 // ARTIFACT PREVIEW FUNCTIONALITY
 // ================================
 function viewArtifact(filePath, title, fileType) {
@@ -1084,47 +1117,40 @@ function viewArtifact(filePath, title, fileType) {
             </div>
         `;
     } else if (fileExtension === 'ipynb' || fileType === 'jupyter-notebook') {
-        // Jupyter Notebook - Try to load and render
-        fetch(filePath)
-            .then(response => response.json())
-            .then(data => {
-                // Render notebook cells
-                let notebookHTML = '<div style="max-height: 80vh; overflow-y: auto; padding: 1rem;">';
-                data.cells.forEach((cell, index) => {
-                    if (cell.cell_type === 'markdown') {
-                        notebookHTML += `<div style="margin-bottom: 1.5rem; padding: 1rem; background: var(--glass); border-radius: var(--radius-md);">`;
-                        notebookHTML += `<pre style="white-space: pre-wrap; color: var(--text); font-family: var(--font-sans); margin: 0;">${cell.source.join('')}</pre>`;
-                        notebookHTML += `</div>`;
-                    } else if (cell.cell_type === 'code') {
-                        notebookHTML += `<div style="margin-bottom: 1.5rem; padding: 1rem; background: rgba(139, 92, 246, 0.1); border-left: 3px solid var(--primary); border-radius: var(--radius-md);">`;
-                        notebookHTML += `<pre style="white-space: pre-wrap; color: var(--text); font-family: 'Courier New', monospace; margin: 0; overflow-x: auto;">${cell.source.join('')}</pre>`;
-                        if (cell.outputs && cell.outputs.length > 0) {
-                            notebookHTML += `<div style="margin-top: 0.5rem; padding-top: 0.5rem; border-top: 1px solid var(--glass-border);">`;
-                            cell.outputs.forEach(output => {
-                                if (output.output_type === 'stream') {
-                                    notebookHTML += `<pre style="color: var(--text-muted); font-family: 'Courier New', monospace; margin: 0;">${output.text.join('')}</pre>`;
-                                } else if (output.output_type === 'execute_result' || output.output_type === 'display_data') {
-                                    if (output.data && output.data['text/plain']) {
-                                        notebookHTML += `<pre style="color: var(--success); font-family: 'Courier New', monospace; margin: 0;">${output.data['text/plain'].join('')}</pre>`;
-                                    }
-                                }
-                            });
-                            notebookHTML += `</div>`;
-                        }
-                        notebookHTML += `</div>`;
-                    }
-                });
-                notebookHTML += '</div>';
-                modalContent.innerHTML = notebookHTML;
-            })
-            .catch(error => {
-                modalContent.innerHTML = `
-                    <div style="text-align: center; padding: 2rem;">
-                        <p style="color: var(--text-muted); margin-bottom: 1rem;">Unable to load Jupyter notebook. The file may need to be converted to HTML format for web viewing.</p>
-                        <p style="color: var(--text-dim); font-size: var(--text-sm);">Error: ${error.message}</p>
+        // Jupyter Notebook - Display screenshots
+        const screenshotPaths = getNotebookScreenshots(filePath);
+        
+        if (screenshotPaths && screenshotPaths.length > 0) {
+            // Create gallery view for screenshots
+            let galleryHTML = '<div style="max-height: 80vh; overflow-y: auto; padding: 1rem;">';
+            
+            screenshotPaths.forEach((screenshotPath, index) => {
+                galleryHTML += `
+                    <div style="margin-bottom: 2rem; text-align: center;">
+                        <img 
+                            src="${screenshotPath}" 
+                            alt="${title} - Screenshot ${index + 1}"
+                            style="max-width: 100%; height: auto; border-radius: var(--radius-md); box-shadow: var(--shadow-lg); margin-bottom: 0.5rem;"
+                            loading="lazy"
+                        />
+                        ${screenshotPaths.length > 1 ? `<p style="color: var(--text-muted); font-size: var(--text-sm); margin-top: 0.5rem;">Page ${index + 1} of ${screenshotPaths.length}</p>` : ''}
                     </div>
                 `;
             });
+            
+            galleryHTML += '</div>';
+            modalContent.innerHTML = galleryHTML;
+        } else {
+            // Fallback if screenshots not found
+            modalContent.innerHTML = `
+                <div style="text-align: center; padding: 2rem;">
+                    <p style="color: var(--text-muted); margin-bottom: 1rem;">Screenshots for this notebook are not available.</p>
+                    <p style="color: var(--text-dim); font-size: var(--text-sm);">File: ${filePath}</p>
+                </div>
+            `;
+        }
+        // Setup close handlers
+        setupArtifactModalCloseHandlers();
         return; // Early return since we're handling async
     } else {
         // Unknown file type
