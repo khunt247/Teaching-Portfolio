@@ -8,7 +8,7 @@
       "id": "coach-hunt-messages",
       "title": "Coach Hunt's Lasting Messages",
       "type": "document",
-      "file": "COACH HUNT'S LASTING MESSAGES.docx",
+      "file": "COACH HUNT LASTING MESSAGES.pdf",
       "preview": "preview-coach-messages.png",
       "description": "Collection of motivational and instructional messages from Coach Hunt. These messages likely serve as a guide for students, emphasizing values, principles, and life lessons that extend beyond the classroom or gym. Demonstrates commitment to student character development and mentorship.",
       "tags": [
@@ -25,13 +25,13 @@
       ],
       "targetAudience": "Students and educational community",
       "metrics": {
-        "format": "Word Document",
+        "format": "PDF Document",
         "size": "37KB",
         "pages": "Estimated 3-5 pages"
       },
       "files": [
         {
-          "name": "COACH HUNT'S LASTING MESSAGES.docx",
+          "name": "COACH HUNT LASTING MESSAGES.pdf",
           "type": "document",
           "size": "37KB"
         }
