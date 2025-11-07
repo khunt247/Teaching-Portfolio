@@ -38,6 +38,15 @@ document.addEventListener('mousemove', (e) => {
         card.style.setProperty('--mouse-x', `${x}%`);
         card.style.setProperty('--mouse-y', `${y}%`);
     });
+    
+    // Mouse tracking for quote card
+    document.querySelectorAll('.quote-card').forEach(card => {
+        const rect = card.getBoundingClientRect();
+        const x = ((e.clientX - rect.left) / rect.width) * 100;
+        const y = ((e.clientY - rect.top) / rect.height) * 100;
+        card.style.setProperty('--mouse-x', `${x}%`);
+        card.style.setProperty('--mouse-y', `${y}%`);
+    });
 });
 
 // ================================
@@ -927,13 +936,35 @@ function getNotebookScreenshots(notebookPath) {
     // Mapping of notebook file paths to screenshot paths
     const screenshotMap = {
         'Projects/python-programming/notebooks/Python 4 Beginners Week_1.ipynb': [
-            'Projects/python-programming/screenshots/Python 4 Beginners Week_1.png'
+            'Projects/python-programming/screenshots/Python 4 Beginners Week_1 P1.png',
+            'Projects/python-programming/screenshots/Python 4 Beginners Week_1 P2.png',
+            'Projects/python-programming/screenshots/Python 4 Beginners Week_1 P3.png',
+            'Projects/python-programming/screenshots/Python 4 Beginners Week_1 P4.png',
+            'Projects/python-programming/screenshots/Python 4 Beginners Week_1 P5.png',
+            'Projects/python-programming/screenshots/Python 4 Beginners Week_1 P6.png',
+            'Projects/python-programming/screenshots/Python 4 Beginners Week_1 P7.png',
+            'Projects/python-programming/screenshots/Python 4 Beginners Week_1 P8.png',
+            'Projects/python-programming/screenshots/Python 4 Beginners Week_1 P9.png',
+            'Projects/python-programming/screenshots/Python 4 Beginners Week_1 P10.png',
+            'Projects/python-programming/screenshots/Python 4 Beginners Week_1 P11.png'
         ],
         'Projects/python-programming/notebooks/backtest_tutorial.ipynb': [
-            'Projects/python-programming/screenshots/backtest_tutorial.png'
+            'Projects/python-programming/screenshots/backtest_tutorial P1.png',
+            'Projects/python-programming/screenshots/backtest_tutorial P2.png',
+            'Projects/python-programming/screenshots/backtest_tutorial P3.png',
+            'Projects/python-programming/screenshots/backtest_tutorial P4.png',
+            'Projects/python-programming/screenshots/backtest_tutorial P5.png'
         ],
         'Projects/python-programming/notebooks/backtest_tutorial_explained.ipynb': [
-            'Projects/python-programming/screenshots/backtest_tutorial_explained.png'
+            'Projects/python-programming/screenshots/backtest_tutorial_explained P1.png',
+            'Projects/python-programming/screenshots/backtest_tutorial_explained P2.png',
+            'Projects/python-programming/screenshots/backtest_tutorial_explained P3.png',
+            'Projects/python-programming/screenshots/backtest_tutorial_explained P4.png',
+            'Projects/python-programming/screenshots/backtest_tutorial_explained P5.png',
+            'Projects/python-programming/screenshots/backtest_tutorial_explained P6.png',
+            'Projects/python-programming/screenshots/backtest_tutorial_explained P7.png',
+            'Projects/python-programming/screenshots/backtest_tutorial_explained P8.png',
+            'Projects/python-programming/screenshots/backtest_tutorial_explained P9.png'
         ]
     };
     
@@ -946,6 +977,43 @@ function getNotebookScreenshots(notebookPath) {
     // ]
     
     return screenshotMap[notebookPath] || [];
+}
+
+/**
+ * Gets the description for a screenshot image
+ * @param {string} screenshotPath - Path to the screenshot image
+ * @returns {string} Description text for the screenshot
+ */
+function getScreenshotDescription(screenshotPath) {
+    const descriptionMap = {
+        'Projects/python-programming/screenshots/Python 4 Beginners Week_1 P1.png': 'Day 1 Introduction & Learning Objectives - Title: "Day 1: Introduction to Python, Printing, and Comments". Learning objectives: understand Python, use print(), write comments. "What is Python?" explanation. First print() examples with "Hello, world!" outputs. Introduction to comments with # symbol.',
+        'Projects/python-programming/screenshots/Python 4 Beginners Week_1 P2.png': 'Print Function Practice & Comments - Continuation of print() examples showing "Learning Python is fun!". Introduction to comments: "Use # to add comments. Python ignores comments when running the code". Code examples demonstrating comments above print statements. Practice tasks: print your name and print a motivational quote.',
+        'Projects/python-programming/screenshots/Python 4 Beginners Week_1 P3.png': 'Stretch Challenge & Day 1 Knowledge Check - Stretch challenge: write a script printing name and two things you\'re excited to learn, using at least two comments. Multiple-choice questions covering: what print() does, comment syntax (#), correct print() syntax, arithmetic operations with print(), and purpose of comments.',
+        'Projects/python-programming/screenshots/Python 4 Beginners Week_1 P4.png': 'Day 2 Introduction - Transition to Day 2: Variables and Assignment. Learning objectives: understand variables, assign values, follow naming rules. Introduction: "A variable is like a labeled box that holds information".',
+        'Projects/python-programming/screenshots/Python 4 Beginners Week_1 P5.png': 'Variable Basics & Naming Rules - Variable assignment examples: name = \'Alice\', age = 30. Variable naming rules: must start with letter/underscore, no spaces, case-sensitive. Examples of valid variable names: user_name, _hidden_value. Practice task: create a variable to store your favorite food.',
+        'Projects/python-programming/screenshots/Python 4 Beginners Week_1 P6.png': 'Variable Practice & Day 2 Knowledge Check - Practice tasks: store favorite food, store height, print both with labels. Stretch challenge: store name, age, and location; print a sentence using them. Beginning of Day 2 multiple-choice questions on variables.',
+        'Projects/python-programming/screenshots/Python 4 Beginners Week_1 P7.png': 'Day 2 Knowledge Check - Completion of Day 2 multiple-choice questions: valid variable names, arithmetic operations with variables, poor variable naming practices, and what happens when assigning variables.',
+        'Projects/python-programming/screenshots/Python 4 Beginners Week_1 P8.png': 'Day 3 Introduction: Data Types - Title: "Day 3: Data Types and Type Checking". Learning objectives: identify basic data types, check variable types, understand strings/integers/floats. "What are Data Types?" explanation. Code examples using type() function: type(\'Hello\'), type(42), type(3.14). "Why Data Types Matter" explanation.',
+        'Projects/python-programming/screenshots/Python 4 Beginners Week_1 P9.png': 'Data Types Practice Tasks - Practice tasks: create and check types for string, float, and integer variables. Stretch challenge: create three variables (one string, one integer, one float) and print a sentence describing each with its type.',
+        'Projects/python-programming/screenshots/Python 4 Beginners Week_1 P10.png': 'Day 3 Knowledge Check - Multiple-choice questions on: type of \'Hello\' (str), function to check variable type (type()), output of type(4.5) (<class \'float\'>), float identification (10.0), and importance of data types.',
+        'Projects/python-programming/screenshots/Python 4 Beginners Week_1 P11.png': 'Day 3 Completion - Completion of the Day 3 section on data types and type checking.',
+        'Projects/python-programming/screenshots/backtest_tutorial P1.png': 'Introduction and Project Structure - Title: "Backtesting Trading Strategies in Python". Introduction section with learning objectives: download financial data, build and test a basic trading strategy (Moving Average Crossover), backtest performance, visualize using line charts and candlesticks, add basic performance metrics (Sharpe Ratio), and organize project for future expansion. Includes suggested project folder structure with directories for data, strategies, notebooks, utils, and configuration files.',
+        'Projects/python-programming/screenshots/backtest_tutorial P2.png': 'Importing Libraries and Downloading Data - Section 1: Import Libraries and Download Data. Shows Python imports: yfinance, pandas, matplotlib, numpy, and mplfinance. Defines download_data() function that downloads historical stock data for a given ticker and date range, with default values for Apple (AAPL) stock from 2020-01-01 to 2024-01-01.',
+        'Projects/python-programming/screenshots/backtest_tutorial P3.png': 'Data Download and Display - Execution of download_data() function for Apple (AAPL) stock. Displays the first 5 rows of the downloaded DataFrame showing columns: Date, Open, High, Low, Close, Adj Close, and Volume. Dates range from 2020-01-02 to 2020-01-08.',
+        'Projects/python-programming/screenshots/backtest_tutorial P4.png': 'Moving Average Crossover Strategy - Section 2: Build a Basic Trading Strategy (Moving Average Crossover). Explains the strategy: generates buy signals when short-term MA crosses above long-term MA, and sell signals when short-term MA crosses below long-term MA. Defines moving_average_crossover_strategy() function that calculates short and long moving averages, generates trading signals, and determines trading positions.',
+        'Projects/python-programming/screenshots/backtest_tutorial P5.png': 'Applying the Strategy and Displaying Signals - Application of moving_average_crossover_strategy() to Apple data. Displays the first 5 rows of the signals DataFrame showing columns: signal (0.0 or 1.0), short_ma (short-term moving average), long_ma (long-term moving average), and positions (indicating buy/sell/neutral). Initial rows show NaN values for moving averages until enough data is available for calculation.',
+        'Projects/python-programming/screenshots/backtest_tutorial_explained P1.png': 'Introduction and Project Structure - Title: "Backtesting Trading Strategies in Python". Introduction section with learning objectives: download financial data, build and test a basic trading strategy (Moving Average Crossover), backtest performance, visualize using line charts and candlesticks, add basic performance metrics (Sharpe Ratio), and organize project for future expansion. Includes suggested project folder structure with directories for data, strategies, notebooks, utils, and configuration files.',
+        'Projects/python-programming/screenshots/backtest_tutorial_explained P2.png': 'Step 1-3: Setup and Data Download - Step 1: Install Required Packages (pip install command for yfinance, pandas, matplotlib, numpy, mplfinance). Step 2: Import Python libraries (yfinance, pandas, numpy, matplotlib, mplfinance). Step 3: Download Historical Financial Data - defines download_data() function that fetches OHLC data for a given ticker and date range, with default values for Apple (AAPL) stock from 2020-01-01 to 2024-01-01. The function cleans the data before returning.',
+        'Projects/python-programming/screenshots/backtest_tutorial_explained P3.png': 'Step 3: Data Download Output - Execution of download_data() function showing FutureWarning about yfinance changes, progress bar, and data table output. Displays first rows of downloaded Apple stock data with columns: Price, Open, High, Low, Close, and Date ranging from 2020-01-02 to 2020-01-08.',
+        'Projects/python-programming/screenshots/backtest_tutorial_explained P4.png': 'Step 4: Moving Average Crossover Strategy - Creates a Simple Moving Average Crossover Strategy. Explains the strategy generates signals when short-term MA crosses above or below long-term MA. Buy signal when short MA > long MA, sell signal when short MA < long MA. Defines generate_signals() function that calculates Short_MA and Long_MA, generates Signal and Position columns.',
+        'Projects/python-programming/screenshots/backtest_tutorial_explained P5.png': 'Step 5: Backtest the Strategy - Simulates applying the strategy to historical data. Explains the process: calculate daily returns, multiply returns by the signal (whether in the market or not), calculate cumulative performance for both strategy and market (buy & hold). Defines backtest_strategy() function that calculates Daily_Return, Strategy_Return, cumulative_strategy, and cumulative_market returns.',
+        'Projects/python-programming/screenshots/backtest_tutorial_explained P6.png': 'Step 6: Visualize Strategy vs Market - Plots cumulative returns over time to compare strategy with buy-and-hold baseline. Defines plot_performance() function using matplotlib to create a line chart showing "Strategy vs Market Performance" with Strategy (blue line) and Market Buy & Hold (orange line) over time, with date labels and legend.',
+        'Projects/python-programming/screenshots/backtest_tutorial_explained P7.png': 'Step 7: Candlestick Chart Visualization - Uses mplfinance to display a candlestick chart with moving averages for better technical visibility. Defines plot_candlesticks() function that handles MultiIndex columns, ensures required columns (Open, High, Low, Close), and plots candlestick chart with 20 and 50 period moving averages using yahoo style. Shows UserWarning about plotting large amounts of data.',
+        'Projects/python-programming/screenshots/backtest_tutorial_explained P8.png': 'Step 8: Sharpe Ratio Evaluation - Evaluates strategy performance with Sharpe Ratio metric. Explains that Sharpe Ratio tells if returns are worth the risk (higher is better) and adjusts returns for volatility compared to risk-free rate. Defines calculate_sharpe_ratio() function that calculates excess return and annualized Sharpe Ratio using 252 trading days. Displays calculated Sharpe Ratio value.',
+        'Projects/python-programming/screenshots/backtest_tutorial_explained P9.png': 'How to Add Your Own Strategies & Next Steps - Explains two methods for adding custom trading strategies: Option 1: Inline in the Notebook (great for fast testing) and Option 2: As a Separate Python File (best practice). Provides code examples for both methods, including creating generate_rsi_signals() function. Notes that strategy functions must return modified data DataFrame with at least Signal and Position columns. Also provides suggestions for further exploration: Try new strategies (RSI-based, Bollinger Bands, MACD or Mean Reversion), improve performance analytics (add drawdown analysis, calculate max drawdown, win rate), refactor and modularize (move strategies to strategies/, move plots to utils/, create reusable scripts), and try advanced tools (backtrader, bt, or vectorbt).'
+    };
+    
+    return descriptionMap[screenshotPath] || '';
 }
 
 // ================================
@@ -1117,29 +1185,118 @@ function viewArtifact(filePath, title, fileType) {
             </div>
         `;
     } else if (fileExtension === 'ipynb' || fileType === 'jupyter-notebook') {
-        // Jupyter Notebook - Display screenshots
+        // Jupyter Notebook - Display screenshots in slideshow
         const screenshotPaths = getNotebookScreenshots(filePath);
         
         if (screenshotPaths && screenshotPaths.length > 0) {
-            // Create gallery view for screenshots
-            let galleryHTML = '<div style="max-height: 80vh; overflow-y: auto; padding: 1rem;">';
+            // Create slideshow view
+            const slideshowId = 'notebook-slideshow-' + Date.now();
+            let currentSlide = 0;
             
-            screenshotPaths.forEach((screenshotPath, index) => {
-                galleryHTML += `
-                    <div style="margin-bottom: 2rem; text-align: center;">
-                        <img 
-                            src="${screenshotPath}" 
-                            alt="${title} - Screenshot ${index + 1}"
-                            style="max-width: 100%; height: auto; border-radius: var(--radius-md); box-shadow: var(--shadow-lg); margin-bottom: 0.5rem;"
-                            loading="lazy"
-                        />
-                        ${screenshotPaths.length > 1 ? `<p style="color: var(--text-muted); font-size: var(--text-sm); margin-top: 0.5rem;">Page ${index + 1} of ${screenshotPaths.length}</p>` : ''}
+            // Create slideshow HTML
+            const description = getScreenshotDescription(screenshotPaths[0]);
+            let slideshowHTML = `
+                <div id="${slideshowId}" style="position: relative; max-height: 80vh; padding: 1rem;">
+                    <div style="display: flex; align-items: center; justify-content: center; gap: 1rem; margin-bottom: 1rem;">
+                        <button 
+                            id="${slideshowId}-prev" 
+                            class="slideshow-nav-btn"
+                            style="padding: 0.75rem 1.5rem; background: var(--primary); color: white; border: none; border-radius: var(--radius-md); cursor: pointer; font-size: 1rem; font-weight: 600; transition: all 0.3s ease; opacity: ${screenshotPaths.length > 1 ? '1' : '0.5'};"
+                            ${screenshotPaths.length <= 1 ? 'disabled' : ''}
+                        >
+                            ← Previous
+                        </button>
+                        <div style="flex: 1; text-align: center;">
+                            <div id="${slideshowId}-slide" style="min-height: 60vh; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                                <img 
+                                    id="${slideshowId}-image"
+                                    src="${screenshotPaths[0]}" 
+                                    alt="${title} - Screenshot 1"
+                                    style="max-width: 100%; max-height: 60vh; height: auto; border-radius: var(--radius-md); box-shadow: var(--shadow-lg); margin-bottom: 1rem; transition: opacity 0.3s ease;"
+                                />
+                                <div id="${slideshowId}-description" style="max-width: 800px; margin: 0 auto; padding: 1rem; background: rgba(139, 92, 246, 0.1); border-radius: var(--radius-md); border-left: 3px solid var(--primary);">
+                                    <p style="color: var(--text); font-size: 0.875rem; line-height: 1.6; margin: 0;">${description || ''}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <button 
+                            id="${slideshowId}-next" 
+                            class="slideshow-nav-btn"
+                            style="padding: 0.75rem 1.5rem; background: var(--primary); color: white; border: none; border-radius: var(--radius-md); cursor: pointer; font-size: 1rem; font-weight: 600; transition: all 0.3s ease; opacity: ${screenshotPaths.length > 1 ? '1' : '0.5'};"
+                            ${screenshotPaths.length <= 1 ? 'disabled' : ''}
+                        >
+                            Next →
+                        </button>
                     </div>
-                `;
-            });
+                </div>
+            `;
             
-            galleryHTML += '</div>';
-            modalContent.innerHTML = galleryHTML;
+            modalContent.innerHTML = slideshowHTML;
+            
+            // Setup navigation handlers
+            if (screenshotPaths.length > 1) {
+                const prevBtn = document.getElementById(`${slideshowId}-prev`);
+                const nextBtn = document.getElementById(`${slideshowId}-next`);
+                const imageEl = document.getElementById(`${slideshowId}-image`);
+                const descriptionEl = document.getElementById(`${slideshowId}-description`);
+                
+                function updateSlide(index) {
+                    if (index < 0 || index >= screenshotPaths.length) return;
+                    
+                    currentSlide = index;
+                    const path = screenshotPaths[index];
+                    const description = getScreenshotDescription(path);
+                    
+                    // Update image with fade effect
+                    imageEl.style.opacity = '0';
+                    setTimeout(() => {
+                        imageEl.src = path;
+                        imageEl.alt = `${title} - Screenshot ${index + 1}`;
+                        imageEl.style.opacity = '1';
+                    }, 150);
+                    
+                    // Update description
+                    if (description) {
+                        descriptionEl.innerHTML = `<p style="color: var(--text); font-size: 0.875rem; line-height: 1.6; margin: 0;">${description}</p>`;
+                    } else {
+                        descriptionEl.innerHTML = '';
+                    }
+                    
+                    // Update button states
+                    prevBtn.disabled = index === 0;
+                    prevBtn.style.opacity = index === 0 ? '0.5' : '1';
+                    nextBtn.disabled = index === screenshotPaths.length - 1;
+                    nextBtn.style.opacity = index === screenshotPaths.length - 1 ? '0.5' : '1';
+                }
+                
+                prevBtn.addEventListener('click', () => {
+                    if (currentSlide > 0) {
+                        updateSlide(currentSlide - 1);
+                    }
+                });
+                
+                nextBtn.addEventListener('click', () => {
+                    if (currentSlide < screenshotPaths.length - 1) {
+                        updateSlide(currentSlide + 1);
+                    }
+                });
+                
+                // Keyboard navigation
+                const keyboardHandler = (e) => {
+                    if (modal.classList.contains('active')) {
+                        if (e.key === 'ArrowLeft' && currentSlide > 0) {
+                            updateSlide(currentSlide - 1);
+                        } else if (e.key === 'ArrowRight' && currentSlide < screenshotPaths.length - 1) {
+                            updateSlide(currentSlide + 1);
+                        }
+                    }
+                };
+                
+                document.addEventListener('keydown', keyboardHandler);
+                
+                // Store handler for cleanup
+                modal._keyboardHandler = keyboardHandler;
+            }
         } else {
             // Fallback if screenshots not found
             modalContent.innerHTML = `
@@ -1215,6 +1372,11 @@ function closeArtifactModal() {
         }
         if (modal._escapeHandler) {
             document.removeEventListener('keydown', modal._escapeHandler);
+        }
+        // Remove keyboard navigation handler if it exists
+        if (modal._keyboardHandler) {
+            document.removeEventListener('keydown', modal._keyboardHandler);
+            delete modal._keyboardHandler;
         }
         
         modal.classList.remove('active');
