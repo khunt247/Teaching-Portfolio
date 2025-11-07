@@ -57,6 +57,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     
+    <!-- PowerPoint Viewer Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/pptxjs@1.0.0/dist/pptxjs.min.js"></script>
+    
     <!-- Custom Styles -->
     <link rel="stylesheet" href="css/styles.css">
 </head>
@@ -471,7 +475,7 @@
                         <div class="project-content">
                             <h3>Physical Education Unit Presentations</h3>
                             <p class="project-description">
-                                Complete set of 13 unit presentations covering fitness, flexibility, strength, agility, and 
+                                Complete set of 10 unit presentations covering fitness, flexibility, strength, agility, and 
                                 team sports. Each presentation includes learning objectives, instructional content, and 
                                 activity guidelines aligned with state PE standards.
                             </p>
@@ -483,7 +487,7 @@
                             </div>
                             <div class="project-metrics">
                                 <div class="metric">
-                                    <div class="metric-value">13</div>
+                                    <div class="metric-value">10</div>
                                     <div class="metric-label">Unit Presentations</div>
                                 </div>
                                 <div class="metric">
@@ -559,8 +563,8 @@
                                 </div>
                             </div>
                             <div class="project-actions">
-                                <button class="btn-view" onclick='viewArtifact("Projects/physical-education-curriculum/planning/SEMESTER AGENDA PHYSICAL EDUCATION.docx", "Semester Agenda - Physical Education", "document")'>👁️ View Semester Agenda</button>
-                                <button class="btn-view" onclick='viewArtifact("Projects/physical-education-curriculum/planning/WEEKLY LESSON PLAN.docx", "Weekly Lesson Plan", "document")'>👁️ View Lesson Plan</button>
+                                <button class="btn-view" onclick='viewArtifact("Projects/physical-education-curriculum/planning/SEMESTER AGENDA PHYSICAL EDUCATION.pdf", "Semester Agenda - Physical Education", "pdf")'>👁️ View Semester Agenda</button>
+                                <button class="btn-view" onclick='viewArtifact("Projects/physical-education-curriculum/planning/WEEKLY LESSON PLAN.pdf", "Weekly Lesson Plan", "pdf")'>👁️ View Lesson Plan</button>
                             </div>
                         </div>
                     </div>
@@ -586,7 +590,7 @@
                             </div>
                             <div class="project-metrics">
                                 <div class="metric">
-                                    <div class="metric-value">20-30</div>
+                                    <div class="metric-value">9</div>
                                     <div class="metric-label">Slides</div>
                                 </div>
                                 <div class="metric">
@@ -595,7 +599,7 @@
                                 </div>
                             </div>
                             <div class="project-actions">
-                                <button class="btn-view" onclick='viewArtifact("Projects/learning-methodology/presentations/HOW TO STUDY & LEARN A DISCIPLINE.pptx", "How to Study & Learn a Discipline", "presentation")'>👁️ View Artifact</button>
+                                <button class="btn-view" onclick='viewArtifact("Projects/learning-methodology/presentations/HOW TO STUDY & LEARN A DISCIPLINE.pdf", "How to Study & Learn a Discipline", "pdf")'>👁️ View Artifact</button>
                             </div>
                         </div>
                     </div>
@@ -628,7 +632,7 @@
                                 </div>
                             </div>
                             <div class="project-actions">
-                                <button class="btn-view" onclick='viewArtifact("Projects/learning-methodology/presentations/limit.pptx", "Limit Concepts", "presentation")'>👁️ View Artifact</button>
+                                <button class="btn-view" onclick='viewArtifact("Projects/learning-methodology/presentations/limit.pdf", "Limit Concepts", "pdf")'>👁️ View Artifact</button>
                             </div>
                         </div>
                     </div>
@@ -765,7 +769,7 @@
                                 </div>
                             </div>
                             <div class="project-actions">
-                                <button class="btn-view" data-file="Projects/professional-development/COACH HUNT'S LASTING MESSAGES.docx" data-title="Coach Hunt's Lasting Messages" data-type="document" onclick="viewArtifact(this.dataset.file, this.dataset.title, this.dataset.type)">👁️ View Artifact</button>
+                                <button class="btn-view" data-file="Projects/professional-development/COACH HUNT'S LASTING MESSAGES.pdf" data-title="Coach Hunt's Lasting Messages" data-type="pdf" onclick="viewArtifact(this.dataset.file, this.dataset.title, this.dataset.type)">👁️ View Artifact</button>
                             </div>
                         </div>
                     </div>
@@ -799,7 +803,7 @@
                                 </div>
                             </div>
                             <div class="project-actions">
-                                <button class="btn-view" onclick='viewArtifact("Projects/professional-development/Final Project.pptx", "Final Project", "presentation")'>👁️ View Artifact</button>
+                                <button class="btn-view" onclick='viewArtifact("Projects/professional-development/Final Project.pdf", "Final Project", "pdf")'>👁️ View Artifact</button>
                             </div>
                         </div>
                     </div>
@@ -1052,7 +1056,6 @@
                         Educator × Front-End Engineer × AI Integration Specialist x Solutionist<br>
                     </p>
                     <nav style="display: flex; gap: 1.5rem; margin-top: var(--space-md); flex-wrap: wrap; justify-content: center;">
-                        <a href="#home" style="color: var(--text-muted); text-decoration: none; font-size: var(--text-sm); transition: color 0.3s;">Home</a>
                         <a href="#about" style="color: var(--text-muted); text-decoration: none; font-size: var(--text-sm); transition: color 0.3s;">About</a>
                         <a href="#skills" style="color: var(--text-muted); text-decoration: none; font-size: var(--text-sm); transition: color 0.3s;">Skills</a>
                         <a href="#projects" style="color: var(--text-muted); text-decoration: none; font-size: var(--text-sm); transition: color 0.3s;">Projects</a>

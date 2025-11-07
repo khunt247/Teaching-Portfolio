@@ -697,73 +697,58 @@ function openProjectModal(projectType) {
             content = `
                 <h2 style="margin-bottom: 1.5rem; color: var(--text);">Physical Education Unit Presentations</h2>
                 <p style="color: var(--text-muted); margin-bottom: 2rem;">
-                    Complete collection of 13 unit presentations covering fitness, flexibility, strength, agility, and team sports.
+                    Complete collection of 10 unit presentations covering fitness, flexibility, strength, agility, and team sports.
                 </p>
                 <div class="project-collection-list">
                     <div class="collection-item">
                         <h4>Agility Training</h4>
                         <p>Agility training fundamentals and drills</p>
-                        <button class="btn-view" onclick='viewArtifact("Projects/physical-education-curriculum/presentations/units/AGILITY.pptx", "Agility Training", "presentation")'>👁️ View</button>
-                    </div>
-                    <div class="collection-item">
-                        <h4>Basketball 101</h4>
-                        <p>Introduction to basketball fundamentals</p>
-                        <button class="btn-view" onclick='viewArtifact("Projects/physical-education-curriculum/presentations/units/BASKETBALL 101.pptx", "Basketball 101", "presentation")'>👁️ View</button>
+                        <button class="btn-view" onclick='viewArtifact("Projects/physical-education-curriculum/presentations/units/AGILITY.pdf", "Agility Training", "pdf")'>👁️ View</button>
                     </div>
                     <div class="collection-item">
                         <h4>Circuit Training</h4>
                         <p>Comprehensive circuit training program</p>
-                        <button class="btn-view" onclick='viewArtifact("Projects/physical-education-curriculum/presentations/units/Circuit Training Education Presentation.pptx", "Circuit Training Education", "presentation")'>👁️ View</button>
+                        <button class="btn-view" onclick='viewArtifact("Projects/physical-education-curriculum/presentations/units/Circuit Training Education Presentation.pdf", "Circuit Training Education", "pdf")'>👁️ View</button>
                     </div>
                     <div class="collection-item">
                         <h4>Core Strength</h4>
                         <p>Core strengthening exercises and progression</p>
-                        <button class="btn-view" onclick='viewArtifact("Projects/physical-education-curriculum/presentations/units/CORE STRENGTH.pptx", "Core Strength Training", "presentation")'>👁️ View</button>
+                        <button class="btn-view" onclick='viewArtifact("Projects/physical-education-curriculum/presentations/units/CORE STRENGTH.pdf", "Core Strength Training", "pdf")'>👁️ View</button>
                     </div>
                     <div class="collection-item">
                         <h4>Dynamic Stretching</h4>
                         <p>Dynamic warm-up stretches and mobility</p>
-                        <button class="btn-view" onclick='viewArtifact("Projects/physical-education-curriculum/presentations/units/DYNAMIC STRETCHING.pptx", "Dynamic Stretching", "presentation")'>👁️ View</button>
+                        <button class="btn-view" onclick='viewArtifact("Projects/physical-education-curriculum/presentations/units/DYNAMIC STRETCHING.pdf", "Dynamic Stretching", "pdf")'>👁️ View</button>
                     </div>
                     <div class="collection-item">
                         <h4>Fitness Unit</h4>
                         <p>Comprehensive fitness unit covering all components</p>
-                        <button class="btn-view" onclick='viewArtifact("Projects/physical-education-curriculum/presentations/units/FITNESS UNIT.pptx", "Fitness Unit", "presentation")'>👁️ View</button>
+                        <button class="btn-view" onclick='viewArtifact("Projects/physical-education-curriculum/presentations/units/FITNESS UNIT.pdf", "Fitness Unit", "pdf")'>👁️ View</button>
                     </div>
                     <div class="collection-item">
                         <h4>Flexibility Unit</h4>
                         <p>Flexibility training principles and techniques</p>
-                        <button class="btn-view" onclick='viewArtifact("Projects/physical-education-curriculum/presentations/units/FLEXIBILITY UNIT.pptx", "Flexibility Unit", "presentation")'>👁️ View</button>
+                        <button class="btn-view" onclick='viewArtifact("Projects/physical-education-curriculum/presentations/units/FLEXIBILITY UNIT.pdf", "Flexibility Unit", "pdf")'>👁️ View</button>
                     </div>
                     <div class="collection-item">
                         <h4>Jump Rope</h4>
                         <p>Jump rope techniques and progressions</p>
-                        <button class="btn-view" onclick='viewArtifact("Projects/physical-education-curriculum/presentations/units/JUMP ROPE.pptx", "Jump Rope", "presentation")'>👁️ View</button>
+                        <button class="btn-view" onclick='viewArtifact("Projects/physical-education-curriculum/presentations/units/JUMP ROPE.pdf", "Jump Rope", "pdf")'>👁️ View</button>
                     </div>
                     <div class="collection-item">
                         <h4>Static Stretching</h4>
                         <p>Static stretching techniques for cool-down</p>
-                        <button class="btn-view" onclick='viewArtifact("Projects/physical-education-curriculum/presentations/units/STATIC STRETCHING.pptx", "Static Stretching", "presentation")'>👁️ View</button>
+                        <button class="btn-view" onclick='viewArtifact("Projects/physical-education-curriculum/presentations/units/STATIC STRETCHING.pdf", "Static Stretching", "pdf")'>👁️ View</button>
                     </div>
                     <div class="collection-item">
                         <h4>Volleyball 101</h4>
                         <p>Volleyball fundamentals and gameplay</p>
-                        <button class="btn-view" onclick='viewArtifact("Projects/physical-education-curriculum/presentations/units/Volleyball 101.pptx", "Volleyball 101", "presentation")'>👁️ View</button>
-                    </div>
-                    <div class="collection-item">
-                        <h4>Team Sports Intro</h4>
-                        <p>Introduction to team sports concepts</p>
-                        <button class="btn-view" onclick='viewArtifact("Projects/physical-education-curriculum/presentations/units/TEAM SPORTS INTRO.pptx", "Team Sports Introduction", "presentation")'>👁️ View</button>
-                    </div>
-                    <div class="collection-item">
-                        <h4>Circuit Stations</h4>
-                        <p>Visual guide for circuit training stations</p>
-                        <button class="btn-view" onclick='viewArtifact("Projects/physical-education-curriculum/presentations/units/Circuit Training Station Names.pptx", "Circuit Training Station Names", "presentation")'>👁️ View</button>
+                        <button class="btn-view" onclick='viewArtifact("Projects/physical-education-curriculum/presentations/units/Volleyball 101.pdf", "Volleyball 101", "pdf")'>👁️ View</button>
                     </div>
                     <div class="collection-item">
                         <h4>Introductory Vocabulary</h4>
                         <p>Essential PE terminology and concepts</p>
-                        <button class="btn-view" onclick='viewArtifact("Projects/physical-education-curriculum/presentations/units/Introductory Vocab.pptx", "Introductory Vocabulary", "presentation")'>👁️ View</button>
+                        <button class="btn-view" onclick='viewArtifact("Projects/physical-education-curriculum/presentations/units/Introductory Vocab.pdf", "Introductory Vocabulary", "pdf")'>👁️ View</button>
                     </div>
                 </div>
             `;
@@ -779,32 +764,32 @@ function openProjectModal(projectType) {
                     <div class="collection-item">
                         <h4>Classroom Expectation Quiz</h4>
                         <p>Interactive quiz for reviewing expectations</p>
-                        <button class="btn-view" onclick='viewArtifact("Projects/physical-education-curriculum/presentations/classroom-management/Classroom Expectation Quiz.pptx", "Classroom Expectation Quiz", "presentation")'>👁️ View</button>
+                        <button class="btn-view" onclick='viewArtifact("Projects/physical-education-curriculum/presentations/classroom-management/Classroom Expectation Quiz.pdf", "Classroom Expectation Quiz", "pdf")'>👁️ View</button>
                     </div>
                     <div class="collection-item">
                         <h4>Gym Housekeeping</h4>
                         <p>Guidelines for maintaining gym equipment</p>
-                        <button class="btn-view" onclick='viewArtifact("Projects/physical-education-curriculum/presentations/classroom-management/GYM HOUSEKEEPING.pptx", "Gym Housekeeping", "presentation")'>👁️ View</button>
+                        <button class="btn-view" onclick='viewArtifact("Projects/physical-education-curriculum/presentations/classroom-management/GYM HOUSEKEEPING.pdf", "Gym Housekeeping", "pdf")'>👁️ View</button>
                     </div>
                     <div class="collection-item">
                         <h4>Respect</h4>
                         <p>Sportsmanship and positive behavior</p>
-                        <button class="btn-view" onclick='viewArtifact("Projects/physical-education-curriculum/presentations/classroom-management/RESPECT.pptx", "Respect", "presentation")'>👁️ View</button>
+                        <button class="btn-view" onclick='viewArtifact("Projects/physical-education-curriculum/presentations/classroom-management/RESPECT.pdf", "Respect", "pdf")'>👁️ View</button>
                     </div>
                     <div class="collection-item">
                         <h4>Getting to Know Each Other</h4>
                         <p>Icebreaker activities for building community</p>
-                        <button class="btn-view" onclick='viewArtifact("Projects/physical-education-curriculum/presentations/classroom-management/GETTING TO KNOW.pptx", "Getting to Know Each Other", "presentation")'>👁️ View</button>
+                        <button class="btn-view" onclick='viewArtifact("Projects/physical-education-curriculum/presentations/classroom-management/GETTING TO KNOW.pdf", "Getting to Know Each Other", "pdf")'>👁️ View</button>
                     </div>
                     <div class="collection-item">
                         <h4>Getting to Know Each Other II</h4>
                         <p>Continued community-building activities</p>
-                        <button class="btn-view" onclick='viewArtifact("Projects/physical-education-curriculum/presentations/classroom-management/GETTING TO KNOW EACH OTHER II.pptx", "Getting to Know Each Other II", "presentation")'>👁️ View</button>
+                        <button class="btn-view" onclick='viewArtifact("Projects/physical-education-curriculum/presentations/classroom-management/GETTING TO KNOW EACH OTHER II.pdf", "Getting to Know Each Other II", "pdf")'>👁️ View</button>
                     </div>
                     <div class="collection-item">
                         <h4>Getting to Know Each Other III</h4>
                         <p>Advanced team-building exercises</p>
-                        <button class="btn-view" onclick='viewArtifact("Projects/physical-education-curriculum/presentations/classroom-management/GETTING TO KNOW EACH OTHER III.pptx", "Getting to Know Each Other III", "presentation")'>👁️ View</button>
+                        <button class="btn-view" onclick='viewArtifact("Projects/physical-education-curriculum/presentations/classroom-management/GETTING TO KNOW EACH OTHER III.pdf", "Getting to Know Each Other III", "pdf")'>👁️ View</button>
                     </div>
                 </div>
             `;
@@ -859,28 +844,62 @@ function openProjectModal(projectType) {
     modal.classList.add('active');
     document.body.style.overflow = 'hidden';
     
-    // Close modal handlers
-    const closeBtn = modal.querySelector('.modal-close');
-    closeBtn?.addEventListener('click', closeProjectModal);
+    // Setup close handlers (these will be cleaned up when modal closes)
+    setupProjectModalCloseHandlers();
+}
+
+function setupProjectModalCloseHandlers() {
+    const modal = document.getElementById('projectModal');
+    if (!modal) return;
     
-    modal.addEventListener('click', function(e) {
-        if (e.target === modal) {
-            closeProjectModal();
-        }
-    });
+    // Remove any existing handlers first
+    const oldCloseBtn = modal.querySelector('.modal-close');
+    if (oldCloseBtn) {
+        const newCloseBtn = oldCloseBtn.cloneNode(true);
+        oldCloseBtn.parentNode.replaceChild(newCloseBtn, oldCloseBtn);
+        newCloseBtn.addEventListener('click', closeProjectModal);
+    }
     
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && modal.classList.contains('active')) {
-            closeProjectModal();
-        }
-    });
+    // Store handlers so we can remove them later
+    if (!modal._clickHandler) {
+        modal._clickHandler = function(e) {
+            if (e.target === modal) {
+                closeProjectModal();
+            }
+        };
+    }
+    
+    if (!modal._escapeHandler) {
+        modal._escapeHandler = function(e) {
+            if (e.key === 'Escape' && modal.classList.contains('active')) {
+                closeProjectModal();
+            }
+        };
+    }
+    
+    // Remove old listeners
+    modal.removeEventListener('click', modal._clickHandler);
+    document.removeEventListener('keydown', modal._escapeHandler);
+    
+    // Add new listeners
+    modal.addEventListener('click', modal._clickHandler);
+    document.addEventListener('keydown', modal._escapeHandler);
 }
 
 function closeProjectModal() {
     const modal = document.getElementById('projectModal');
     if (modal) {
+        // Remove event listeners
+        if (modal._clickHandler) {
+            modal.removeEventListener('click', modal._clickHandler);
+        }
+        if (modal._escapeHandler) {
+            document.removeEventListener('keydown', modal._escapeHandler);
+        }
+        
         modal.classList.remove('active');
         document.body.style.overflow = '';
+        
         // Hide modal after transition
         setTimeout(() => {
             modal.style.display = 'none';
@@ -938,34 +957,121 @@ function viewArtifact(filePath, title, fileType) {
             </div>
         `;
     } else if (fileExtension === 'pptx' || fileType === 'presentation') {
-        // PowerPoint - Use Microsoft Office Online Viewer
-        const encodedUrl = encodeURIComponent(window.location.origin + '/' + filePath);
-        previewContent = `
-            <div style="width: 100%; height: 80vh;">
-                <iframe 
-                    src="https://view.officeapps.live.com/op/embed.aspx?src=${encodedUrl}" 
-                    style="width: 100%; height: 100%; border: none; border-radius: var(--radius-md);"
-                    frameborder="0"
-                    title="${title}"
-                ></iframe>
-                <p style="color: var(--text-muted); margin-top: 1rem; text-align: center; font-size: var(--text-sm);">
-                    If the preview doesn't load, the file may need to be uploaded to a web-accessible location.
-                </p>
+        // PowerPoint - Render using pptxjs library
+        modalContent.innerHTML = `
+            <div style="text-align: center; padding: 2rem;">
+                <div class="loading-spinner"></div>
+                <p style="color: var(--text-muted); margin-top: 1rem;">Loading presentation...</p>
             </div>
         `;
+        
+        // Load and render PowerPoint
+        fetch(filePath)
+            .then(response => response.arrayBuffer())
+            .then(arrayBuffer => {
+                // Create container for slides
+                const container = document.createElement('div');
+                container.id = 'pptx-container';
+                container.style.cssText = `
+                    width: 100%;
+                    max-height: 75vh;
+                    overflow-y: auto;
+                    padding: 1rem;
+                    background: var(--bg-dark);
+                    border-radius: var(--radius-md);
+                `;
+                
+                modalContent.innerHTML = '';
+                modalContent.appendChild(container);
+                
+                // Render PowerPoint slides
+                if (typeof PPTX !== 'undefined') {
+                    new PPTX().load(arrayBuffer, function() {
+                        this.getSlides().forEach((slide, index) => {
+                            const slideDiv = document.createElement('div');
+                            slideDiv.className = 'pptx-slide';
+                            slideDiv.style.cssText = `
+                                margin-bottom: 2rem;
+                                padding: 1.5rem;
+                                background: white;
+                                border-radius: var(--radius-md);
+                                box-shadow: var(--shadow-lg);
+                            `;
+                            
+                            const slideNumber = document.createElement('div');
+                            slideNumber.textContent = `Slide ${index + 1}`;
+                            slideNumber.style.cssText = `
+                                color: var(--text-muted);
+                                font-size: 0.875rem;
+                                margin-bottom: 1rem;
+                                font-weight: 600;
+                            `;
+                            slideDiv.appendChild(slideNumber);
+                            
+                            const slideContent = document.createElement('div');
+                            slideContent.style.cssText = `
+                                min-height: 400px;
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                            `;
+                            slide.render(slideContent);
+                            slideDiv.appendChild(slideContent);
+                            
+                            container.appendChild(slideDiv);
+                        });
+                    });
+                } else {
+                    // Fallback if library not loaded
+                    modalContent.innerHTML = `
+                        <div style="text-align: center; padding: 3rem;">
+                            <p style="color: var(--text-muted); margin-bottom: 1rem;">PowerPoint viewer library not loaded.</p>
+                            <a href="${filePath}" download class="btn btn-primary" style="display: inline-block; padding: 0.75rem 1.5rem; background: var(--primary); color: white; text-decoration: none; border-radius: var(--radius-md);">
+                                📥 Download Presentation
+                            </a>
+                        </div>
+                    `;
+                }
+            })
+            .catch(error => {
+                modalContent.innerHTML = `
+                    <div style="text-align: center; padding: 3rem;">
+                        <p style="color: var(--text-muted); margin-bottom: 1rem;">Unable to load PowerPoint presentation.</p>
+                        <p style="color: var(--text-dim); font-size: var(--text-sm); margin-bottom: 2rem;">Error: ${error.message}</p>
+                        <a href="${filePath}" download class="btn btn-primary" style="display: inline-block; padding: 0.75rem 1.5rem; background: var(--primary); color: white; text-decoration: none; border-radius: var(--radius-md);">
+                            📥 Download Presentation
+                        </a>
+                    </div>
+                `;
+            });
+        
+        // Setup close handlers and return early (async operation)
+        setupArtifactModalCloseHandlers();
+        return;
     } else if (fileExtension === 'docx' || fileType === 'document') {
-        // Word document - Use Microsoft Office Online Viewer
-        const encodedUrl = encodeURIComponent(window.location.origin + '/' + filePath);
+        // Word document - Provide download and open options
         previewContent = `
-            <div style="width: 100%; height: 80vh;">
-                <iframe 
-                    src="https://view.officeapps.live.com/op/embed.aspx?src=${encodedUrl}" 
-                    style="width: 100%; height: 100%; border: none; border-radius: var(--radius-md);"
-                    frameborder="0"
-                    title="${title}"
-                ></iframe>
-                <p style="color: var(--text-muted); margin-top: 1rem; text-align: center; font-size: var(--text-sm);">
-                    If the preview doesn't load, the file may need to be uploaded to a web-accessible location.
+            <div style="text-align: center; padding: 3rem;">
+                <div style="font-size: 4rem; margin-bottom: 1.5rem;">📝</div>
+                <h3 style="color: var(--text); margin-bottom: 1rem; font-size: 1.5rem;">${title}</h3>
+                <p style="color: var(--text-muted); margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto; line-height: 1.6;">
+                    Word documents can be downloaded or opened directly in your default document application.
+                </p>
+                <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-bottom: 2rem;">
+                    <a href="${filePath}" download class="btn btn-primary" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.875rem 1.75rem; background: var(--primary); color: white; text-decoration: none; border-radius: var(--radius-md); font-weight: 600; transition: all 0.3s ease;">
+                        <span style="font-size: 1.25rem;">📥</span> Download Document
+                    </a>
+                    <a href="${filePath}" target="_blank" class="btn btn-secondary" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.875rem 1.75rem; background: rgba(139, 92, 246, 0.2); color: var(--primary); text-decoration: none; border: 2px solid var(--primary); border-radius: var(--radius-md); font-weight: 600; transition: all 0.3s ease;">
+                        <span style="font-size: 1.25rem;">🔗</span> Open in New Tab
+                    </a>
+                </div>
+                <div style="background: rgba(139, 92, 246, 0.1); padding: 1.5rem; border-radius: var(--radius-md); border-left: 4px solid var(--primary); max-width: 600px; margin: 0 auto;">
+                    <p style="color: var(--text); font-size: 0.875rem; margin: 0; line-height: 1.6;">
+                        💡 <strong>Tip:</strong> Click "Open in New Tab" to view in your browser, or "Download" to open in Word, Google Docs, or another document app.
+                    </p>
+                </div>
+                <p style="color: var(--text-dim); margin-top: 2rem; font-size: 0.875rem;">
+                    File: ${filePath}
                 </p>
             </div>
         `;
@@ -1024,29 +1130,62 @@ function viewArtifact(filePath, title, fileType) {
     
     modalContent.innerHTML = previewContent;
     
-    // Close modal handlers
-    const closeBtn = modal.querySelector('.modal-close');
-    closeBtn?.addEventListener('click', closeArtifactModal);
+    // Setup close handlers (these will be cleaned up when modal closes)
+    setupArtifactModalCloseHandlers();
+}
+
+function setupArtifactModalCloseHandlers() {
+    const modal = document.getElementById('artifactModal');
+    if (!modal) return;
     
-    modal.addEventListener('click', function(e) {
-        if (e.target === modal) {
-            closeArtifactModal();
-        }
-    });
+    // Remove any existing handlers first
+    const oldCloseBtn = modal.querySelector('.modal-close');
+    if (oldCloseBtn) {
+        const newCloseBtn = oldCloseBtn.cloneNode(true);
+        oldCloseBtn.parentNode.replaceChild(newCloseBtn, oldCloseBtn);
+        newCloseBtn.addEventListener('click', closeArtifactModal);
+    }
     
-    document.addEventListener('keydown', function escapeHandler(e) {
-        if (e.key === 'Escape' && modal.classList.contains('active')) {
-            closeArtifactModal();
-            document.removeEventListener('keydown', escapeHandler);
-        }
-    });
+    // Store handlers so we can remove them later
+    if (!modal._clickHandler) {
+        modal._clickHandler = function(e) {
+            if (e.target === modal) {
+                closeArtifactModal();
+            }
+        };
+    }
+    
+    if (!modal._escapeHandler) {
+        modal._escapeHandler = function(e) {
+            if (e.key === 'Escape' && modal.classList.contains('active')) {
+                closeArtifactModal();
+            }
+        };
+    }
+    
+    // Remove old listeners
+    modal.removeEventListener('click', modal._clickHandler);
+    document.removeEventListener('keydown', modal._escapeHandler);
+    
+    // Add new listeners
+    modal.addEventListener('click', modal._clickHandler);
+    document.addEventListener('keydown', modal._escapeHandler);
 }
 
 function closeArtifactModal() {
     const modal = document.getElementById('artifactModal');
     if (modal) {
+        // Remove event listeners
+        if (modal._clickHandler) {
+            modal.removeEventListener('click', modal._clickHandler);
+        }
+        if (modal._escapeHandler) {
+            document.removeEventListener('keydown', modal._escapeHandler);
+        }
+        
         modal.classList.remove('active');
         document.body.style.overflow = '';
+        
         // Hide modal after transition
         setTimeout(() => {
             modal.style.display = 'none';
@@ -1094,22 +1233,8 @@ function viewPrezi(embedUrl, title) {
     modal.classList.add('active');
     document.body.style.overflow = 'hidden';
     
-    // Close modal handlers
-    const closeBtn = modal.querySelector('.modal-close');
-    closeBtn?.addEventListener('click', closeArtifactModal);
-    
-    modal.addEventListener('click', function(e) {
-        if (e.target === modal) {
-            closeArtifactModal();
-        }
-    });
-    
-    document.addEventListener('keydown', function escapeHandler(e) {
-        if (e.key === 'Escape' && modal.classList.contains('active')) {
-            closeArtifactModal();
-            document.removeEventListener('keydown', escapeHandler);
-        }
-    });
+    // Setup close handlers (these will be cleaned up when modal closes)
+    setupArtifactModalCloseHandlers();
 }
 
 // Make functions globally available
