@@ -1,6 +1,6 @@
 # Katie Hunt - Teaching Portfolio
 
-A modern, responsive single-page portfolio website showcasing the work of Katie Hunt as an Educator, Front-End Engineer, and AI Integration Specialist. Built with vanilla HTML, CSS, and JavaScript, featuring smooth animations, glassmorphism design, and accessible user experience.
+A modern, responsive single-page portfolio website showcasing the work of Katie Hunt as an Educator, Learning Experience Designer, and AI Integration Specialist. Built with vanilla HTML, CSS, and JavaScript, featuring smooth animations, glassmorphism design, and accessible user experience.
 
 ## 🌟 Features
 

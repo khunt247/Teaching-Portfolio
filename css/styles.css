@@ -649,10 +649,10 @@ nav a:hover::after {
 
 @keyframes float-gentle {
     0%, 100% { 
-        transform: translateY(0) translateZ(0); 
+        transform: translateY(0); 
     }
     50% { 
-        transform: translateY(-10px) translateZ(5px); 
+        transform: translateY(-10px); 
     }
 }
 
@@ -669,6 +669,8 @@ nav a:hover::after {
     z-index: 10;
     pointer-events: none;
     transform-style: preserve-3d;
+    opacity: 1 !important;
+    visibility: visible !important;
 }
 
 .brain-glow {
@@ -753,6 +755,8 @@ nav a:hover::after {
     transform-origin: center;
     pointer-events: none;
     z-index: 6;
+    opacity: 1 !important;
+    visibility: visible !important;
 }
 
 .orbital-element::before {
@@ -764,9 +768,10 @@ nav a:hover::after {
     width: 60px;
     height: 60px;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(139, 92, 246, 0.7) 0%, rgba(139, 92, 246, 0.4) 50%, transparent 70%);
+    background: radial-gradient(circle, rgba(139, 92, 246, 0.9) 0%, rgba(139, 92, 246, 0.6) 50%, transparent 70%);
     animation: element-float 4s ease-in-out infinite;
     opacity: 1 !important;
+    visibility: visible !important;
 }
 
 .globe-element::before {
@@ -889,6 +894,8 @@ nav a:hover::after {
     z-index: 3;
     pointer-events: none;
     border-radius: var(--radius-lg);
+    opacity: 1 !important;
+    visibility: visible !important;
 }
 
 /* ================================
