@@ -187,7 +187,7 @@ Adjust GSAP animation settings in `js/main.js`:
 
 ## 📄 License
 
-© 2025 Katie Hunt. All rights reserved.
+© 2026 Katie Hunt. All rights reserved.
 
 This portfolio is created for personal/professional use. All content, including text, images, and design, is proprietary to Katie Hunt.
 
