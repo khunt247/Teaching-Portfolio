@@ -39,7 +39,7 @@ Replace current hero with **institutional-grade introduction**:
 VISUAL ELEMENTS:
 - Professional headshot with subtle parallax effect
 - Animated statistics counter showing key metrics:
-  * 7+ years teaching experience
+  * 8+ years teaching experience
   * 500+ students impacted
   * 95% student satisfaction rate
   * 14+ curriculum innovations implemented
