@@ -1390,6 +1390,48 @@ function closeArtifactModal() {
 }
 
 // ================================
+// ONEDRIVE POWERPOINT VIEWER
+// ================================
+function viewOneDrivePowerPoint(url, title) {
+    const modal = document.getElementById('artifactModal');
+    const modalTitle = document.getElementById('artifactModalTitle');
+    const modalContent = document.getElementById('artifactModalContent');
+    
+    if (!modal || !modalContent) return;
+    
+    modalTitle.textContent = title || 'PowerPoint Presentation';
+    modalContent.innerHTML = `
+        <div style="width: 100%; padding: 1rem;">
+            <div style="position: relative; width: 100%; height: 75vh; min-height: 400px; overflow: hidden; border-radius: var(--radius-md); background: var(--bg-dark);">
+                <iframe 
+                    src="${url}" 
+                    frameborder="0" 
+                    webkitallowfullscreen="" 
+                    mozallowfullscreen="" 
+                    allowfullscreen="" 
+                    allow="autoplay; fullscreen"
+                    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;"
+                    title="${title}"
+                ></iframe>
+            </div>
+            <p style="color: var(--text-muted); margin-top: 1rem; text-align: center; font-size: var(--text-sm);">
+                Use the controls within the presentation to navigate. If the presentation does not load, use the link below to open in a new tab.
+            </p>
+            <div style="text-align: center; margin-top: 0.75rem;">
+                <a href="${url}" target="_blank" rel="noopener noreferrer" style="color: var(--primary); text-decoration: none; font-size: var(--text-sm); font-weight: 600;">
+                    Open in new tab →
+                </a>
+            </div>
+        </div>
+    `;
+    modal.style.display = 'flex';
+    modal.offsetHeight;
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    setupArtifactModalCloseHandlers();
+}
+
+// ================================
 // PREZI PRESENTATION VIEWER
 // ================================
 function viewPrezi(embedUrl, title) {
@@ -1439,6 +1481,7 @@ window.closeProjectModal = closeProjectModal;
 window.viewArtifact = viewArtifact;
 window.closeArtifactModal = closeArtifactModal;
 window.viewPrezi = viewPrezi;
+window.viewOneDrivePowerPoint = viewOneDrivePowerPoint;
 
 // ================================
 // COUNTER ANIMATION FOR STATS

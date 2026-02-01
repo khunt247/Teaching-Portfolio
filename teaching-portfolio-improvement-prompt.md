@@ -935,7 +935,7 @@ function trapFocus(e) {
 <head>
     <!-- Enhanced meta tags -->
     <title>Katie Hunt | Award-Winning Educator | Teaching Portfolio</title>
-    <meta name="description" content="Explore Katie Hunt's teaching portfolio showcasing 7+ years of innovative instructional design, measurable student outcomes, and evidence-based educational practices.">
+    <meta name="description" content="Explore Katie Hunt's teaching portfolio showcasing 8+ years of innovative instructional design, measurable student outcomes, and evidence-based educational practices.">
     
     <!-- Open Graph for social sharing -->
     <meta property="og:type" content="website">
@@ -947,7 +947,7 @@ function trapFocus(e) {
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Katie Hunt - Teaching Portfolio">
-    <meta name="twitter:description" content="Innovative educator | 7+ years experience">
+    <meta name="twitter:description" content="Innovative educator | 8+ years experience">
     <meta name="twitter:image" content="https://yourportfolio.com/images/twitter-image.jpg">
     
     <!-- Canonical URL -->
