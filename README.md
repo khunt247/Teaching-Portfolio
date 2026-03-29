@@ -197,7 +197,7 @@ This portfolio is created for personal/professional use. All content, including 
 - Email: katiehunt95@gmail.com
 - LinkedIn: [katie-hunt-](https://www.linkedin.com/in/katie-hunt-/)
 - GitHub: [khunt247](https://github.com/khunt247)
-- Portfolio: [Frontend Portfolio](https://khunt247.github.io/FrontEnd-Engineer-Portfolio/)
+- Portfolio: [Design Engineer Portfolio](https://khunt247.github.io/Portfolio/)
 
 ## 🙏 Acknowledgments
 
