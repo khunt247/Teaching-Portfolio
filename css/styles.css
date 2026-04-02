@@ -395,6 +395,11 @@ body.preloader-active {
     .preloader-rule {
         will-change: auto;
     }
+
+    .hero-text {
+        opacity: 1;
+        filter: none;
+    }
 }
 
 /* ================================
@@ -599,6 +604,12 @@ nav a:hover::after {
     align-items: center;
 }
 
+/* Start hidden/blurred so first paint matches GSAP intro (no sharp flash under preloader) */
+.hero-text {
+    opacity: 0;
+    filter: blur(12px);
+}
+
 .hero-text h1 {
     font-family: var(--font-display);
     font-size: var(--text-6xl);
@@ -613,13 +624,6 @@ nav a:hover::after {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    animation: gradient-shift 8s ease infinite;
-    background-size: 200% 200%;
-}
-
-@keyframes gradient-shift {
-    0%, 100% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
 }
 
 .hero-roles {

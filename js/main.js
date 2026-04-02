@@ -59,19 +59,27 @@ function initAnimations() {
             card.style.opacity = '1';
             card.style.transform = 'translateY(0)';
         });
+        const heroText = document.querySelector('.hero-text');
+        if (heroText) {
+            heroText.style.opacity = '1';
+            heroText.style.filter = 'none';
+        }
         return;
     }
     
     gsap.registerPlugin(ScrollTrigger);
     
-    // Hero animation
-    gsap.from('.hero-text > *', {
-        opacity: 0,
-        y: 30,
-        duration: 0.8,
-        stagger: 0.15,
-        ease: 'power2.out'
-    });
+    const reduceMotionHero = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduceMotionHero) {
+        gsap.set('.hero-text', { opacity: 1, filter: 'none' });
+    } else {
+        gsap.to('.hero-text', {
+            opacity: 1,
+            filter: 'blur(0px)',
+            duration: 1,
+            ease: 'sine.out'
+        });
+    }
     
     gsap.from('.tech-card', {
         scale: 0.8,
@@ -2128,9 +2136,9 @@ function init() {
     initParticleSystem();
     initBrainRotation();
     initProjectFilters();
-    initCounterAnimation();
     initSitePreloader(() => {
         initAnimations();
+        initCounterAnimation();
         console.log('Portfolio loaded successfully');
     });
     // initCustomCursor(); // DISABLED - was preventing navigation clicks
