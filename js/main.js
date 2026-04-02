@@ -91,6 +91,10 @@ function initAnimations() {
     
     // Section animations - ensure cards start visible and animate on scroll
     gsap.utils.toArray('.section').forEach(section => {
+        // Skills sit below Projects; filtering projects changes page height and breaks
+        // ScrollTrigger positions for this section. Keep skill cards always visible (CSS).
+        if (section.id === 'skills') return;
+
         const cards = section.querySelectorAll('.glass-card, .project-card, .ai-tool-card, .testimonial-card');
         
         if (cards.length > 0) {
@@ -710,6 +714,14 @@ function initProjectFilters() {
                     card.style.transform = '';
                 }
             });
+
+            if (typeof ScrollTrigger !== 'undefined') {
+                requestAnimationFrame(() => {
+                    requestAnimationFrame(() => {
+                        ScrollTrigger.refresh();
+                    });
+                });
+            }
         });
     });
 }
