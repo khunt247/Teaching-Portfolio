@@ -1,9 +1,35 @@
 {
   "category": "professional-development",
-  "title": "Professional Development & Leadership",
-  "description": "Professional development materials, leadership resources, and coaching documents. These artifacts demonstrate commitment to professional growth, mentorship, and educational leadership.",
+  "title": "Design & Leadership",
+  "description": "Learning experience design, innovation in practice, and leadership through mentorship. These artifacts showcase designed platforms and materials, creative use of technology, and commitment to student growth beyond the lesson.",
   "categoryIcon": "💼",
   "projects": [
+    {
+      "id": "lms-prototype-build",
+      "title": "LMS Prototype Build",
+      "type": "image",
+      "file": "images/LMS Prototype.png",
+      "description": "A compact, fully interactive learning platform where learners always know where they are, what's done, and what's next. Modules combine guided video, visual supports, downloadable resources, and short check-in quizzes, with progress tracked both by module and for the day. Built as one self-contained experience (no separate setup). Designed so smart features—tutoring help, transcript support, adaptive questions, or personalized next steps—could be added in a natural way.",
+      "tags": [
+        "Micro-learning",
+        "Learning platform",
+        "Instructional design",
+        "Learner progress"
+      ],
+      "learningObjectives": [],
+      "targetAudience": "Instructional designers and educators evaluating learning platform design",
+      "metrics": {
+        "format": "Prototype screenshot",
+        "focus": "Learning experience design"
+      },
+      "files": [
+        {
+          "name": "LMS Prototype.png",
+          "type": "image",
+          "location": "images/"
+        }
+      ]
+    },
     {
       "id": "coach-hunt-messages",
       "title": "Coach Hunt's Lasting Messages",
@@ -36,36 +62,6 @@
           "size": "37KB"
         }
       ]
-    },
-    {
-      "id": "final-project",
-      "title": "Final Project",
-      "type": "presentation",
-      "file": "Final Project.pptx",
-      "preview": "preview-final-project.png",
-      "description": "Comprehensive final project presentation. This may represent a capstone project, comprehensive curriculum design, or major professional development initiative. The presentation demonstrates advanced instructional design skills and professional competence.",
-      "tags": [
-        "Capstone Project",
-        "Curriculum Design",
-        "Instructional Design",
-        "Professional Portfolio",
-        "Comprehensive Project"
-      ],
-      "learningObjectives": [],
-      "targetAudience": "Academic or professional reviewers",
-      "metrics": {
-        "format": "PowerPoint Presentation",
-        "size": "17MB",
-        "slides": "Large presentation (estimated 50+ slides)"
-      },
-      "files": [
-        {
-          "name": "Final Project.pptx",
-          "type": "presentation",
-          "size": "17MB"
-        }
-      ],
-      "note": "This is a large presentation file. Consider creating a compressed version or PDF for web display while keeping the original for download."
     }
   ]
 }

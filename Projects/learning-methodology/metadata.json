@@ -72,6 +72,36 @@
       ]
     },
     {
+      "id": "final-project",
+      "title": "Final Project",
+      "type": "presentation",
+      "file": "presentations/Final Project.pptx",
+      "preview": "presentations/preview-final-project.png",
+      "description": "Comprehensive final project presentation. This may represent a capstone project, comprehensive curriculum design, or major professional development initiative. The presentation demonstrates advanced instructional design skills and professional competence.",
+      "tags": [
+        "Capstone Project",
+        "Curriculum Design",
+        "Instructional Design",
+        "Professional Portfolio",
+        "Comprehensive Project"
+      ],
+      "learningObjectives": [],
+      "targetAudience": "Academic or professional reviewers",
+      "metrics": {
+        "format": "PowerPoint Presentation",
+        "size": "17MB",
+        "slides": "Large presentation (estimated 50+ slides)"
+      },
+      "files": [
+        {
+          "name": "Final Project.pptx",
+          "type": "presentation",
+          "size": "17MB"
+        }
+      ],
+      "note": "This is a large presentation file. Consider creating a compressed version or PDF for web display while keeping the original for download."
+    },
+    {
       "id": "prezi-collection",
       "title": "Prezi Presentations",
       "type": "prezi-collection",

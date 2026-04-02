@@ -682,7 +682,7 @@ function initProjectFilters() {
                 
                 if (filter === 'all' || category === filter) {
                     card.classList.remove('hidden');
-                    // Trigger animation
+                    // Trigger animation (clear inline transform after so .glass-card hover works)
                     card.style.opacity = '0';
                     card.style.transform = 'translateY(20px)';
                     setTimeout(() => {
@@ -690,8 +690,16 @@ function initProjectFilters() {
                         card.style.opacity = '1';
                         card.style.transform = 'translateY(0)';
                     }, 10);
+                    setTimeout(() => {
+                        card.style.transition = '';
+                        card.style.opacity = '';
+                        card.style.transform = '';
+                    }, 350);
                 } else {
                     card.classList.add('hidden');
+                    card.style.transition = '';
+                    card.style.opacity = '';
+                    card.style.transform = '';
                 }
             });
         });
@@ -1953,19 +1961,179 @@ function initCustomCursor() {
 }
 
 // ================================
+// SITE PRELOADER
+// ================================
+function initSitePreloader(onReady) {
+    const el = document.getElementById('sitePreloader');
+    if (!el) {
+        onReady();
+        return;
+    }
+
+    document.body.classList.add('preloader-active');
+
+    const inner = el.querySelector('.site-preloader__content');
+    const pyramid = el.querySelector('.preloader-pyramid');
+    const nameParts = el.querySelectorAll('.preloader-name-part');
+    const rule = el.querySelector('.preloader-rule');
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    const cleanup = () => {
+        document.body.classList.remove('preloader-active');
+        el.removeAttribute('role');
+        el.removeAttribute('aria-modal');
+        el.removeAttribute('aria-label');
+        if (el.parentNode) el.parentNode.removeChild(el);
+        onReady();
+    };
+
+    let dismissed = false;
+
+    const dismissReduced = () => {
+        if (dismissed) return;
+        dismissed = true;
+        el.style.transition = 'opacity 0.2s ease';
+        el.style.opacity = '0';
+        setTimeout(cleanup, 220);
+    };
+
+    const dismissFallback = () => {
+        if (dismissed) return;
+        dismissed = true;
+        cleanup();
+    };
+
+    if (prefersReduced) {
+        const kick = () => setTimeout(dismissReduced, 320);
+        if (document.readyState === 'complete') kick();
+        else window.addEventListener('load', kick);
+        setTimeout(dismissFallback, 8000);
+        return;
+    }
+
+    if (typeof gsap === 'undefined') {
+        const kick = () => setTimeout(dismissFallback, 400);
+        if (document.readyState === 'complete') kick();
+        else window.addEventListener('load', kick);
+        setTimeout(dismissFallback, 8000);
+        return;
+    }
+
+    const pageStart = performance.now();
+    const minVisibleMs = 2200;
+    let introDone = false;
+    let loadDone = document.readyState === 'complete';
+
+    const floatTween = gsap.to(pyramid, {
+        y: 5,
+        duration: 2.4,
+        ease: 'sine.inOut',
+        repeat: -1,
+        yoyo: true,
+        paused: true
+    });
+
+    const introTl = gsap.timeline({
+        defaults: { ease: 'power3.out' },
+        onComplete: () => {
+            introDone = true;
+            floatTween.play(0);
+            maybeDismiss();
+        }
+    });
+
+    introTl
+        .from(pyramid, {
+            scale: 0.55,
+            opacity: 0,
+            y: 48,
+            rotationX: 12,
+            duration: 1,
+            ease: 'back.out(1.35)'
+        })
+        .from(
+            nameParts,
+            {
+                y: 36,
+                opacity: 0,
+                stagger: 0.14,
+                duration: 0.72
+            },
+            '-=0.42'
+        )
+        .from(
+            rule,
+            {
+                scaleX: 0,
+                opacity: 0,
+                duration: 0.55,
+                ease: 'power2.out',
+                transformOrigin: 'center center'
+            },
+            '-=0.38'
+        );
+
+    const tryDismiss = () => {
+        if (!introDone || !loadDone || dismissed) return;
+        const elapsed = performance.now() - pageStart;
+        const wait = Math.max(0, minVisibleMs - elapsed);
+        setTimeout(runExit, wait);
+    };
+
+    const maybeDismiss = () => tryDismiss();
+
+    window.addEventListener('load', () => {
+        loadDone = true;
+        tryDismiss();
+    });
+
+    function runExit() {
+        if (dismissed) return;
+        dismissed = true;
+        floatTween.kill();
+        const exitTl = gsap.timeline({
+            onComplete: cleanup
+        });
+        exitTl
+            .to(inner, {
+                opacity: 0,
+                y: -28,
+                scale: 0.94,
+                duration: 0.52,
+                ease: 'power2.in'
+            })
+            .to(
+                el,
+                {
+                    opacity: 0,
+                    duration: 0.58,
+                    ease: 'power3.inOut'
+                },
+                '-=0.28'
+            );
+    }
+
+    setTimeout(() => {
+        if (!dismissed && document.getElementById('sitePreloader')) runExit();
+    }, 12000);
+}
+
+// ================================
 // INITIALIZATION
 // ================================
 function init() {
     initSmoothScroll();
-    initAnimations();
     initEmailModal();
     initOrbitalMotion();
     initParticleSystem();
     initBrainRotation();
     initProjectFilters();
     initCounterAnimation();
+    initSitePreloader(() => {
+        initAnimations();
+        console.log('Portfolio loaded successfully');
+    });
     // initCustomCursor(); // DISABLED - was preventing navigation clicks
-    console.log('Portfolio loaded successfully');
 }
 
 if (document.readyState === 'loading') {

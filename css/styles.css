@@ -280,6 +280,124 @@ html {
 }
 
 /* ================================
+   SITE PRELOADER
+   ================================ */
+body.preloader-active {
+    overflow: hidden;
+}
+
+.site-preloader {
+    position: fixed;
+    inset: 0;
+    z-index: 9998;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: auto;
+}
+
+.site-preloader__backdrop {
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(ellipse 120% 80% at 50% 20%, rgba(139, 92, 246, 0.18) 0%, transparent 55%),
+        radial-gradient(ellipse 90% 60% at 80% 90%, rgba(20, 184, 166, 0.12) 0%, transparent 50%),
+        linear-gradient(165deg, var(--bg-darker) 0%, #0a0a1a 45%, var(--bg-dark) 100%);
+}
+
+.site-preloader__backdrop::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(139, 92, 246, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(139, 92, 246, 0.03) 1px, transparent 1px);
+    background-size: 48px 48px;
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+.site-preloader__content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 2rem;
+    max-width: 90vw;
+}
+
+.preloader-emblem {
+    perspective: 900px;
+    margin-bottom: 1.25rem;
+}
+
+.preloader-pyramid {
+    display: block;
+    width: min(42vw, 11.25rem);
+    height: auto;
+    filter:
+        drop-shadow(0 0 20px rgba(45, 212, 191, 0.35))
+        drop-shadow(0 12px 40px rgba(0, 0, 0, 0.45));
+    transform-style: preserve-3d;
+    will-change: transform, opacity;
+}
+
+.preloader-name {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: clamp(2rem, 6.5vw, 3.5rem);
+    letter-spacing: -0.04em;
+    line-height: 1.1;
+    color: var(--text);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35em;
+    justify-content: center;
+    margin: 0;
+    will-change: transform, opacity;
+}
+
+.preloader-name-part {
+    display: inline-block;
+}
+
+.preloader-name-part--accent {
+    background: linear-gradient(135deg, var(--primary-light), var(--secondary-light));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.preloader-rule {
+    margin-top: 1.35rem;
+    width: min(12rem, 50vw);
+    height: 2px;
+    border-radius: var(--radius-full);
+    background: linear-gradient(
+        90deg,
+        transparent,
+        var(--secondary-light),
+        var(--primary-light),
+        var(--secondary-light),
+        transparent
+    );
+    opacity: 0.9;
+    transform-origin: center;
+    box-shadow: 0 0 16px rgba(45, 212, 191, 0.35);
+    will-change: transform, opacity;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .preloader-pyramid,
+    .preloader-name,
+    .preloader-rule {
+        will-change: auto;
+    }
+}
+
+/* ================================
    HEADER
    ================================ */
 header {
@@ -1371,11 +1489,16 @@ nav a:hover::after {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     gap: 2rem;
+    align-items: stretch;
 }
 
 .project-card {
     position: relative;
     cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-height: 0;
     /* Ensure project cards are visible by default */
     opacity: 1;
     transform: translateY(0);
@@ -1408,11 +1531,19 @@ nav a:hover::after {
     opacity: 1;
 }
 
+.project-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+}
+
 .project-content h3 {
     font-size: var(--text-2xl);
     font-weight: 700;
     margin-bottom: var(--space-sm);
     color: var(--text);
+    flex-shrink: 0;
 }
 
 .project-description {
@@ -1420,6 +1551,8 @@ nav a:hover::after {
     color: var(--text-muted);
     line-height: 1.7;
     margin-bottom: var(--space-md);
+    flex: 1 1 auto;
+    min-height: 0;
 }
 
 .project-tags {
@@ -1427,6 +1560,7 @@ nav a:hover::after {
     flex-wrap: wrap;
     gap: 0.5rem;
     margin-bottom: var(--space-md);
+    flex-shrink: 0;
 }
 
 .tag {
@@ -1445,6 +1579,7 @@ nav a:hover::after {
     gap: 1rem;
     padding-top: var(--space-md);
     border-top: 1px solid var(--glass-border);
+    flex-shrink: 0;
 }
 
 .metric {
@@ -1550,6 +1685,7 @@ nav a:hover::after {
     border-radius: var(--radius-lg);
     margin-bottom: var(--space-md);
     overflow: hidden;
+    flex-shrink: 0;
 }
 
 .media-type-badge {
@@ -1574,6 +1710,7 @@ nav a:hover::after {
     padding-top: var(--space-md);
     border-top: 1px solid var(--glass-border);
     flex-wrap: wrap;
+    flex-shrink: 0;
 }
 
 .btn-download,
@@ -1616,13 +1753,7 @@ nav a:hover::after {
 }
 
 .project-card.hidden {
-    opacity: 0;
-    transform: scale(0.95);
-    pointer-events: none;
-    height: 0;
-    overflow: hidden;
-    margin: 0;
-    padding: 0;
+    display: none;
 }
 
 /* Project Modal */

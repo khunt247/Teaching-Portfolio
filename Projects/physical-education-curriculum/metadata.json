@@ -278,6 +278,27 @@
       ]
     },
     {
+      "id": "physical-inactivity-prezi",
+      "title": "Physical Inactivity",
+      "type": "prezi",
+      "embedUrl": "https://prezi.com/p/embed/n6RgPuelj1GrHAgl0kZj/",
+      "previewCard": "images/Physical Inactivity  project card.png",
+      "description": "Interactive Prezi presentation addressing physical inactivity: causes, effects, and solutions related to sedentary lifestyles. Uses Prezi's zooming interface for health education in a PE and wellness context.",
+      "tags": [
+        "Prezi",
+        "Health Education",
+        "Physical Activity",
+        "Public Health"
+      ],
+      "learningObjectives": [],
+      "targetAudience": "Physical education and health education students",
+      "metrics": {
+        "format": "Prezi",
+        "platform": "Prezi.com",
+        "topic": "Health"
+      }
+    },
+    {
       "id": "obstacle-course-layout",
       "title": "Obstacle Course Layout",
       "type": "image",
