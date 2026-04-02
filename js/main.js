@@ -1017,6 +1017,288 @@ function getScreenshotDescription(screenshotPath) {
 }
 
 // ================================
+// ARTIFACT IMAGE ZOOM / PAN + EVENTS
+// ================================
+/**
+ * Dispatches portfolio image interaction events (view, zoom, pan, reset).
+ * Listen: document.addEventListener('artifact-image', (e) => { ... e.detail })
+ */
+function emitArtifactImageEvent(detail) {
+    document.dispatchEvent(new CustomEvent('artifact-image', { bubbles: true, detail }));
+}
+
+/**
+ * @param {HTMLElement} rootEl - Container with [data-zoom-viewport], [data-zoom-layer], img[data-zoom-img]; optional toolbar [data-zoom-in|out|reset|label]
+ * @param {{ filePath: string, title?: string, context?: string }} meta
+ * @returns {{ reset: () => void, destroy: () => void } | null}
+ */
+function initArtifactImageZoomPan(rootEl, meta) {
+    const viewport = rootEl.querySelector('[data-zoom-viewport]');
+    const layer = rootEl.querySelector('[data-zoom-layer]');
+    const img = rootEl.querySelector('[data-zoom-img]') || (layer && layer.querySelector('img'));
+    if (!viewport || !layer || !img) return null;
+
+    const zoomInBtn = rootEl.querySelector('[data-zoom-in]');
+    const zoomOutBtn = rootEl.querySelector('[data-zoom-out]');
+    const zoomResetBtn = rootEl.querySelector('[data-zoom-reset]');
+    const zoomLabel = rootEl.querySelector('[data-zoom-label]');
+
+    const minScale = 1;
+    const maxScale = 4;
+    let scale = 1;
+    let tx = 0;
+    let ty = 0;
+
+    let dragging = false;
+    let lastPointerX = 0;
+    let lastPointerY = 0;
+
+    let pinchStartDist = 0;
+    let pinchStartScale = 1;
+
+    let zoomEmitTimer = null;
+    /** @type {{ x0: number, y0: number, tx0: number, ty0: number } | null} */
+    let touchOne = null;
+
+    const ctx = meta.context || 'artifact-modal';
+
+    layer.style.transformOrigin = 'center center';
+
+    function applyTransform() {
+        if (scale <= 1) {
+            tx = 0;
+            ty = 0;
+            scale = 1;
+        }
+        layer.style.transform = `translate(${tx}px, ${ty}px) scale(${scale})`;
+        if (zoomLabel) zoomLabel.textContent = `${Math.round(scale * 100)}%`;
+    }
+
+    function scheduleZoomEmit() {
+        if (zoomEmitTimer) clearTimeout(zoomEmitTimer);
+        zoomEmitTimer = setTimeout(() => {
+            zoomEmitTimer = null;
+            emitArtifactImageEvent({
+                type: 'zoom',
+                filePath: meta.filePath,
+                title: meta.title,
+                context: ctx,
+                scale,
+                tx,
+                ty
+            });
+        }, 250);
+    }
+
+    function clampScale(s) {
+        return Math.min(maxScale, Math.max(minScale, s));
+    }
+
+    function zoomAtViewPoint(clientX, clientY, nextScale) {
+        const rect = viewport.getBoundingClientRect();
+        const cx = rect.left + rect.width / 2;
+        const cy = rect.top + rect.height / 2;
+        const mx = clientX - cx;
+        const my = clientY - cy;
+        const prevScale = scale;
+        scale = clampScale(nextScale);
+        if (prevScale === 0) return;
+        const ratio = scale / prevScale;
+        tx = mx - (mx - tx) * ratio;
+        ty = my - (my - ty) * ratio;
+        applyTransform();
+        scheduleZoomEmit();
+    }
+
+    /** @param {number} dir +1 zoom in, -1 zoom out */
+    function nudgeZoom(dir) {
+        const factor = dir > 0 ? 1.12 : 1 / 1.12;
+        const rect = viewport.getBoundingClientRect();
+        zoomAtViewPoint(rect.left + rect.width / 2, rect.top + rect.height / 2, scale * factor);
+    }
+
+    function resetView() {
+        scale = 1;
+        tx = 0;
+        ty = 0;
+        applyTransform();
+        emitArtifactImageEvent({
+            type: 'reset',
+            filePath: meta.filePath,
+            title: meta.title,
+            context: ctx,
+            scale: 1,
+            tx: 0,
+            ty: 0
+        });
+    }
+
+    applyTransform();
+
+    emitArtifactImageEvent({
+        type: 'view',
+        filePath: meta.filePath,
+        title: meta.title,
+        context: ctx
+    });
+
+    function onWheel(e) {
+        e.preventDefault();
+        const factor = e.deltaY > 0 ? 0.92 : 1.08;
+        zoomAtViewPoint(e.clientX, e.clientY, scale * factor);
+    }
+
+    function onPointerDown(e) {
+        if (e.pointerType === 'touch') return;
+        if (zoomInBtn && zoomInBtn.contains(e.target)) return;
+        if (zoomOutBtn && zoomOutBtn.contains(e.target)) return;
+        if (zoomResetBtn && zoomResetBtn.contains(e.target)) return;
+        dragging = true;
+        lastPointerX = e.clientX;
+        lastPointerY = e.clientY;
+        viewport.style.cursor = 'grabbing';
+        try {
+            viewport.setPointerCapture(e.pointerId);
+        } catch (_) { /* ignore */ }
+    }
+
+    function onPointerMove(e) {
+        if (!dragging) return;
+        const dx = e.clientX - lastPointerX;
+        const dy = e.clientY - lastPointerY;
+        lastPointerX = e.clientX;
+        lastPointerY = e.clientY;
+        if (scale > 1) {
+            tx += dx;
+            ty += dy;
+            applyTransform();
+        }
+    }
+
+    function onPointerUp(e) {
+        if (!dragging) return;
+        dragging = false;
+        viewport.style.cursor = 'grab';
+        try {
+            viewport.releasePointerCapture(e.pointerId);
+        } catch (_) { /* ignore */ }
+        if (scale > 1) {
+            emitArtifactImageEvent({
+                type: 'pan',
+                filePath: meta.filePath,
+                title: meta.title,
+                context: ctx,
+                scale,
+                tx,
+                ty
+            });
+        }
+    }
+
+    function touchDistance(t0, t1) {
+        const dx = t0.clientX - t1.clientX;
+        const dy = t0.clientY - t1.clientY;
+        return Math.hypot(dx, dy);
+    }
+
+    function onTouchStart(e) {
+        if (e.touches.length === 2) {
+            pinchStartDist = touchDistance(e.touches[0], e.touches[1]);
+            pinchStartScale = scale;
+            touchOne = null;
+        } else if (e.touches.length === 1) {
+            pinchStartDist = 0;
+            if (scale > 1) {
+                const t = e.touches[0];
+                touchOne = { x0: t.clientX, y0: t.clientY, tx0: tx, ty0: ty };
+            } else {
+                touchOne = null;
+            }
+        }
+    }
+
+    function onTouchMove(e) {
+        if (e.touches.length === 2) {
+            if (pinchStartDist <= 0) {
+                pinchStartDist = touchDistance(e.touches[0], e.touches[1]);
+                pinchStartScale = scale;
+            }
+            e.preventDefault();
+            const d = touchDistance(e.touches[0], e.touches[1]);
+            const next = clampScale(pinchStartScale * (d / pinchStartDist));
+            const mx = (e.touches[0].clientX + e.touches[1].clientX) / 2;
+            const my = (e.touches[0].clientY + e.touches[1].clientY) / 2;
+            zoomAtViewPoint(mx, my, next);
+            pinchStartDist = d;
+            pinchStartScale = scale;
+        } else if (e.touches.length === 1 && touchOne && scale > 1) {
+            e.preventDefault();
+            const t = e.touches[0];
+            tx = touchOne.tx0 + (t.clientX - touchOne.x0);
+            ty = touchOne.ty0 + (t.clientY - touchOne.y0);
+            applyTransform();
+        }
+    }
+
+    function onTouchEnd(e) {
+        if (e.touches.length < 2) {
+            pinchStartDist = 0;
+        }
+        if (e.touches.length === 0 && touchOne && scale > 1) {
+            emitArtifactImageEvent({
+                type: 'pan',
+                filePath: meta.filePath,
+                title: meta.title,
+                context: ctx,
+                scale,
+                tx,
+                ty
+            });
+        }
+        if (e.touches.length === 0) {
+            touchOne = null;
+        } else if (e.touches.length === 1 && scale > 1) {
+            const t = e.touches[0];
+            touchOne = { x0: t.clientX, y0: t.clientY, tx0: tx, ty0: ty };
+        }
+    }
+
+    viewport.style.cursor = 'grab';
+    viewport.style.touchAction = 'none';
+
+    viewport.addEventListener('wheel', onWheel, { passive: false });
+    viewport.addEventListener('pointerdown', onPointerDown);
+    viewport.addEventListener('pointermove', onPointerMove);
+    viewport.addEventListener('pointerup', onPointerUp);
+    viewport.addEventListener('pointercancel', onPointerUp);
+    viewport.addEventListener('touchstart', onTouchStart, { passive: true });
+    viewport.addEventListener('touchmove', onTouchMove, { passive: false });
+    viewport.addEventListener('touchend', onTouchEnd);
+
+    if (zoomInBtn) zoomInBtn.addEventListener('click', () => nudgeZoom(1));
+    if (zoomOutBtn) zoomOutBtn.addEventListener('click', () => nudgeZoom(-1));
+    if (zoomResetBtn) zoomResetBtn.addEventListener('click', resetView);
+
+    rootEl._artifactZoomReset = resetView;
+
+    return {
+        reset: resetView,
+        destroy() {
+            viewport.removeEventListener('wheel', onWheel);
+            viewport.removeEventListener('pointerdown', onPointerDown);
+            viewport.removeEventListener('pointermove', onPointerMove);
+            viewport.removeEventListener('pointerup', onPointerUp);
+            viewport.removeEventListener('pointercancel', onPointerUp);
+            viewport.removeEventListener('touchstart', onTouchStart);
+            viewport.removeEventListener('touchmove', onTouchMove);
+            viewport.removeEventListener('touchend', onTouchEnd);
+            if (zoomEmitTimer) clearTimeout(zoomEmitTimer);
+            delete rootEl._artifactZoomReset;
+        }
+    };
+}
+
+// ================================
 // ARTIFACT PREVIEW FUNCTIONALITY
 // ================================
 function viewArtifact(filePath, title, fileType) {
@@ -1055,14 +1337,25 @@ function viewArtifact(filePath, title, fileType) {
             </div>
         `;
     } else if (['jpg', 'jpeg', 'png', 'gif', 'webp', 'svg'].includes(fileExtension)) {
-        // Image preview
+        // Image preview (zoom / pan + artifact-image events)
+        const imgAlt = String(title || 'Artifact')
+            .replace(/&/g, '&amp;')
+            .replace(/"/g, '&quot;')
+            .replace(/</g, '&lt;');
         previewContent = `
-            <div style="text-align: center;">
-                <img 
-                    src="${filePath}" 
-                    alt="${title}"
-                    style="max-width: 100%; max-height: 80vh; border-radius: var(--radius-md); box-shadow: var(--shadow-lg);"
-                />
+            <div class="artifact-image-viewer" data-artifact-image-viewer style="display:flex;flex-direction:column;gap:0.5rem;width:100%;align-items:center;">
+                <div class="artifact-image-toolbar" style="display:flex;flex-wrap:wrap;gap:0.5rem;justify-content:center;align-items:center;">
+                    <button type="button" data-zoom-out aria-label="Zoom out" style="padding:0.5rem 0.85rem;background:rgba(139,92,246,0.25);border:1px solid var(--primary);color:var(--text);border-radius:var(--radius-md);cursor:pointer;font-weight:600;">−</button>
+                    <span data-zoom-label style="min-width:3.5rem;text-align:center;color:var(--text-muted);font-size:0.875rem;font-variant-numeric:tabular-nums;">100%</span>
+                    <button type="button" data-zoom-in aria-label="Zoom in" style="padding:0.5rem 0.85rem;background:rgba(139,92,246,0.25);border:1px solid var(--primary);color:var(--text);border-radius:var(--radius-md);cursor:pointer;font-weight:600;">+</button>
+                    <button type="button" data-zoom-reset aria-label="Reset zoom and pan" style="padding:0.5rem 0.85rem;background:var(--primary);border:none;color:white;border-radius:var(--radius-md);cursor:pointer;font-weight:600;">Reset</button>
+                </div>
+                <div data-zoom-viewport style="width:100%;max-width:100%;height:80vh;max-height:80vh;overflow:hidden;border-radius:var(--radius-md);background:rgba(0,0,0,0.2);display:flex;align-items:center;justify-content:center;">
+                    <div data-zoom-layer style="will-change:transform;">
+                        <img data-zoom-img src="${filePath}" alt="${imgAlt}" style="max-width:100%;max-height:80vh;width:auto;height:auto;display:block;border-radius:var(--radius-md);box-shadow:var(--shadow-lg);"/>
+                    </div>
+                </div>
+                <p style="margin:0;font-size:0.8rem;color:var(--text-dim);text-align:center;max-width:36rem;line-height:1.4;">Scroll or pinch to zoom · drag to pan when zoomed · + / − / Reset for keyboard-friendly control</p>
             </div>
         `;
     } else if (fileExtension === 'pptx' || fileType === 'presentation') {
@@ -1208,12 +1501,25 @@ function viewArtifact(filePath, title, fileType) {
                         </button>
                         <div style="flex: 1; text-align: center;">
                             <div id="${slideshowId}-slide" style="min-height: 60vh; display: flex; flex-direction: column; align-items: center; justify-content: center;">
-                                <img 
-                                    id="${slideshowId}-image"
-                                    src="${screenshotPaths[0]}" 
-                                    alt="${title} - Screenshot 1"
-                                    style="max-width: 100%; max-height: 60vh; height: auto; border-radius: var(--radius-md); box-shadow: var(--shadow-lg); margin-bottom: 1rem; transition: opacity 0.3s ease;"
-                                />
+                                <div id="${slideshowId}-zoom-root" data-artifact-image-viewer style="width: 100%; max-width: 100%; margin-bottom: 1rem;">
+                                    <div style="display:flex;flex-wrap:wrap;gap:0.35rem;justify-content:center;align-items:center;margin-bottom:0.5rem;">
+                                        <button type="button" data-zoom-out aria-label="Zoom out" style="padding:0.35rem 0.65rem;background:rgba(139,92,246,0.25);border:1px solid var(--primary);color:var(--text);border-radius:var(--radius-md);cursor:pointer;font-weight:600;">−</button>
+                                        <span data-zoom-label style="min-width:3rem;text-align:center;color:var(--text-muted);font-size:0.8rem;">100%</span>
+                                        <button type="button" data-zoom-in aria-label="Zoom in" style="padding:0.35rem 0.65rem;background:rgba(139,92,246,0.25);border:1px solid var(--primary);color:var(--text);border-radius:var(--radius-md);cursor:pointer;font-weight:600;">+</button>
+                                        <button type="button" data-zoom-reset aria-label="Reset zoom and pan" style="padding:0.35rem 0.65rem;background:var(--primary);border:none;color:white;border-radius:var(--radius-md);cursor:pointer;font-weight:600;">Reset</button>
+                                    </div>
+                                    <div data-zoom-viewport style="width:100%;height:60vh;max-height:60vh;overflow:hidden;border-radius:var(--radius-md);background:rgba(0,0,0,0.2);display:flex;align-items:center;justify-content:center;">
+                                        <div data-zoom-layer style="will-change:transform;">
+                                            <img 
+                                                id="${slideshowId}-image"
+                                                data-zoom-img
+                                                src="${screenshotPaths[0]}" 
+                                                alt="${title} - Screenshot 1"
+                                                style="max-width: 100%; max-height: 60vh; height: auto; border-radius: var(--radius-md); box-shadow: var(--shadow-lg); transition: opacity 0.3s ease;"
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
                                 <div id="${slideshowId}-description" style="max-width: 800px; margin: 0 auto; padding: 1rem; background: rgba(139, 92, 246, 0.1); border-radius: var(--radius-md); border-left: 3px solid var(--primary);">
                                     <p style="color: var(--text); font-size: 0.875rem; line-height: 1.6; margin: 0;">${description || ''}</p>
                                 </div>
@@ -1233,6 +1539,21 @@ function viewArtifact(filePath, title, fileType) {
             
             modalContent.innerHTML = slideshowHTML;
             
+            const zoomRootEl = document.getElementById(`${slideshowId}-zoom-root`);
+            if (zoomRootEl) {
+                initArtifactImageZoomPan(zoomRootEl, {
+                    filePath,
+                    title,
+                    context: 'notebook-slideshow'
+                });
+            }
+            
+            function resetNotebookSlideZoom() {
+                if (zoomRootEl && zoomRootEl._artifactZoomReset) {
+                    zoomRootEl._artifactZoomReset();
+                }
+            }
+            
             // Setup navigation handlers
             if (screenshotPaths.length > 1) {
                 const prevBtn = document.getElementById(`${slideshowId}-prev`);
@@ -1245,7 +1566,7 @@ function viewArtifact(filePath, title, fileType) {
                     
                     currentSlide = index;
                     const path = screenshotPaths[index];
-                    const description = getScreenshotDescription(path);
+                    const desc = getScreenshotDescription(path);
                     
                     // Update image with fade effect
                     imageEl.style.opacity = '0';
@@ -1253,11 +1574,12 @@ function viewArtifact(filePath, title, fileType) {
                         imageEl.src = path;
                         imageEl.alt = `${title} - Screenshot ${index + 1}`;
                         imageEl.style.opacity = '1';
+                        resetNotebookSlideZoom();
                     }, 150);
                     
                     // Update description
-                    if (description) {
-                        descriptionEl.innerHTML = `<p style="color: var(--text); font-size: 0.875rem; line-height: 1.6; margin: 0;">${description}</p>`;
+                    if (desc) {
+                        descriptionEl.innerHTML = `<p style="color: var(--text); font-size: 0.875rem; line-height: 1.6; margin: 0;">${desc}</p>`;
                     } else {
                         descriptionEl.innerHTML = '';
                     }
@@ -1320,6 +1642,15 @@ function viewArtifact(filePath, title, fileType) {
     }
     
     modalContent.innerHTML = previewContent;
+    
+    const artifactViewer = modalContent.querySelector('[data-artifact-image-viewer]');
+    if (artifactViewer) {
+        initArtifactImageZoomPan(artifactViewer, {
+            filePath,
+            title,
+            context: 'artifact-modal'
+        });
+    }
     
     // Setup close handlers (these will be cleaned up when modal closes)
     setupArtifactModalCloseHandlers();
