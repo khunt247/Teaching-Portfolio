@@ -748,52 +748,52 @@ function openProjectModal(projectType) {
                     <div class="collection-item">
                         <h4>Agility Training</h4>
                         <p>Agility training fundamentals and drills</p>
-                        <button class="btn-view" onclick='viewArtifact("Projects/physical-education-curriculum/presentations/units/AGILITY.pdf", "Agility Training", "pdf")'>👁️ View</button>
+                        <button class="btn-view" onclick='viewArtifact("Projects/physical-education-curriculum/presentations/units/AGILITY.pdf", "Agility Training", "pdf")'>View</button>
                     </div>
                     <div class="collection-item">
                         <h4>Circuit Training</h4>
                         <p>Comprehensive circuit training program</p>
-                        <button class="btn-view" onclick='viewArtifact("Projects/physical-education-curriculum/presentations/units/Circuit Training Education Presentation.pdf", "Circuit Training Education", "pdf")'>👁️ View</button>
+                        <button class="btn-view" onclick='viewArtifact("Projects/physical-education-curriculum/presentations/units/Circuit Training Education Presentation.pdf", "Circuit Training Education", "pdf")'>View</button>
                     </div>
                     <div class="collection-item">
                         <h4>Core Strength</h4>
                         <p>Core strengthening exercises and progression</p>
-                        <button class="btn-view" onclick='viewArtifact("Projects/physical-education-curriculum/presentations/units/CORE STRENGTH.pdf", "Core Strength Training", "pdf")'>👁️ View</button>
+                        <button class="btn-view" onclick='viewArtifact("Projects/physical-education-curriculum/presentations/units/CORE STRENGTH.pdf", "Core Strength Training", "pdf")'>View</button>
                     </div>
                     <div class="collection-item">
                         <h4>Dynamic Stretching</h4>
                         <p>Dynamic warm-up stretches and mobility</p>
-                        <button class="btn-view" onclick='viewArtifact("Projects/physical-education-curriculum/presentations/units/DYNAMIC STRETCHING.pdf", "Dynamic Stretching", "pdf")'>👁️ View</button>
+                        <button class="btn-view" onclick='viewArtifact("Projects/physical-education-curriculum/presentations/units/DYNAMIC STRETCHING.pdf", "Dynamic Stretching", "pdf")'>View</button>
                     </div>
                     <div class="collection-item">
                         <h4>Fitness Unit</h4>
                         <p>Comprehensive fitness unit covering all components</p>
-                        <button class="btn-view" onclick='viewArtifact("Projects/physical-education-curriculum/presentations/units/FITNESS UNIT.pdf", "Fitness Unit", "pdf")'>👁️ View</button>
+                        <button class="btn-view" onclick='viewArtifact("Projects/physical-education-curriculum/presentations/units/FITNESS UNIT.pdf", "Fitness Unit", "pdf")'>View</button>
                     </div>
                     <div class="collection-item">
                         <h4>Flexibility Unit</h4>
                         <p>Flexibility training principles and techniques</p>
-                        <button class="btn-view" onclick='viewArtifact("Projects/physical-education-curriculum/presentations/units/FLEXIBILITY UNIT.pdf", "Flexibility Unit", "pdf")'>👁️ View</button>
+                        <button class="btn-view" onclick='viewArtifact("Projects/physical-education-curriculum/presentations/units/FLEXIBILITY UNIT.pdf", "Flexibility Unit", "pdf")'>View</button>
                     </div>
                     <div class="collection-item">
                         <h4>Jump Rope</h4>
                         <p>Jump rope techniques and progressions</p>
-                        <button class="btn-view" onclick='viewArtifact("Projects/physical-education-curriculum/presentations/units/JUMP ROPE.pdf", "Jump Rope", "pdf")'>👁️ View</button>
+                        <button class="btn-view" onclick='viewArtifact("Projects/physical-education-curriculum/presentations/units/JUMP ROPE.pdf", "Jump Rope", "pdf")'>View</button>
                     </div>
                     <div class="collection-item">
                         <h4>Static Stretching</h4>
                         <p>Static stretching techniques for cool-down</p>
-                        <button class="btn-view" onclick='viewArtifact("Projects/physical-education-curriculum/presentations/units/STATIC STRETCHING.pdf", "Static Stretching", "pdf")'>👁️ View</button>
+                        <button class="btn-view" onclick='viewArtifact("Projects/physical-education-curriculum/presentations/units/STATIC STRETCHING.pdf", "Static Stretching", "pdf")'>View</button>
                     </div>
                     <div class="collection-item">
                         <h4>Volleyball 101</h4>
                         <p>Volleyball fundamentals and gameplay</p>
-                        <button class="btn-view" onclick='viewArtifact("Projects/physical-education-curriculum/presentations/units/Volleyball 101.pdf", "Volleyball 101", "pdf")'>👁️ View</button>
+                        <button class="btn-view" onclick='viewArtifact("Projects/physical-education-curriculum/presentations/units/Volleyball 101.pdf", "Volleyball 101", "pdf")'>View</button>
                     </div>
                     <div class="collection-item">
                         <h4>Introductory Vocabulary</h4>
                         <p>Essential PE terminology and concepts</p>
-                        <button class="btn-view" onclick='viewArtifact("Projects/physical-education-curriculum/presentations/units/Introductory Vocab.pdf", "Introductory Vocabulary", "pdf")'>👁️ View</button>
+                        <button class="btn-view" onclick='viewArtifact("Projects/physical-education-curriculum/presentations/units/Introductory Vocab.pdf", "Introductory Vocabulary", "pdf")'>View</button>
                     </div>
                 </div>
             `;
@@ -809,37 +809,149 @@ function openProjectModal(projectType) {
                     <div class="collection-item">
                         <h4>Classroom Expectation Quiz</h4>
                         <p>Interactive quiz for reviewing expectations</p>
-                        <button class="btn-view" onclick='viewArtifact("Projects/physical-education-curriculum/presentations/classroom-management/Classroom Expectation Quiz.pdf", "Classroom Expectation Quiz", "pdf")'>👁️ View</button>
+                        <button class="btn-view" onclick='viewArtifact("Projects/physical-education-curriculum/presentations/classroom-management/Classroom Expectation Quiz.pdf", "Classroom Expectation Quiz", "pdf")'>View</button>
                     </div>
                     <div class="collection-item">
                         <h4>Gym Housekeeping</h4>
                         <p>Guidelines for maintaining gym equipment</p>
-                        <button class="btn-view" onclick='viewArtifact("Projects/physical-education-curriculum/presentations/classroom-management/GYM HOUSEKEEPING.pdf", "Gym Housekeeping", "pdf")'>👁️ View</button>
+                        <button class="btn-view" onclick='viewArtifact("Projects/physical-education-curriculum/presentations/classroom-management/GYM HOUSEKEEPING.pdf", "Gym Housekeeping", "pdf")'>View</button>
                     </div>
                     <div class="collection-item">
                         <h4>Respect</h4>
                         <p>Sportsmanship and positive behavior</p>
-                        <button class="btn-view" onclick='viewArtifact("Projects/physical-education-curriculum/presentations/classroom-management/RESPECT.pdf", "Respect", "pdf")'>👁️ View</button>
+                        <button class="btn-view" onclick='viewArtifact("Projects/physical-education-curriculum/presentations/classroom-management/RESPECT.pdf", "Respect", "pdf")'>View</button>
                     </div>
                     <div class="collection-item">
                         <h4>Getting to Know Each Other</h4>
                         <p>Icebreaker activities for building community</p>
-                        <button class="btn-view" onclick='viewArtifact("Projects/physical-education-curriculum/presentations/classroom-management/GETTING TO KNOW.pdf", "Getting to Know Each Other", "pdf")'>👁️ View</button>
+                        <button class="btn-view" onclick='viewArtifact("Projects/physical-education-curriculum/presentations/classroom-management/GETTING TO KNOW.pdf", "Getting to Know Each Other", "pdf")'>View</button>
                     </div>
                     <div class="collection-item">
                         <h4>Getting to Know Each Other II</h4>
                         <p>Continued community-building activities</p>
-                        <button class="btn-view" onclick='viewArtifact("Projects/physical-education-curriculum/presentations/classroom-management/GETTING TO KNOW EACH OTHER II.pdf", "Getting to Know Each Other II", "pdf")'>👁️ View</button>
+                        <button class="btn-view" onclick='viewArtifact("Projects/physical-education-curriculum/presentations/classroom-management/GETTING TO KNOW EACH OTHER II.pdf", "Getting to Know Each Other II", "pdf")'>View</button>
                     </div>
                     <div class="collection-item">
                         <h4>Getting to Know Each Other III</h4>
                         <p>Advanced team-building exercises</p>
-                        <button class="btn-view" onclick='viewArtifact("Projects/physical-education-curriculum/presentations/classroom-management/GETTING TO KNOW EACH OTHER III.pdf", "Getting to Know Each Other III", "pdf")'>👁️ View</button>
+                        <button class="btn-view" onclick='viewArtifact("Projects/physical-education-curriculum/presentations/classroom-management/GETTING TO KNOW EACH OTHER III.pdf", "Getting to Know Each Other III", "pdf")'>View</button>
                     </div>
                 </div>
             `;
             break;
             
+        case 'lms-case-study':
+            content = `
+                <div style="max-width: 52rem;">
+                <h2 style="margin: 0 0 0.35rem; color: var(--text); font-size: 1.35rem; line-height: 1.3; letter-spacing: -0.02em;">Learning Management System Prototype — Case Study</h2>
+                <p style="color: var(--text-muted); margin: 0 0 1.35rem; font-size: 0.9375rem; line-height: 1.55;">
+                    A walkthrough of the problem, research signals, iterations, and the resulting interactive prototype.
+                </p>
+
+                <div style="margin-bottom: 1.35rem; padding-bottom: 1.35rem; border-bottom: 1px solid var(--glass-border);">
+                    <h3 style="color: var(--text); font-size: 1.05rem; margin: 0 0 0.65rem; font-weight: 700;">1. Problem</h3>
+                    <p style="color: var(--text-muted); margin: 0 0 0.65rem; line-height: 1.65; font-size: 0.9375rem;">
+                        Self-paced learners often lose momentum when progress is buried in files, multiple tools, or long scrolling pages—they cannot quickly answer: <em>Where am I? What is done? What is next today?</em>
+                        That ambiguity increases dropout and support questions before anyone reaches the actual instruction.
+                    </p>
+                    <p style="color: var(--text-muted); margin: 0; line-height: 1.65; font-size: 0.9375rem;">
+                        <strong style="color: var(--text);">Who it is for:</strong> the <strong>learner</strong> completing modular training (micro-learning blocks, media, downloads, short checks) in one place.
+                        A secondary audience is <strong>instructional designers and stakeholders</strong> who need a clear, shippable mental model of the experience before engineering invest in tutoring, transcripts, or adaptive paths.
+                    </p>
+                </div>
+
+                <div style="margin-bottom: 1.35rem; padding-bottom: 1.35rem; border-bottom: 1px solid var(--glass-border);">
+                    <h3 style="color: var(--text); font-size: 1.05rem; margin: 0 0 0.65rem; font-weight: 700;">2. Research</h3>
+                    <p style="color: var(--text-muted); margin: 0 0 0.85rem; line-height: 1.65; font-size: 0.9375rem;">
+                        Before laying out screens, I pressure-tested assumptions against how people actually finish online courses: visible progress beats hidden completion states; learners anchor on <em>today</em> and the <em>next actionable step</em>; mixing media and files in one module rhythm reduces context switching.
+                    </p>
+                    <div style="display: flex; flex-direction: column; gap: 0.55rem;">
+                        <div style="display: flex; gap: 0.6rem; align-items: flex-start; color: var(--text-muted); line-height: 1.65; font-size: 0.9375rem;">
+                            <span aria-hidden="true" style="flex-shrink: 0; color: var(--primary); font-weight: 700; font-size: 0.85rem; line-height: 1.65; width: 1rem; text-align: center;">►</span>
+                            <span><strong style="color: var(--text);">Jobs to be done:</strong> resume quickly, complete a bounded chunk, see proof of movement.</span>
+                        </div>
+                        <div style="display: flex; gap: 0.6rem; align-items: flex-start; color: var(--text-muted); line-height: 1.65; font-size: 0.9375rem;">
+                            <span aria-hidden="true" style="flex-shrink: 0; color: var(--primary); font-weight: 700; font-size: 0.85rem; line-height: 1.65; width: 1rem; text-align: center;">►</span>
+                            <span><strong style="color: var(--text);">Heuristic lens:</strong> Nielsen-style passes for recognition, error prevention (clear next step), and consistency of navigation.</span>
+                        </div>
+                        <div style="display: flex; gap: 0.6rem; align-items: flex-start; color: var(--text-muted); line-height: 1.65; font-size: 0.9375rem;">
+                            <span aria-hidden="true" style="flex-shrink: 0; color: var(--primary); font-weight: 700; font-size: 0.85rem; line-height: 1.65; width: 1rem; text-align: center;">►</span>
+                            <span><strong style="color: var(--text);">Platform patterns:</strong> borrowed what works from familiar LMS dashboards without copying noisy defaults that obscure progress.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="margin-bottom: 1.35rem; padding-bottom: 1.35rem; border-bottom: 1px solid var(--glass-border);">
+                    <h3 style="color: var(--text); font-size: 1.05rem; margin: 0 0 0.65rem; font-weight: 700;">3. Iteration</h3>
+                    <p style="color: var(--text-muted); margin: 0 0 0.85rem; line-height: 1.65; font-size: 0.9375rem;">
+                        Design moved from <strong style="color: var(--text);">storyboards and low-fidelity flows</strong> (module shell, where progress “lives,” and the day-level view) into a <strong style="color: var(--text);">single high-fidelity prototype</strong> so interactions could be critiqued as a whole, not as isolated mockups.
+                    </p>
+                    <div style="display: flex; flex-direction: column; gap: 0.55rem;">
+                        <div style="display: flex; gap: 0.6rem; align-items: flex-start; color: var(--text-muted); line-height: 1.65; font-size: 0.9375rem;">
+                            <span aria-hidden="true" style="flex-shrink: 0; color: var(--primary); font-weight: 700; font-size: 0.85rem; line-height: 1.65; width: 1rem; text-align: center;">►</span>
+                            <span><strong style="color: var(--text);">Early concept:</strong> module-first layout with resources stacked—clear for designers, still too easy for learners to lose the “today” story.</span>
+                        </div>
+                        <div style="display: flex; gap: 0.6rem; align-items: flex-start; color: var(--text-muted); line-height: 1.65; font-size: 0.9375rem;">
+                            <span aria-hidden="true" style="flex-shrink: 0; color: var(--primary); font-weight: 700; font-size: 0.85rem; line-height: 1.65; width: 1rem; text-align: center;">►</span>
+                            <span><strong style="color: var(--text);">Revision:</strong> elevated <em>progress by module and by day</em> so the learner always has a hierarchy: program → today → next step.</span>
+                        </div>
+                        <div style="display: flex; gap: 0.6rem; align-items: flex-start; color: var(--text-muted); line-height: 1.65; font-size: 0.9375rem;">
+                            <span aria-hidden="true" style="flex-shrink: 0; color: var(--primary); font-weight: 700; font-size: 0.85rem; line-height: 1.65; width: 1rem; text-align: center;">►</span>
+                            <span><strong style="color: var(--text);">Refinement:</strong> tightened the rhythm inside each module—video, visuals, downloads, short quiz—in one scannable column to match micro-learning behavior.</span>
+                        </div>
+                    </div>
+                    <div style="display: flex; gap: 0.6rem; align-items: flex-start; margin-top: 1rem; padding: 0.85rem 1rem; background: rgba(139, 92, 246, 0.08); border-radius: 8px; border-left: 3px solid var(--primary); color: var(--text-muted); font-size: 0.875rem; line-height: 1.65;">
+                        <span aria-hidden="true" style="flex-shrink: 0; color: var(--primary); font-weight: 700; font-size: 0.85rem; line-height: 1.65; width: 1rem; text-align: center;">►</span>
+                        <span><strong style="color: var(--text);">Artifacts:</strong> The image under Solution is the consolidated high-fidelity prototype that encodes those decisions.</span>
+                    </div>
+                </div>
+
+                <div style="margin-bottom: 1.35rem; padding-bottom: 1.35rem; border-bottom: 1px solid var(--glass-border);">
+                    <h3 style="color: var(--text); font-size: 1.05rem; margin: 0 0 0.65rem; font-weight: 700;">4. Solution</h3>
+                    <p style="color: var(--text-muted); margin: 0 0 1rem; line-height: 1.65; font-size: 0.9375rem;">
+                        The prototype is a compact, fully interactive learning shell: learners always know location, completion, and next actions; each module combines guided media, resources, and check-ins; the structure leaves natural hooks for tutoring, transcripts, adaptive questioning, and personalization without tearing up the core IA.
+                    </p>
+                    <figure style="margin: 0 0 1rem; padding: 0;">
+                        <img src="images/LMS Prototype.png" alt="High-fidelity LMS prototype showing dashboard, module progress, and learning shell" style="width: 100%; height: auto; border-radius: 10px; border: 1px solid var(--glass-border); display: block;" loading="lazy" />
+                        <figcaption style="color: var(--text-muted); font-size: 0.8125rem; margin-top: 0.5rem; line-height: 1.5;">High-fidelity prototype — learner view with progress and module experience.</figcaption>
+                    </figure>
+                    <div style="display: flex; flex-direction: column; gap: 0.55rem;">
+                        <div style="display: flex; gap: 0.6rem; align-items: flex-start; color: var(--text-muted); line-height: 1.65; font-size: 0.9375rem;">
+                            <span aria-hidden="true" style="flex-shrink: 0; color: var(--primary); font-weight: 700; font-size: 0.85rem; line-height: 1.65; width: 1rem; text-align: center;">►</span>
+                            <span><strong style="color: var(--text);">Because</strong> learners need orientation → <strong style="color: var(--text);">always-on</strong> placement and next step.</span>
+                        </div>
+                        <div style="display: flex; gap: 0.6rem; align-items: flex-start; color: var(--text-muted); line-height: 1.65; font-size: 0.9375rem;">
+                            <span aria-hidden="true" style="flex-shrink: 0; color: var(--primary); font-weight: 700; font-size: 0.85rem; line-height: 1.65; width: 1rem; text-align: center;">►</span>
+                            <span><strong style="color: var(--text);">Because</strong> modules bundle multiple asset types → <strong style="color: var(--text);">one</strong> column rhythm per module.</span>
+                        </div>
+                        <div style="display: flex; gap: 0.6rem; align-items: flex-start; color: var(--text-muted); line-height: 1.65; font-size: 0.9375rem;">
+                            <span aria-hidden="true" style="flex-shrink: 0; color: var(--primary); font-weight: 700; font-size: 0.85rem; line-height: 1.65; width: 1rem; text-align: center;">►</span>
+                            <span><strong style="color: var(--text);">Because</strong> future smart features matter → <strong style="color: var(--text);">extensible</strong> structure without a full redesign.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="margin-bottom: 0;">
+                    <h3 style="color: var(--text); font-size: 1.05rem; margin: 0 0 0.65rem; font-weight: 700;">5. Validation</h3>
+                    <div style="display: flex; flex-direction: column; gap: 0.55rem; margin-bottom: 1.5rem;">
+                        <div style="display: flex; gap: 0.6rem; align-items: flex-start; color: var(--text-muted); line-height: 1.65; font-size: 0.9375rem;">
+                            <span aria-hidden="true" style="flex-shrink: 0; color: var(--primary); font-weight: 700; font-size: 0.85rem; line-height: 1.65; width: 1rem; text-align: center;">►</span>
+                            <span>Direction checked with <strong style="color: var(--text);">task-based critique</strong> (walkthroughs against the jobs above), <strong style="color: var(--text);">heuristic review</strong>, and <strong style="color: var(--text);">stakeholder review</strong> of the interactive prototype for clarity of the learner story.</span>
+                        </div>
+                        <div style="display: flex; gap: 0.6rem; align-items: flex-start; color: var(--text-muted); line-height: 1.65; font-size: 0.9375rem;">
+                            <span aria-hidden="true" style="flex-shrink: 0; color: var(--primary); font-weight: 700; font-size: 0.85rem; line-height: 1.65; width: 1rem; text-align: center;">►</span>
+                            <span>Next layer: <strong style="color: var(--text);">moderated usability sessions</strong> with real learners on resume/next-step tasks, and an <strong style="color: var(--text);">accessibility audit</strong> before build.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="margin-top: 0.25rem; padding-top: 1.1rem; border-top: 1px solid var(--glass-border);">
+                    <button class="btn-view" onclick='closeProjectModal(); viewArtifact("images/LMS Prototype.png", "Learning Management System Prototype", "image");'>Open prototype (full viewer)</button>
+                </div>
+                </div>
+            `;
+            break;
+
         case 'middle-school-pe-curriculum':
             content = `
                 <h2 style="margin-bottom: 1.5rem; color: var(--text);">Middle School Physical Education Curriculum Development</h2>
